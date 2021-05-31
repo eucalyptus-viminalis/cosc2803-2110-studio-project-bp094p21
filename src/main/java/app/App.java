@@ -23,16 +23,9 @@ public class App {
         // Create our HTTP server and listen in port 7000
         Javalin app = Javalin.create(config -> {
             config.registerPlugin(new RouteOverviewPlugin("/help/routes"));
-            
-            // Uncomment this if you have files in the CSS Directory
             config.addStaticFiles(CSS_DIR);
-
-            // Uncomment this if you have files in the Images Directory
             config.addStaticFiles(IMAGES_DIR);
         }).start(JAVALIN_PORT);
-
-
-        // Configure Web Routes
         configureRoutes(app);
     }
 
