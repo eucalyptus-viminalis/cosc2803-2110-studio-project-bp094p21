@@ -68,6 +68,7 @@ with open("original/new_deaths.csv", "r") as file:
                 country_table["Latitude"].append(None)
                 country_table["Longitude"].append(None)
                 country_table["Population"].append(None)
+                counter_country += 1
             # make new state
             state_table["ID"].append(state_id)
             state_table["Name"].append(row["Province_State"].strip())
