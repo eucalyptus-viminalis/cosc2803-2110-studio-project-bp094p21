@@ -35,7 +35,6 @@ public class App {
         app.get(bigpicture.URL, new bigpicture());
         app.get(shallowglance.URL, new shallowglance());
         app.get(deepdive.URL, new deepdive());
-        app.get(help.URL, new help());
         app.get(Page5.URL, new Page5());
         app.get(Page6.URL, new Page6());
 
