@@ -13,47 +13,22 @@ ul {
   padding: 0;
 }
 
-.navbar .bigpicture {
-  background-color: red;
+.navbar {
+  padding: 1em;
 }
 
-.navbar .shallowglance {
-  background-color: red;
+.navbar nav {
+  display: none;
 }
 
-.navbar .deepdive {
-  background-color: red;
-}
-
-.navbar .help {
-  background-color: red;
-}
-
-.navbar ul {
-  overflow: hidden;
-  background-color: #333;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-.navbar li a {
-  display: block;
-  color: white;
-  padding: 14px 100px;
-  text-decoration: none;
-  font-size: 2.5em;
-}
-
-.navbar li a:hover {
-  color: #76e676;
+.navbar .mobile-menu {
+  cursor: pointer;
+  float: right;
 }
 
 .homepagehero {
   text-align: center;
+  place-content: space-between;
 }
 
 .homepagehero .update {
@@ -94,5 +69,96 @@ ul {
 
 .homepagehero .primary-cta:hover {
   background-color: #76e676;
+}
+
+nav.menu-btn {
+  display: block;
+}
+
+nav {
+  position: fixed;
+  z-index: 999;
+  width: 66%;
+  right: 0;
+  top: 0;
+  background: #333;
+  height: 100vh;
+  padding: 1em;
+}
+
+nav ul {
+  margin-top: 5em;
+}
+
+nav li a {
+  display: block;
+  color: white;
+  padding: 14px 100px;
+  text-decoration: none;
+  font-size: 1.3em;
+  text-align: right;
+}
+
+nav li a:hover {
+  color: #76e676;
+}
+
+.mobile-menu-exit {
+  float: right;
+  margin: .5em;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 1000px) {
+  .mobile-menu, .mobile-menu-exit {
+    display: none;
+  }
+  .navbar {
+    padding: 0;
+    margin: 0;
+  }
+  .navbar nav {
+    display: unset;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    background: none;
+    position: unset;
+    height: auto;
+    width: 100%;
+    padding: 0;
+  }
+  .navbar .bigpicture {
+    background-color: red;
+  }
+  .navbar .shallowglance {
+    background-color: red;
+  }
+  .navbar .deepdive {
+    background-color: red;
+  }
+  .navbar ul {
+    overflow: hidden;
+    background-color: #333;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  .navbar li a {
+    display: block;
+    color: white;
+    padding: 14px 100px;
+    text-decoration: none;
+    font-size: 2.5em;
+  }
+  .navbar li a:hover {
+    color: #76e676;
+  }
 }
 /*# sourceMappingURL=main.css.map */
