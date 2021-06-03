@@ -39,7 +39,7 @@ public class App {
         app.get(Page6.URL, new Page6());
 
         // Add / uncomment POST commands for any pages that need web form POSTS
-        // app.post(Index.URL, new Index());
+        app.post(shallowglance.URL, new shallowglance());
         // app.post(Page1.URL, new Page1());
         // app.post(Page2.URL, new Page2());
         // app.post(Page3.URL, new Page3());
