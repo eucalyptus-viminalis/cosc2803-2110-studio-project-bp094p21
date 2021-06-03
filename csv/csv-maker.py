@@ -1,6 +1,6 @@
 import csv
 # Tables
-record_table = {
+date_table = {
     "Date": []
 }
 country_table = {
@@ -40,14 +40,14 @@ state_record_cases = {
 }
 deaths_fields = set()
 
-with open("original/new_deaths.csv", "r") as file:
+with open("date-formatted/new_deaths_formatted.csv", "r") as file:
     reader = csv.DictReader(file)
     deaths_fields = reader.fieldnames
     total_fields = 0
     total_dates = 0
     for field in deaths_fields:
-        if ("/" in field):
-            record_table["Date"].append(field)
+        if ("-" in field):
+            date_table["Date"].append(field)
             total_dates += 1
         total_fields += 1
     print("new_deaths.csv: Fields - " + str(total_fields) + ", Total Dates - " + str(total_dates))
@@ -78,7 +78,7 @@ with open("original/new_deaths.csv", "r") as file:
             state_table["Country_RegionID"].append(country_table["Name"].index(row["Country_Region"]))
             counter_state += 1
             # Add death records to state_record_deaths
-            for date in record_table["Date"]:
+            for date in date_table["Date"]:
                 state_record_deaths["Province_StateID"].append(state_id)
                 state_record_deaths["Date"].append(date)
                 state_record_deaths["NewDeaths"].append(row[date])
@@ -96,7 +96,7 @@ with open("original/new_deaths.csv", "r") as file:
                 country_table["Longitude"][index] = row["Longitude"]
                 country_table["Population"][index] = row["Population"]
             # Add death records to country_record_deaths
-            for date in record_table["Date"]:
+            for date in date_table["Date"]:
                 country_record_deaths["Country_RegionID"].append(country_id)
                 country_record_deaths["Date"].append(date)
                 country_record_deaths["NewDeaths"].append(row[date])
@@ -106,13 +106,13 @@ num_country_deaths = len(country_record_deaths["Date"])
 print("Num Country Deaths Records: " + str(num_country_deaths))
 print("Num State Deaths Records: " + str(num_state_deaths))
 
-with open("original/new_cases.csv", "r") as file:
+with open("date-formatted/new_cases_formatted.csv", "r") as file:
     reader = csv.DictReader(file)
     fields = reader.fieldnames
     total_fields = 0
     total_dates = 0
     for field in fields:
-        if ("/" in field):
+        if ("-" in field):
             total_dates += 1
         total_fields += 1
     print("\nnew_cases.csv: Fields - " + str(total_fields) + ", Total Dates - " + str(total_dates))
@@ -122,7 +122,7 @@ with open("original/new_cases.csv", "r") as file:
     for row in reader:
         if (row["Province_State"].strip()):
             # Add case records to state_record_cases
-            for date in record_table["Date"]:
+            for date in date_table["Date"]:
                 state_record_cases["Province_StateID"].append(counter_state)
                 state_record_cases["Date"].append(date)
                 state_record_cases["NewCases"].append(row[date])
@@ -130,7 +130,7 @@ with open("original/new_cases.csv", "r") as file:
         elif (row["Country_Region"].strip() not in country_names):
             country_names.append(row["Country_Region"].strip())
             # Add case records to country_record_cases
-            for date in record_table["Date"]:
+            for date in date_table["Date"]:
                 country_record_cases["Country_RegionID"].append(counter_country)
                 country_record_cases["Date"].append(date)
                 country_record_cases["NewCases"].append(row[date])
@@ -141,10 +141,10 @@ num_country_cases = len(country_record_cases["Date"])
 print("Num Country Cases Records: " + str(num_country_cases))
 print("Num State Cases Records: " + str(num_state_cases))
 
-with open('litty/record.csv', 'w') as file:
+with open('litty/date.csv', 'w') as file:
     writer = csv.writer(file)
     writer.writerow(["Date"])
-    for date in record_table["Date"]:
+    for date in date_table["Date"]:
         writer.writerow([date])
 
 with open('litty/country.csv', 'w') as file:
