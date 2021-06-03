@@ -56,7 +56,7 @@ public class shallowglance implements Handler {
         String date1_textbox = context.formParam("date1_textbox");
         String date2_textbox = context.formParam("date2_textbox");
         String shalloworder_drop = context.formParam("shalloworder_drop");
-        if (date1_textbox == null || date1_textbox == "" && date2_textbox == null || date2_textbox == "" && shalloworder_drop == null || shalloworder_drop == "") {
+        if (((date1_textbox == null || date1_textbox == "") || (date2_textbox == null || date2_textbox == "")) && (shalloworder_drop == null || shalloworder_drop == "")) {
             shallowglancevar = shallowglancevar + doNothing();
         }
         else {
