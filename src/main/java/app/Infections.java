@@ -71,11 +71,11 @@ public class infections implements Handler {
             start = start.plusDays(1);
         }
         try {
-            LocalDate firstDate = LocalDate.parse(date1_textbox);
-            LocalDate secondDate = LocalDate.parse(date2_textbox);
-            if (((date1_textbox == null || date1_textbox == "") || (date2_textbox == null || date2_textbox == "")) && (shalloworder_drop == null || shalloworder_drop == "")) {
+            if (((date1_textbox == null || date1_textbox == "") && (date2_textbox == null || date2_textbox == "")) && (shalloworder_drop == null || shalloworder_drop == "")) {
                 infectionsvar = infectionsvar + doNothing();
             }
+            LocalDate firstDate = LocalDate.parse(date1_textbox);
+            LocalDate secondDate = LocalDate.parse(date2_textbox);
             if (!totalDates.contains(firstDate)) {
                 infectionsvar = infectionsvar + "<h4 class=firstboxcheck>Please ensure that the date in your first box is a date specified above.</h4>";
                 infectionsvar = infectionsvar + doNothing();
