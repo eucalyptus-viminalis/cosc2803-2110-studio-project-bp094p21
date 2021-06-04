@@ -5,6 +5,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Poppins';
+  font-size: 10px;
 }
 
 ul {
@@ -93,7 +94,7 @@ nav ul {
 nav li a {
   display: block;
   color: white;
-  padding: 14px 100px;
+  padding: 14px 10px;
   text-decoration: none;
   font-size: 1.3em;
   text-align: right;
@@ -109,7 +110,7 @@ nav li a:hover {
   cursor: pointer;
 }
 
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 800px) {
   .mobile-menu, .mobile-menu-exit {
     display: none;
   }
@@ -128,13 +129,7 @@ nav li a:hover {
     width: 100%;
     padding: 0;
   }
-  .navbar .bigpicture {
-    background-color: red;
-  }
-  .navbar .shallowglance {
-    background-color: red;
-  }
-  .navbar .deepdive {
+  .highlight-red {
     background-color: red;
   }
   .navbar ul {
@@ -153,7 +148,7 @@ nav li a:hover {
   .navbar li a {
     display: block;
     color: white;
-    padding: 14px 100px;
+    padding: 1rem 2rem;
     text-decoration: none;
     font-size: 2.5em;
   }
@@ -162,3 +157,13 @@ nav li a:hover {
   }
 }
 /*# sourceMappingURL=main.css.map */
+
+.nav-ul {
+  display: flex;
+  flex-direction: row;
+}
+.fixed-home-btn {
+  display: fix;
+  bottom: 1rem;
+  left: 1rem;
+}

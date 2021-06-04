@@ -8,16 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- * Class for Managing the JDBC Connection to a SQLLite Database.
- * Allows SQL queries to be used with the SQLLite Databse in Java.
- * 
- * This is an example JDBC Connection that has a single query for the Movies Database
- * This is similar to the project workshop JDBC examples.
- *
- * @author Santha Sumanasekara, 2021. email: santha.sumanasekara@rmit.edu.au
- * @author Timothy Wiley, 2021. email: timothy.wiley@rmit.edu.au
- */
 public class JDBCConnection {
 
     // Name of database file (contained in database folder)

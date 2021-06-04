@@ -3,16 +3,6 @@ package app;
 import io.javalin.Javalin;
 import io.javalin.core.util.RouteOverviewPlugin;
 
-
-/**
- * Main Application Class.
- * <p>
- * Running this class as regular java application will start the 
- * Javalin HTTP Server and our web application.
- *
- * @author Timothy Wiley, 2021. email: timothy.wiley@rmit.edu.au
- * @author Santha Sumanasekara, 2021. email: santha.sumanasekara@rmit.edu.au
- */
 public class App {
 
     public static final int         JAVALIN_PORT    = 7000;
@@ -20,7 +10,6 @@ public class App {
     public static final String      IMAGES_DIR      = "images/";
 
     public static void main(String[] args) {
-        // Create our HTTP server and listen in port 7000
         Javalin app = Javalin.create(config -> {
             config.registerPlugin(new RouteOverviewPlugin("/help/routes"));
             config.addStaticFiles(CSS_DIR);
@@ -30,16 +19,15 @@ public class App {
     }
 
     public static void configureRoutes(Javalin app) {
-        // All webpages are listed here as GET pages
-        app.get(homepage.URL, new homepage());
-        app.get(bigpicture.URL, new bigpicture());
-        app.get(shallowglance.URL, new shallowglance());
-        app.get(deepdive.URL, new deepdive());
-        app.get(Page5.URL, new Page5());
-        app.get(Page6.URL, new Page6());
+        app.get(Index.URL, new Index());
+        app.get(BigPicture.URL, new BigPicture());
+        app.get(Infections.URL, new Infections());
+        app.get(Cumulative.URL, new Cumulative());
+        app.get(Deaths.URL, new Deaths());
+        app.get(Similar.URL, new Similar());
 
         // Add / uncomment POST commands for any pages that need web form POSTS
-        app.post(shallowglance.URL, new shallowglance());
+        app.post(Infections.URL, new Infections());
         // app.post(Page1.URL, new Page1());
         // app.post(Page2.URL, new Page2());
         // app.post(Page3.URL, new Page3());

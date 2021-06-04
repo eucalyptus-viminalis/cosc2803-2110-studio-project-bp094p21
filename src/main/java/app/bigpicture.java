@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 
-public class bigpicture implements Handler {
+public class BigPicture implements Handler {
     
     public static final String URL = "/bigpicture.html";
     
@@ -19,15 +19,17 @@ public class bigpicture implements Handler {
         "    <title>CovidWebsite</title>"+
         "    <link rel=\"stylesheet\" href=\"main.css\">"+
         "</head>"+
-        "<body>"+
+        "<body>"+ "<div class='fixed-home-btn'><a href='index.html'>Home</a></div>"+
         "    <div class=\"navbar\">"+
         "        <img id=\"mobile-cta\" class=\"mobile-menu\" src=\"menu.svg\" alt=\"Open Navigation\">"+
         "        <nav>"+
         "            <img id=\"mobile-exit\" class=\"mobile-menu-exit\" src=\"exit.svg\" alt=\"Close Navigation\">"+
-        "            <ul>"+
-        "                <li><a href=\"bigpicture.html\" class=\"bigpicture\">Big Picture</a></li>"+
-        "                <li><a href=\"shallowglance.html\">Shallow Glance</a></li>"+
-        "                <li><a href=\"deepdive.html\">Deep Dive</a></li>"+
+        "            <ul class='nav-ul'>"+
+        "                <li class='btn-lvl1 highlight-red'><a href=\"bigpicture.html\">Big Picture</a></li>"+
+        "                <li class='btn-lvl2'><a href=\"infections.html\">Infections</a></li>"+
+        "                <li class='btn-lvl2'><a href=\"deaths.html\">Deaths</a></li>"+
+        "                <li class='btn-lvl3'><a href=\"cumulative.html\">Cumulative</a></li>"+
+        "                <li class='btn-lvl3'><a href=\"similar.html\">Similar</a></li>"+
         "            </ul>"+
         "        </nav>"+
         "    </div>"+
