@@ -40,21 +40,6 @@ public class index implements Handler {
     "        <h4>All the data you need in one place.</h4>"+
     "        <a href=\"bigpicture.html\" class=\"primary-cta\">SAVE LIVES</a>"+
     "    </section>"+
-    ""+
-    "    <script>"+
-    "        const mobileBtn = document.getElementById('mobile-cta')"+
-    "            nav = document.querySelector('nav');"+
-    "            mobileBtnExit = document.getElementById('mobile-exit');"+
-    ""+
-    "        mobileBtn.addEventListener('click', () => {"+
-    "            nav.classList.add('menu-btn');"+
-    "        })"+
-    ""+
-    "        mobileBtnExit.addEventListener('click', () => {"+
-    "            nav.classList.remove('menu-btn');"+
-    "        })"+
-    "    </script>"+
-    ""+
     "</body>"+
     "</html>";
             

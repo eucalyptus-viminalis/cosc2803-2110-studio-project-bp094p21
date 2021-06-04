@@ -8,6 +8,7 @@ public class App {
     public static final int         JAVALIN_PORT    = 7000;
     public static final String      CSS_DIR         = "css/";
     public static final String      IMAGES_DIR      = "images/";
+    public static final String      JS_DIR          = "js/";
 
     public static void main(String[] args) {
         Javalin app = Javalin.create(config -> {
