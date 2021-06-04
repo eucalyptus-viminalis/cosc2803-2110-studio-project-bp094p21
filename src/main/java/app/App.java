@@ -19,15 +19,15 @@ public class App {
     }
 
     public static void configureRoutes(Javalin app) {
-        app.get(Index.URL, new Index());
-        app.get(BigPicture.URL, new BigPicture());
-        app.get(Infections.URL, new Infections());
-        app.get(Cumulative.URL, new Cumulative());
-        app.get(Deaths.URL, new Deaths());
-        app.get(Similar.URL, new Similar());
+        app.get(index.URL, new index());
+        app.get(bigpicture.URL, new bigpicture());
+        app.get(infections.URL, new infections());
+        app.get(cumulative.URL, new cumulative());
+        app.get(deaths.URL, new deaths());
+        app.get(similar.URL, new similar());
 
         // Add / uncomment POST commands for any pages that need web form POSTS
-        app.post(Infections.URL, new Infections());
+        app.post(infections.URL, new infections());
         // app.post(Page1.URL, new Page1());
         // app.post(Page2.URL, new Page2());
         // app.post(Page3.URL, new Page3());

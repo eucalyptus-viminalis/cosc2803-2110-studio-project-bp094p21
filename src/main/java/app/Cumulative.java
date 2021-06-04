@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 
-public class Cumulative implements Handler {
+public class cumulative implements Handler {
     
     public static final String URL = "/cumulative.html";
     

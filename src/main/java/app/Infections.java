@@ -2,12 +2,10 @@ package app;
 
 import java.util.ArrayList;
 
-import org.graalvm.compiler.nodes.gc.G1PostWriteBarrier;
-
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 
-public class Infections implements Handler {
+public class infections implements Handler {
     
     public static final String URL = "/infections.html";
     
@@ -35,7 +33,7 @@ public class Infections implements Handler {
         infectionsvar = infectionsvar +"        </nav>";
         infectionsvar = infectionsvar +"    </div>";
         infectionsvar = infectionsvar +"    ";
-        infectionsvar = infectionsvar +"   <form action='/shallowglance.html' method='post'>";
+        infectionsvar = infectionsvar +"   <form action='/infections.html' method='post'>";
         infectionsvar = infectionsvar +"    <section class=\"shallowglancehero\">";
         infectionsvar = infectionsvar +"        <div class=\"shallowglanceleft-col\">";
         infectionsvar = infectionsvar +"            <h1 class=\"lefttext\">Please choose how you want to see the data with the settings below."; 
@@ -62,7 +60,7 @@ public class Infections implements Handler {
             infectionsvar = infectionsvar + doNothing();
         }
         else {
-            infectionsvar = infectionsvar + outputDate1(date1_textbox);
+            infectionsvar = infectionsvar + outputDate(date1_textbox, date2_textbox);
         }
         infectionsvar = infectionsvar + "</body>" + "</html>";
 // DO NOT MODIFY THIS
@@ -71,7 +69,7 @@ public class Infections implements Handler {
     }
     public String doNothing() {
         String infectionsvar = "";
-        infectionsvar = infectionsvar + "<h2>COVID-19 Data</h2>";
+        infectionsvar = infectionsvar + "<h2>COVID-19 Default Data</h2>";
 
         JDBCConnection jdbc = new JDBCConnection();
         ArrayList<String> covid = jdbc.getDefaultData();
@@ -99,19 +97,11 @@ public class Infections implements Handler {
         return infectionsvar;
     }
 
-    public String outputDate1(String date1) {
+    public String outputDate(String date1, String date2) {
         String infectionsvar = "";
-    }
-
-    public String outputDate2(String date2) {
-
-    }
-
-    public String outputShallowOption(String option) {
-
-    }
-
-    public String outputCountries(String fin) {
-
+        infectionsvar = infectionsvar + "<h2>COVID-19 Data Between 2 Dates</h2>";
+        
+        
+        return infectionsvar;
     }
 }
