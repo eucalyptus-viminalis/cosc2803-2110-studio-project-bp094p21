@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 
-public class BigPicture implements Handler {
+public class bigpicture implements Handler {
     
     public static final String URL = "/bigpicture.html";
     

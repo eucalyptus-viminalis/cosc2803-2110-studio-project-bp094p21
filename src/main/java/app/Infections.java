@@ -7,7 +7,7 @@ import org.graalvm.compiler.nodes.gc.G1PostWriteBarrier;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 
-public class Infections implements Handler {
+public class infections implements Handler {
     
     public static final String URL = "/infections.html";
     
@@ -35,7 +35,7 @@ public class Infections implements Handler {
         infectionsvar = infectionsvar +"        </nav>";
         infectionsvar = infectionsvar +"    </div>";
         infectionsvar = infectionsvar +"    ";
-        infectionsvar = infectionsvar +"   <form action='/shallowglance.html' method='post'>";
+        infectionsvar = infectionsvar +"   <form action='/infections.html' method='post'>";
         infectionsvar = infectionsvar +"    <section class=\"shallowglancehero\">";
         infectionsvar = infectionsvar +"        <div class=\"shallowglanceleft-col\">";
         infectionsvar = infectionsvar +"            <h1 class=\"lefttext\">Please choose how you want to see the data with the settings below."; 
