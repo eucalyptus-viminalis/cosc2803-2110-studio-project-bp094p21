@@ -35,7 +35,7 @@ public class Index implements Handler {
     "    </div>"+
     ""+
     "    <section class=\"homepagehero\" alt=\"COVID-19 Picture\">"+
-    "        <img src=\"covid19.png\">"+
+    "        <img src=\"covid.svg\">"+
     "        <h1>Stay alert. Say NO to COVID-19.</h1>"+
     "        <h4>All the data you need in one place.</h4>"+
     "        <a href=\"bigpicture.html\" class=\"primary-cta\">SAVE LIVES</a>"+
