@@ -157,7 +157,7 @@ public class infections implements Handler {
 
     public String outputDate(String date1, String date2) {
         String infectionsvar = "";
-        infectionsvar = infectionsvar + "<h2>COVID-19 Data Between " + date1 + " and " + date2 + "</h2>";
+        infectionsvar = infectionsvar + "<h2>COVID-19 Data between " + date1 + " and " + date2 + "</h2>";
         
         JDBCConnection jdbc = new JDBCConnection();
         ArrayList<String> covid = jdbc.getDateData(date1, date2);
