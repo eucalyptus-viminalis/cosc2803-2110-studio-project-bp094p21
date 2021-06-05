@@ -354,7 +354,7 @@ public class JDBCConnection {
             connection = DriverManager.getConnection(DATABASE);
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
-            String query = "SELECT Country.Name AS 'Country Name', SUM(NewCases) as 'Total Cases', MAX(NewCases) AS 'Most Cases in a Day', Date AS 'Date of Most Cases' FROM COUNTRY JOIN Country_RegionCases ON Country.ID=Country_RegionCases.Country_RegionID JOIN Country_RegionDeaths ON Country.ID=Country_RegionDeaths.Country_RegionID WHERE Date BETWEEN '" + Date1 + "' AND '" + Date2 + "' GROUP BY Country.Name ORDER BY SUM(NewDeaths) " + order + ", SUM(NewCases) " + order + "";
+            String query = "SELECT Country.Name AS 'Country Name', SUM(NewCases) as 'Total Cases', MAX(NewCases) AS 'Most Cases in a Day', Date AS 'Date of Most Cases' FROM Country_RegionCases NATURAL JOIN Country_RegionDeaths JOIN Country ON Country_RegionCases.Country_RegionID=Country.ID WHERE Date BETWEEN '" + Date1 + "' AND '" + Date2 + "' GROUP BY Country.Name ORDER BY SUM(NewDeaths) " + order + ", SUM(NewCases) " + order + "";
             System.out.println(query);
             ResultSet results = statement.executeQuery(query);
             while (results.next()) {
