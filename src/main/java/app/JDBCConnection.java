@@ -104,7 +104,6 @@ public class JDBCConnection {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
             String query = "select name from country order by name asc";
-            System.out.println(query);
             ResultSet results = statement.executeQuery(query);
             while (results.next()) {
                 String name = results.getString("name");
@@ -135,7 +134,6 @@ public class JDBCConnection {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
             String query = "select name from state order by name asc";
-            System.out.println(query);
             ResultSet results = statement.executeQuery(query);
             while (results.next()) {
                 String name = results.getString("name");
@@ -220,7 +218,6 @@ public class JDBCConnection {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
             String query = "select name n, sum(newdeaths) s from country join country_regiondeaths on country.id = country_regiondeaths.country_regionid natural join date where date between '2021-03-22' and '2021-04-22' group by name order by sum(newdeaths) desc limit 1";
-            System.out.println(query);
             ResultSet result = statement.executeQuery(query);
             name = result.getString("n");
             statement.close();
@@ -248,7 +245,6 @@ public class JDBCConnection {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
             String query = "select name n, sum(newdeaths) s from country join country_regiondeaths on country.id = country_regiondeaths.country_regionid natural join date where date between '2021-03-22' and '2021-04-22' group by name order by sum(newdeaths) desc limit 1";
-            System.out.println(query);
             ResultSet result = statement.executeQuery(query);
             sum = result.getInt("s");
             statement.close();
@@ -276,7 +272,6 @@ public class JDBCConnection {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
             String query = "select sum(s) s from (select name, sum(newdeaths) s from country join country_regiondeaths on country.id = country_regiondeaths.country_regionid natural join date where date between '2021-03-22' and '2021-04-22' group by name order by sum(newdeaths) desc)";
-            System.out.println(query);
             ResultSet result = statement.executeQuery(query);
             sum = result.getInt("s");
             statement.close();
@@ -331,7 +326,6 @@ public class JDBCConnection {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
             String query = "select count(*) c from (select name, newcases from state join province_statecases on state.id = province_statecases.province_stateid where date between '2020-04-16' and '2020-04-22' group by name having sum(newcases) = 0)";
-            System.out.println(query);
             ResultSet result = statement.executeQuery(query);
             count = result.getInt("c");
             statement.close();
@@ -350,5 +344,171 @@ public class JDBCConnection {
             }
         }
         return count;
+    }
+    public int getTotalDeathsInDateRange1Country(String countryName, String fromDate, String toDate) {
+        int sum = 0;
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(DATABASE);
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            String query = "select sum(newdeaths) s from country_regiondeaths natural join date join country on country.id = country_regiondeaths.country_regionid where country.name = '" + countryName + "' and date between '" + fromDate + "' and '" + toDate +"'";
+            System.out.println(query);
+            ResultSet result = statement.executeQuery(query);
+            sum = result.getInt("s");
+            statement.close();
+        }
+        catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        finally {
+            try{
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+        return sum;
+    }
+    public int getTotalCasesInDateRange1Country(String countryName, String fromDate, String toDate) {
+        int sum = 0;
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(DATABASE);
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            String query = "select sum(newcases) s from country_regioncases natural join date join country on country.id = country_regioncases.country_regionid where country.name = '" + countryName + "' and date between '" + fromDate + "' and '" + toDate + "'";
+            System.out.println(query);
+            ResultSet result = statement.executeQuery(query);
+            sum = result.getInt("s");
+            statement.close();
+        }
+        catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        finally {
+            try{
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+        return sum;
+    }
+    public int getTotalDeathsCountryFullRange() {
+        int sum = 0;
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(DATABASE);
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            String query = "select sum(country_regiondeaths.newdeaths) sum from country_regiondeaths natural join date where date between '2020-01-22' and '2021-04-22'";
+            ResultSet result = statement.executeQuery(query);
+            sum = result.getInt("sum");
+            statement.close();
+        }
+        catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        finally {
+            try{
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+        return sum;
+    }
+    public int getTotalDeathsStateFullRange() {
+        int sum = 0;
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(DATABASE);
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            String query = "select sum(province_statedeaths.newdeaths) sum from province_statedeaths natural join date where date between '2020-01-22' and '2021-04-22'";
+            ResultSet result = statement.executeQuery(query);
+            sum = result.getInt("sum");
+            statement.close();
+        }
+        catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        finally {
+            try{
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+        return sum;
+    }
+    public ArrayList<String> getPeakData(String countryName) {
+        ArrayList<String> peak_data = new ArrayList<String>();
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(DATABASE);
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            String query = "select max(newdeaths) d, date date from country join country_regiondeaths on country.id = country_regiondeaths.country_regionid natural join date where name = '" + countryName + "'";
+            ResultSet results = statement.executeQuery(query);
+            while (results.next()) {
+                String deaths     = results.getString("d");
+                String date = results.getString("date");
+                peak_data.add(date);
+                peak_data.add(deaths);
+            }
+            statement.close();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+        return peak_data;
+    }
+    public int getCountryPopulation(String countryName) {
+        int pop = 0;
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(DATABASE);
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            String query = "select population p from country where name ='" + countryName + "'";
+            ResultSet result = statement.executeQuery(query);
+            pop = result.getInt("p");
+            statement.close();
+        }
+        catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        finally {
+            try{
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+        return pop;
     }
 }

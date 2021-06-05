@@ -18,8 +18,8 @@ public class bigpicture implements Handler {
         
         "    <meta charset='utf-8'>" +
         "    <meta name='viewport' content='width=device-width, initial-scale=1'>" +
-        "    <meta name='author' content='spark!y'>" +
-        "    <meta name='description' content='a spark!y creation'>" +
+        "    <meta name='author' content='@jinheock'>" +
+        "    <meta name='description' content='a webpage by @jinheock'>" +
         "    <meta property='og:title' content='Big Picture'>" +
         "    <meta property='og:description' content='Big Picture'>" +
         "    <meta property='og:image' content='/some-image.png'>" +
@@ -30,7 +30,7 @@ public class bigpicture implements Handler {
         
         "    <link href='reset.css' rel='stylesheet'>" +
         "    <link href='style.css' rel='stylesheet'>" +
-        "    <link rel='icon' type='image/svg+xml' href='covid.favicon.svg'>" +
+        "    <link rel='icon' type='image/svg+xml' href='covid.svg'>" +
         "</head>" +
         "<body>" +
         "<nav class='nav-topnav'>" +
@@ -75,7 +75,7 @@ public class bigpicture implements Handler {
         "    <p class='p-fact'>" +
         strCountryNames + " along with <span class='span-hightlight'>" + count + " states and provinces around the world, have reported <span class='span-highlight'>0 new infections</span> in the past week.^</p>" +
         "    <div class='div-small'><small>*: excludes regional/provincial data</small>" +
-        "    <small>^: weeks ranging from 2021-04-16 to 2021-04-22, inclusive</small></div>";
+        "    <small>^: week ranging from 2021-04-16 to 2021-04-22, inclusive</small></div>";
         html = html +
         "    </div>" +
         "</main>" +
