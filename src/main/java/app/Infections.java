@@ -49,8 +49,8 @@ public class infections implements Handler {
         infectionsvar = infectionsvar +"                  <option>Ascending Order</option>";
         infectionsvar = infectionsvar +"            </div>";
         infectionsvar = infectionsvar +"            <div class='\"form-group\"'>";
-        infectionsvar = infectionsvar +"                  <input class='\"form-control1\"' id='date1_textbox' name='date1_textbox' placeholder='YYYY-MM-DD' type='date' value='2020-01-22' min='2020-01-22' max='2021-04-22'>";
-        infectionsvar = infectionsvar +"                  <input class='\"form-control2\"' id='date2_textbox' name='date2_textbox' placeholder='YYYY-MM-DD' type='date' value='2021-04-22' min='2020-01-22' max='2021-04-22'>";
+        infectionsvar = infectionsvar +"                  <input class='\"form-control1\"' id='date1_textbox' name='date1_textbox' type='date' value='2020-01-22' min='2020-01-22' max='2021-04-22'>";
+        infectionsvar = infectionsvar +"                  <input class='\"form-control2\"' id='date2_textbox' name='date2_textbox' type='date' value='2021-04-22' min='2020-01-22' max='2021-04-22'>";
         infectionsvar = infectionsvar +"            </div>";
         infectionsvar = infectionsvar +"            <button type='submit' class='\"btn btn-shallow\"'>Go</button>";
         infectionsvar = infectionsvar +"        </div>";
@@ -85,7 +85,19 @@ public class infections implements Handler {
                 infectionsvar = infectionsvar + "<h4 class=secondboxcheck>Please ensure that the date in your first and second box is a date in range of 2020-01-22 to 2021-04-22.</h4>";
                 infectionsvar = infectionsvar + doNothing();
             }
-            if (((date1_textbox != null || date1_textbox != "") && (date2_textbox != null || date2_textbox != "")) && (shalloworder_drop == null || shalloworder_drop == "")) {
+            if (shalloworder_drop.equals("Ascending Order") || shalloworder_drop.equals("Descending Order")) {
+                int a;
+                int b;
+                for (a = 0; a < totalDates.size(); a++) {
+                    for (b = 0; b < totalDates.size(); b++) {
+                        if (((firstDate.compareTo(totalDates.get(a)) == 0) && (secondDate.compareTo(totalDates.get(b)) == 0))) {
+                            infectionsvar = infectionsvar + testOrder2(shalloworder_drop, firstDate, secondDate);
+                            break;
+                        }
+                    }
+                }
+            }
+            if (((date1_textbox != null || date1_textbox != "") && (date2_textbox != null || date2_textbox != "")) && (shalloworder_drop != "Ascending Order") || shalloworder_drop != "Descending Order") {
                 int j;
                 int k;
                 for (j = 0; j < totalDates.size(); j++) {
@@ -96,9 +108,6 @@ public class infections implements Handler {
                         }
                     }
                 }
-            }
-            if (((shalloworder_drop != null) && (shalloworder_drop != "")) && ((date1_textbox == null || date1_textbox == "") && (date2_textbox == null || date2_textbox == ""))) {
-                infectionsvar = infectionsvar + standardOrder(shalloworder_drop);
             }
         }
         catch (Exception e) {
@@ -127,10 +136,27 @@ public class infections implements Handler {
         }
         return infectionsvar;
     }
+    public String testOrder2(String orderDrop, LocalDate date1, LocalDate date2) {
+        String infectionsvar = "";
+        if ((date2.compareTo(date1) < 0)) {
+            String firstDate = date1.toString();
+            String secondDate = date2.toString();
+            infectionsvar = infectionsvar + standardOrder(orderDrop, secondDate, firstDate);
+        }
+        else if (((date2.compareTo(date1) == 0) || (date2.compareTo(date1) > 0))) {
+            String firstDate = date1.toString();
+            String secondDate = date2.toString();
+            infectionsvar = infectionsvar + standardOrder(orderDrop, firstDate, secondDate);
+        }
+        else {
+            infectionsvar = infectionsvar + doNothing();
+        }
+        return infectionsvar;
+    }
     //Default Data. This is called upon at the start of the program, when no options are selected, or an error is caught.
     public String doNothing() {
         String infectionsvar = "";
-        infectionsvar = infectionsvar + "<h2>COVID-19 Default Data (Alphabetically)</h2>";
+        infectionsvar = infectionsvar + "<h2>COVID-19 Default Data (2020-01-22 to 2021-04-22) (Alphabetically)</h2>";
 
         JDBCConnection jdbc = new JDBCConnection();
         ArrayList<String> covid = jdbc.getDefaultData();
@@ -161,17 +187,18 @@ public class infections implements Handler {
         infectionsvar = infectionsvar + "</table>";
         return infectionsvar;
     }
-    public String standardOrder(String order) {
+    public String standardOrder(String order, String date1, String date2) {
         String infectionsvar = "";
-        infectionsvar = infectionsvar + "<h2>COVID-19 Data in " + order + "</h2>";
+        String newOrder;
         if (order.equals("Descending Order")) {
-            order = "DESC";
+            newOrder = "DESC";
         }
         else {
-            order = "ASC";
+            newOrder = "ASC";
         }
+        infectionsvar = infectionsvar + "<h2>COVID-19 Data in " + order + " between " + date1 + " and " + date2 + "</h2>";
         JDBCConnection jdbc = new JDBCConnection();
-        ArrayList<String> covid = jdbc.getStandardOrder(order);
+        ArrayList<String> covid = jdbc.getStandardOrder(newOrder, date1, date2);
         ArrayList<String> newList = new ArrayList<String>();
         for (String data : covid) {
             newList.add(data);
