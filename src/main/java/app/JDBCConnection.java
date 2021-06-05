@@ -104,7 +104,6 @@ public class JDBCConnection {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
             String query = "select name from country order by name asc";
-            System.out.println(query);
             ResultSet results = statement.executeQuery(query);
             while (results.next()) {
                 String name = results.getString("name");
@@ -135,7 +134,6 @@ public class JDBCConnection {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
             String query = "select name from state order by name asc";
-            System.out.println(query);
             ResultSet results = statement.executeQuery(query);
             while (results.next()) {
                 String name = results.getString("name");
@@ -220,7 +218,6 @@ public class JDBCConnection {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
             String query = "select name n, sum(newdeaths) s from country join country_regiondeaths on country.id = country_regiondeaths.country_regionid natural join date where date between '2021-03-22' and '2021-04-22' group by name order by sum(newdeaths) desc limit 1";
-            System.out.println(query);
             ResultSet result = statement.executeQuery(query);
             name = result.getString("n");
             statement.close();
@@ -248,7 +245,6 @@ public class JDBCConnection {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
             String query = "select name n, sum(newdeaths) s from country join country_regiondeaths on country.id = country_regiondeaths.country_regionid natural join date where date between '2021-03-22' and '2021-04-22' group by name order by sum(newdeaths) desc limit 1";
-            System.out.println(query);
             ResultSet result = statement.executeQuery(query);
             sum = result.getInt("s");
             statement.close();
@@ -276,7 +272,6 @@ public class JDBCConnection {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
             String query = "select sum(s) s from (select name, sum(newdeaths) s from country join country_regiondeaths on country.id = country_regiondeaths.country_regionid natural join date where date between '2021-03-22' and '2021-04-22' group by name order by sum(newdeaths) desc)";
-            System.out.println(query);
             ResultSet result = statement.executeQuery(query);
             sum = result.getInt("s");
             statement.close();
@@ -331,7 +326,6 @@ public class JDBCConnection {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
             String query = "select count(*) c from (select name, newcases from state join province_statecases on state.id = province_statecases.province_stateid where date between '2020-04-16' and '2020-04-22' group by name having sum(newcases) = 0)";
-            System.out.println(query);
             ResultSet result = statement.executeQuery(query);
             count = result.getInt("c");
             statement.close();
@@ -350,44 +344,5 @@ public class JDBCConnection {
             }
         }
         return count;
-    }
-    public ArrayList<String> getStandardOrder(String order, String Date1, String Date2) {
-        ArrayList<String> orderData = new ArrayList<String>();
-
-        Connection connection = null;
-
-        try {
-            connection = DriverManager.getConnection(DATABASE);
-            Statement statement = connection.createStatement();
-            statement.setQueryTimeout(30);
-            String query = "SELECT Country.Name AS 'Country Name', SUM(NewCases) as 'Total Cases', MAX(NewCases) AS 'Most Cases in a Day', Date AS 'Date of Most Cases' FROM COUNTRY JOIN Country_RegionCases ON Country.ID=Country_RegionCases.Country_RegionID JOIN Country_RegionDeaths ON Country.ID=Country_RegionDeaths.Country_RegionID WHERE Date BETWEEN '" + Date1 + "' AND '" + Date2 + "' GROUP BY Country.Name ORDER BY SUM(NewDeaths) " + order + ", SUM(NewCases) " + order + "";
-            System.out.println(query);
-            ResultSet results = statement.executeQuery(query);
-            while (results.next()) {
-                String countryName = results.getString("Country Name");
-                String newCases = results.getString("Total Cases");
-                String maxCases = results.getString("Most Cases in a Day");
-                String maxDate = results.getString("Date of Most Cases");
-                orderData.add(countryName);
-                orderData.add(newCases);
-                orderData.add(maxCases);
-                orderData.add(maxDate);
-            }
-            statement.close();
-        }
-        catch (SQLException e) {
-            System.err.println(e.getMessage());
-        }
-        finally {
-            try{
-                if (connection != null) {
-                    connection.close();
-                }
-            }
-            catch (SQLException e) {
-                System.err.println(e.getMessage());
-            }
-        }
-        return orderData;
     }
 }

@@ -20,51 +20,144 @@ public class deaths implements Handler {
 
     // URL of this page relative to http://localhost:7000/
     public static final String URL = "/deaths.html";
+    public static final String[] DATES = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 
     @Override
     public void handle(Context context) throws Exception {
-        String deathsvar = "<html lang=\"en\">"+
-        "<head>"+
-        "    <meta charset=\"UTF-8\">"+
-        "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">"+
-        "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"+
-        "    <title>CovidWebsite</title>"+
-        "    <link rel=\"stylesheet\" href=\"main.css\">"+
-        "</head>"+
-        "<body>"+
-        "    <div class=\"navbar\">"+
-        "        <img id=\"mobile-cta\" class=\"mobile-menu\" src=\"menu.svg\" alt=\"Open Navigation\">"+
-        "        <nav>"+
-        "            <img id=\"mobile-exit\" class=\"mobile-menu-exit\" src=\"exit.svg\" alt=\"Close Navigation\">"+
-        "            <ul class='nav-ul'>"+
-        "                <li class='btn-lvl1'><a href=\"bigpicture.html\">Big Picture</a></li>"+
-        "                <li class='btn-lvl2'><a href=\"infections.html\">Infections</a></li>"+
-        "                <li class='btn-lvl2 highlight-red'><a href=\"deaths.html\">Deaths</a></li>"+
-        "                <li class='btn-lvl3'><a href=\"cumulative.html\">Cumulative</a></li>"+
-        "                <li class='btn-lvl3'><a href=\"similar.html\">Similar</a></li>"+
-        "            </ul>"+
-        "        </nav>"+
-        "    </div>"+
-        "    <script>"+
-        "        const mobileBtn = document.getElementById('mobile-cta')"+
-        "            nav = document.querySelector('nav');"+
-        "            mobileBtnExit = document.getElementById('mobile-exit');"+
-        ""+
-        "        mobileBtn.addEventListener('click', () => {"+
-        "            nav.classList.add('menu-btn');"+
-        "        })"+
-        ""+
-        "        mobileBtnExit.addEventListener('click', () => {"+
-        "            nav.classList.remove('menu-btn');"+
-        "        })"+
-        "    </script>"+
-        "</body>"+
+        String country;
+        String from_date;
+        String to_date;
+        if (context.formParam("country") != null) {
+            country = context.formParam("country");
+        } else {
+            country = "Albania";
+        };
+        if (context.formParam("from-date") != null && context.formParam("to-date") != null) {
+            if ((context.formParam("from-date").compareTo(context.formParam("to-date"))) < 0) {
+                from_date = context.formParam("from-date");
+                to_date = context.formParam("to-date");
+            } else{
+                from_date = context.formParam("to-date");
+                to_date = context.formParam("from-date");
+            }
+        } else {
+            from_date = "2020-01-22";
+            to_date = "2021-04-22";
+        }
+        JDBCConnection jdbc = new JDBCConnection();
+        int country_population = jdbc.getCountryPopulation(country);
+        ArrayList<String> country_names = jdbc.getCountryNames();
+        ArrayList<String> peak_data = jdbc.getPeakData(country);
+        int country_deaths = jdbc.getTotalDeathsInDateRange1Country(country, from_date, to_date);
+        int country_total_deaths = jdbc.getTotalDeathsInDateRange1Country(country, "2020-01-22", "2021-04-22");
+        System.out.println(country_deaths);
+        int country_cases = jdbc.getTotalCasesInDateRange1Country(country, from_date, to_date);
+        int country_total_cases = jdbc.getTotalCasesInDateRange1Country(country, "2020-01-22", "2021-04-22");
+        int country_ratio;
+        if (country_cases == 0) {
+            country_ratio = 0;
+        } else {
+            country_ratio = (100 * country_deaths) / country_cases;
+        }
+        String peak_date = peak_data.get(0);
+        String peak_deaths = peak_data.get(1);
+        String str_yyyy = peak_date.substring(0,4);
+        String str_mm = peak_date.substring(5,7);
+        String str_dd = peak_date.substring(8, 10);
+        int m = Integer.parseInt(str_mm);
+        String str_month = DATES[m - 1];
+        if (str_dd.charAt(0) == '0') {
+            str_dd = str_dd.substring(1,2);
+        }
+        int num_countries = country_names.size();
+        int i;
+        int j;
+        String html = "<!DOCTYPE html>" +
+        "<html lang='en'>" +
+        "<head>" +
+        "    <title>Deaths ☠️</title>" +
+        
+        "    <meta charset='utf-8'>" +
+        "    <meta name='viewport' content='width=device-width, initial-scale=1'>" +
+        "    <meta name='author' content='@jinheock'>" +
+        "    <meta name='description' content='a webpage by @jinheock'>" +
+        "    <meta property='og:title' content='Deaths ☠️'>" +
+        "    <meta property='og:description' content='Deaths ☠️'>" +
+        "    <meta property='og:image' content='/some-image.png'>" +
+        "    <meta property='og:url' content='/this-page.html'>" +
+        "    <meta property='og:site_name' content='Deaths ☠️'>" +
+        "    <meta name='twitter:card' content='summary_large_image'>" +
+        "    <meta name='twitter:image:alt' content='image description'>" +
+        
+        "    <link href='reset.css' rel='stylesheet'>" +
+        "    <link href='style.css' rel='stylesheet'>" +
+        "    <link rel='icon' type='image/svg+xml' href='covid.svg'>" +
+        "</head>" +
+        "<body>" +
+        "<nav class='nav-topnav'>" +
+        "   <ul class='ul-topnav'>" +
+        "       <a href='bigpicture.html' class='a-topnav'>Big Picture" +
+        "       </a>" +
+        "       <a href='infections.html' class='a-topnav'>Infections" +
+        "       </a>" +
+        "       <a href='deaths.html' class='a-topnav a-topnav-highlight'>Deaths" +
+        "       </a>" +
+        "       <a href='cumulative.html' class='a-topnav'>Cumulative" +
+        "       </a>" +
+        "       <a href='similar.html' class='a-topnav no-right-border'>Similar" +
+        "       </a>" +
+        "   </ul>" +
+        "</nav>" +
+        "<main>" +
+        "    <h1>Covid-19</h1>" +
+        "    <section class='section-deaths'>" +
+        "       <div class='div-halfwidth'>" +
+        "           <form action='/deaths.html' method='post'>" +
+        "               <select class='select-css' id='country' name='country' onChange='this.form.submit()'>";
+        // "               <option value='' selected='' disabled=''>Choose Country</option>";
+        
+        for (String name : country_names) {
+            if (name.equals(country)) {
+                html = html + "<option selected value='" + name + "'>" + name + "</option>";
+            } else {
+                html = html + "<option value='" + name + "'>" + name + "</option>";
+            }
+        }
+        html = html +
+        "               </select>" +
+        "           </form>" +
+        "           <h3>" + country + "</h3>" +
+        "           <p class='p-peak'>On <span class='span-highlight'>" + str_month + " " + str_dd + ", " + str_yyyy + "</span><br><span class='span-highlight'>" + country + "</span> had the highest number of <br>deaths in one day, totalling <span class='span-highlight'>" + peak_deaths +"</span> deaths.</p>" +
+        "           <form class='form-dates' action='/deaths.html' method='post'>" +
+        "               <input class='input-date input-from-date' id='from-date' name='from-date' type='date' min='2020-01-22' max='2021-04-22' onchange='this.form.submit()' value='" + from_date + "'>" +
+        "               <input class='input-date input-to-date' id='to-date' name='to-date' type='date' min='2020-01-22' max='2021-04-22' onchange='this.form.submit()' value='" + to_date + "'>" +
+        "           </form>" +
+        "           <section class='section-death-ratio'>" +
+        "           <div class='div-death'><h3>Deaths</h3>" +
+        "           <h4>" + country_deaths + "</h4></div>" +
+        "           <div class='div-ratio'><h3>Ratio</h3>" +
+        "           <h4>" + country_ratio + "%</h4></div>" +
+        "           </section>" +
+        "           <h3>Total Deaths</h3>" +
+        "           <h4>" + country_total_deaths + "</h4>" +
+        "           <h3>Population</h3>" +
+        "           <h4>" + country_population + "</h4>" +
+        "       </div>" +
+        "       <div class='div-halfwidth'>" +
+        "       </div>" +
+        "    </section>" +
+        "</main>" +
+        "    <script>" +
+        " let forms = document.querySelectorAll('form');" +
+        "console.log(forms);" +
+        "</script>" +
+        "</body>" +
         "</html>";
 
 
         // DO NOT MODIFY THIS
         // Makes Javalin render the webpage
-        context.html(deathsvar);
+        context.html(html);
     }
 
 }
