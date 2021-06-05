@@ -41,6 +41,7 @@ public class infections implements Handler {
         infectionsvar = infectionsvar +"            <h1 class=\"lefttext\">Welcome to the Infections Page!";
         infectionsvar = infectionsvar +"            <h4 class=\"datetext\">On this page you will be presented with a table of data that displays some basic useful information on COVID-19 cases and deaths per country/state. For more information on deaths, visit the 'Deaths' page."; 
         infectionsvar = infectionsvar +"            <h4 class=\"datetext\">You will also be able to make adjustments to the dates the data is presented between, whether country or states are presented, or whether the data is displayed by worst affected/least affected or not. Scroll down to have a look!";
+        infectionsvar = infectionsvar +"            <h4 class=\"datetext\">Please also be aware that if at least one of the boxes are left empty, the table presented will default to the dates that cover the whole range of data collection (2020-01-22 to 2021-04-22).";
         infectionsvar = infectionsvar +"            <h4 class=\"datetext\">Note: Worst affected means the highest death rates followed by the highest infection rates per capita.";
         infectionsvar = infectionsvar +"            <div class='\"form-group\"'>";
         infectionsvar = infectionsvar +"              <select id='shalloworder_drop' name='shalloworder_drop'>";
@@ -111,7 +112,12 @@ public class infections implements Handler {
             }
         }
         catch (Exception e) {
-            infectionsvar = infectionsvar + doNothing();
+            if (shalloworder_drop.equals("Ascending Order (Least Affected First)") || shalloworder_drop.equals("Descending Order (Worst Affected First)")) {
+                infectionsvar = infectionsvar + defaultOrder(shalloworder_drop);
+            }
+            else {
+                infectionsvar = infectionsvar + doNothing();
+            }
         }
         infectionsvar = infectionsvar + "</body>" + "</html>";
 // DO NOT MODIFY THIS
@@ -203,6 +209,49 @@ public class infections implements Handler {
         infectionsvar = infectionsvar + "<h2 class=\"tableheader\">COVID-19 data in " + order + " between " + date1 + " and " + date2 + " (YYYY-MM-DD)</h2>";
         JDBCConnection jdbc = new JDBCConnection();
         ArrayList<String> covid = jdbc.getStandardOrder(newOrder, date1, date2);
+        ArrayList<String> newList = new ArrayList<String>();
+        for (String data : covid) {
+            newList.add(data);
+        }
+        int i;
+        int rank = 0;
+        infectionsvar = infectionsvar + "<div class=\"tablediv\">";
+        infectionsvar = infectionsvar + "<table class=\"center\">";
+        infectionsvar = infectionsvar + " <tr>";
+        infectionsvar = infectionsvar + "     <th>Ranking</th>";
+        infectionsvar = infectionsvar + "     <th>Country Name</th>";
+        infectionsvar = infectionsvar + "     <th>Total Cases</th>";
+        infectionsvar = infectionsvar + "     <th>Total Deaths</th>";
+        infectionsvar = infectionsvar + "     <th>Most Cases in a Day</th>";
+        infectionsvar = infectionsvar + "     <th>Date of Most Cases</th>";
+        infectionsvar = infectionsvar + " </tr>";
+        for (i = 0; i < newList.size() - 1; i+=5) {
+            rank = rank + 1;
+            infectionsvar = infectionsvar + "<tr>";
+            infectionsvar = infectionsvar + " <td>" + '#' + rank + "</td>";
+            infectionsvar = infectionsvar + " <td>" + newList.get(i) + "</td>";
+            infectionsvar = infectionsvar + " <td>" + newList.get(i+1) + "</td>";
+            infectionsvar = infectionsvar + " <td>" + newList.get(i+2) + "</td>";
+            infectionsvar = infectionsvar + " <td>" + newList.get(i+3) + "</td>";
+            infectionsvar = infectionsvar + " <td>" + newList.get(i+4) + "</td>";
+            infectionsvar = infectionsvar + "</tr>";
+        }
+        infectionsvar = infectionsvar + "</table>";
+        infectionsvar = infectionsvar + "</div>";
+        return infectionsvar;
+    }
+    public String defaultOrder(String order) {
+        String infectionsvar = "";
+        String newOrder;
+        infectionsvar = infectionsvar + "<h2 class=\"tableheader\">COVID-19 data in " + order + " (2020-01-22 to 2021-04-22) (YYYY-MM-DD)</h2>";
+        if (order.equals("Descending Order (Worst Affected First)")) {
+            newOrder = "DESC";
+        }
+        else {
+            newOrder = "ASC";
+        }
+        JDBCConnection jdbc = new JDBCConnection();
+        ArrayList<String> covid = jdbc.getDefaultOrder(newOrder);
         ArrayList<String> newList = new ArrayList<String>();
         for (String data : covid) {
             newList.add(data);

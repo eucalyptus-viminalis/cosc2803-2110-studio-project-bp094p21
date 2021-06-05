@@ -58,6 +58,47 @@ public class JDBCConnection {
         }
         return allData;
     }
+    public ArrayList<String> getDefaultOrder(String order) {
+        ArrayList<String> allData = new ArrayList<String>();
+
+        Connection connection = null;
+
+        try {
+            connection = DriverManager.getConnection(DATABASE);
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            String query = "SELECT Country.Name AS 'Country Name', SUM(NewCases) as 'Total Cases', SUM(NewDeaths) AS 'Total Deaths', MAX(NewCases) AS 'Most Cases in a Day', Date AS 'Date of Most Cases' FROM Country_RegionCases NATURAL JOIN Country_RegionDeaths JOIN Country ON Country_RegionCases.Country_RegionID=Country.ID GROUP BY Country.Name ORDER BY SUM(NewDeaths) " + order + ", SUM(NewCases) " + order + "";
+            System.out.println(query);
+            ResultSet results = statement.executeQuery(query);
+            while (results.next()) {
+                String countryName = results.getString("Country Name");
+                String newCases = results.getString("Total Cases");
+                String newDeaths = results.getString("Total Deaths");
+                String maxCases = results.getString("Most Cases in a Day");
+                String maxDate = results.getString("Date of Most Cases");
+                allData.add(countryName);
+                allData.add(newCases);
+                allData.add(newDeaths);
+                allData.add(maxCases);
+                allData.add(maxDate);
+            }
+            statement.close();
+        }
+        catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        finally {
+            try{
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+        return allData;
+    }
 
     public ArrayList<String> getDateData(String Date1, String Date2) {
         ArrayList<String> dateData = new ArrayList<String>();
