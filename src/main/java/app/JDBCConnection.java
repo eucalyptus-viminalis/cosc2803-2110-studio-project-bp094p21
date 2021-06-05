@@ -12,6 +12,7 @@ public class JDBCConnection {
 
     // Name of database file (contained in database folder)
     private static final String DATABASE = "jdbc:sqlite:database/covid.db";
+    private static final String DATABASE2 = "jdbc:sqlite:database/fixed.db";
 
     public JDBCConnection() {
         System.out.println("Created JDBC Connection Object");
@@ -99,7 +100,6 @@ public class JDBCConnection {
         }
         return allData;
     }
-
     public ArrayList<String> getDateData(String Date1, String Date2) {
         ArrayList<String> dateData = new ArrayList<String>();
 
@@ -141,6 +141,7 @@ public class JDBCConnection {
         }
         return dateData;
     }
+    // JIN's Methods
     public ArrayList<String> getCountryNames() {
         ArrayList<String> str_list = new ArrayList<String>();
         Connection connection = null;
@@ -431,53 +432,22 @@ public class JDBCConnection {
         }
         return orderData;
     }
-    public ArrayList<String> getGlobalDataDeaths() {
+    public ArrayList<String> getGlobalData() {
         ArrayList<String> global_data = new ArrayList<String>();
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection(DATABASE);
+            connection = DriverManager.getConnection(DATABASE2);
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
-            String query = "select name, sum(newdeaths) d from country join country_regiondeaths on country.id = country_regiondeaths.country_regionid group by name order by name asc";
+            String query = "select name, sum(newdeaths) d, sum(newcases) c from country join countryrecords on country.id = countryrecords.countryid group by name order by name asc limit 8";
             ResultSet results = statement.executeQuery(query);
             while (results.next()) {
                 String name     = results.getString("name");
                 String deaths = results.getString("d");
-                // String cases = results.getString("c");
+                String cases = results.getString("c");
                 global_data.add(name);
                 global_data.add(deaths);
-                // global_data.add(cases);
-            }
-            statement.close();
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-        } finally {
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                System.err.println(e.getMessage());
-            }
-        }
-        return global_data;
-    }   
-    public ArrayList<String> getGlobalDataCases() {
-        ArrayList<String> global_data = new ArrayList<String>();
-        Connection connection = null;
-        try {
-            connection = DriverManager.getConnection(DATABASE);
-            Statement statement = connection.createStatement();
-            statement.setQueryTimeout(30);
-            String query = "select name, sum(newcases) d from country join country_regioncases on country.id = country_regioncases.country_regionid group by name order by name asc";
-            ResultSet results = statement.executeQuery(query);
-            while (results.next()) {
-                String name     = results.getString("name");
-                String cases = results.getString("d");
-                // String cases = results.getString("c");
-                global_data.add(name);
                 global_data.add(cases);
-                // global_data.add(cases);
             }
             statement.close();
         } catch (SQLException e) {
@@ -493,4 +463,5 @@ public class JDBCConnection {
         }
         return global_data;
     }   
+
 }

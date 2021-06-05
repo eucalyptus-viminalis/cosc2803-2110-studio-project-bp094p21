@@ -44,14 +44,14 @@ public class deaths implements Handler {
             from_date = "2020-01-22";
             to_date = "2021-04-22";
         }
-        JDBCConnection jdbc = new JDBCConnection();
-        int country_population = jdbc.getCountryPopulation(country);
+        JDBC2             jdbc = new JDBC2();
+        int               country_population = jdbc.getCountryPopulation(country);
         ArrayList<String> country_names = jdbc.getCountryNames();
         ArrayList<String> peak_data = jdbc.getPeakData(country);
-        int country_deaths = jdbc.getTotalDeathsInDateRange1Country(country, from_date, to_date);
-        int country_total_deaths = jdbc.getTotalDeathsInDateRange1Country(country, "2020-01-22", "2021-04-22");
+        int               country_deaths = jdbc.getTotalDeathsInDateRange1Country(country, from_date, to_date);
+        int               country_total_deaths = jdbc.getTotalDeathsInDateRange1Country(country, "2020-01-22", "2021-04-22");
         System.out.println(country_deaths);
-        int country_cases = jdbc.getTotalCasesInDateRange1Country(country, from_date, to_date);
+        int               country_cases = jdbc.getTotalCasesInDateRange1Country(country, from_date, to_date);
         int country_total_cases = jdbc.getTotalCasesInDateRange1Country(country, "2020-01-22", "2021-04-22");
         int country_ratio;
         if (country_cases == 0) {

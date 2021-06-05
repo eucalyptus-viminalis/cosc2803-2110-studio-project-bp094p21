@@ -11,6 +11,20 @@ public class bigpicture implements Handler {
     
     @Override
     public void handle(Context context) throws Exception {
+
+        JDBC2             jdbc = new JDBC2();
+        
+        int               totalCases = jdbc.getPastYearTotalCasesCountry();
+        String            countryName = jdbc.getPastMonthDeathsCountryTop1Name();
+        int               countrySum = jdbc.getPastMonthDeathsCountryTop1Sum();
+        int               totalSum = jdbc.getPastMonthDeathsCountryTotal();
+        ArrayList<String> countryNames = jdbc.getPastWeekNoCasesCountry();
+        int               count = jdbc.getPastWeekNoCasesStateCount();
+        String            strCountryNames = "";
+        for (String name : countryNames) {
+            strCountryNames = strCountryNames + name + ", ";
+        }
+
         String html = "<!DOCTYPE html>" +
         "<html lang='en'>" +
         "<head>" +
@@ -53,24 +67,13 @@ public class bigpicture implements Handler {
         "       <img src='spinning-globe.gif'>" +
         "    </div>" +
         "    <div class='div-facts'>";
-        JDBCConnection jdbc = new JDBCConnection();
-        int totalCases = jdbc.getPastYearCasesCountryTotal() + jdbc.getPastYearCasesStateTotal();
         html = html +
         "    <p class='p-fact'>In the past year, the world population has been infected with <span class='span-highlight'>" +
         totalCases/1000000 + " Million</span> new Covid-19 cases.</p>";
-        String countryName = jdbc.getPastMonthDeathsCountryTop1Name();
-        int countrySum = jdbc.getPastMonthDeathsCountryTop1Sum();
-        int totalSum = jdbc.getPastMonthDeathsCountryTotal();
         html = html +
         "    <p class='p-fact'><span class='span-highlight'>" +
         countryName + "</span> leads the world in the total number of Covid-19 related deaths reported in the past month, accounting for " + (countrySum*100)/totalSum +
         "% of the month's global death count.*</p>";
-        ArrayList<String> countryNames = jdbc.getPastWeekNoCasesCountry();
-        int count = jdbc.getPastWeekNoCasesStateCount();
-        String strCountryNames = "";
-        for (String name : countryNames) {
-            strCountryNames = strCountryNames + name + ", ";
-        }
         html = html +
         "    <p class='p-fact'>" +
         strCountryNames + " along with <span class='span-hightlight'>" + count + " states and provinces around the world, have reported <span class='span-highlight'>0 new infections</span> in the past week.^</p>" +
