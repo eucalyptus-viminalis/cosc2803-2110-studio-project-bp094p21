@@ -345,4 +345,43 @@ public class JDBCConnection {
         }
         return count;
     }
+    public ArrayList<String> getStandardOrder(String order, String Date1, String Date2) {
+        ArrayList<String> orderData = new ArrayList<String>();
+
+        Connection connection = null;
+
+        try {
+            connection = DriverManager.getConnection(DATABASE);
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            String query = "SELECT Country.Name AS 'Country Name', SUM(NewCases) as 'Total Cases', MAX(NewCases) AS 'Most Cases in a Day', Date AS 'Date of Most Cases' FROM COUNTRY JOIN Country_RegionCases ON Country.ID=Country_RegionCases.Country_RegionID JOIN Country_RegionDeaths ON Country.ID=Country_RegionDeaths.Country_RegionID WHERE Date BETWEEN '" + Date1 + "' AND '" + Date2 + "' GROUP BY Country.Name ORDER BY SUM(NewDeaths) " + order + ", SUM(NewCases) " + order + "";
+            System.out.println(query);
+            ResultSet results = statement.executeQuery(query);
+            while (results.next()) {
+                String countryName = results.getString("Country Name");
+                String newCases = results.getString("Total Cases");
+                String maxCases = results.getString("Most Cases in a Day");
+                String maxDate = results.getString("Date of Most Cases");
+                orderData.add(countryName);
+                orderData.add(newCases);
+                orderData.add(maxCases);
+                orderData.add(maxDate);
+            }
+            statement.close();
+        }
+        catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        finally {
+            try{
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+        return orderData;
+    }
 }
