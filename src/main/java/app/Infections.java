@@ -49,8 +49,8 @@ public class infections implements Handler {
         infectionsvar = infectionsvar +"                  <option>Ascending Order</option>";
         infectionsvar = infectionsvar +"            </div>";
         infectionsvar = infectionsvar +"            <div class='\"form-group\"'>";
-        infectionsvar = infectionsvar +"                  <input class='\"form-control1\"' id='date1_textbox' name='date1_textbox' placeholder='YYYY-MM-DD'>";
-        infectionsvar = infectionsvar +"                  <input class='\"form-control2\"' id='date2_textbox' name='date2_textbox' placeholder='YYYY-MM-DD'>";
+        infectionsvar = infectionsvar +"                  <input class='\"form-control1\"' id='date1_textbox' name='date1_textbox' placeholder='YYYY-MM-DD' type='date'>";
+        infectionsvar = infectionsvar +"                  <input class='\"form-control2\"' id='date2_textbox' name='date2_textbox' placeholder='YYYY-MM-DD' type='date'>";
         infectionsvar = infectionsvar +"            </div>";
         infectionsvar = infectionsvar +"            <button type='submit' class='\"btn btn-shallow\"'>Go</button>";
         infectionsvar = infectionsvar +"        </div>";
