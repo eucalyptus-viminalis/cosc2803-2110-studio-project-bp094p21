@@ -71,11 +71,11 @@ public class infections implements Handler {
             start = start.plusDays(1);
         }
         try {
-            LocalDate firstDate = LocalDate.parse(date1_textbox);
-            LocalDate secondDate = LocalDate.parse(date2_textbox);
-            if (((date1_textbox == null || date1_textbox == "") || (date2_textbox == null || date2_textbox == "")) && (shalloworder_drop == null || shalloworder_drop == "")) {
+            if (((date1_textbox == null || date1_textbox == "") && (date2_textbox == null || date2_textbox == "")) && (shalloworder_drop == null || shalloworder_drop == "")) {
                 infectionsvar = infectionsvar + doNothing();
             }
+            LocalDate firstDate = LocalDate.parse(date1_textbox);
+            LocalDate secondDate = LocalDate.parse(date2_textbox);
             if (!totalDates.contains(firstDate)) {
                 infectionsvar = infectionsvar + "<h4 class=firstboxcheck>Please ensure that the date in your first box is a date specified above.</h4>";
                 infectionsvar = infectionsvar + doNothing();
@@ -157,7 +157,7 @@ public class infections implements Handler {
 
     public String outputDate(String date1, String date2) {
         String infectionsvar = "";
-        infectionsvar = infectionsvar + "<h2>COVID-19 Data Between " + date1 + " and " + date2 + "</h2>";
+        infectionsvar = infectionsvar + "<h2>COVID-19 Data between " + date1 + " and " + date2 + "</h2>";
         
         JDBCConnection jdbc = new JDBCConnection();
         ArrayList<String> covid = jdbc.getDateData(date1, date2);
