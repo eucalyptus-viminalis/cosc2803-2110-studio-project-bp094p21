@@ -56,16 +56,29 @@ public class JDBCConnection {
         }
         return allData;
     }
-    public int getTotalDeathsCountry() {
-        int sum = 0;
+
+    public ArrayList<String> getDateData(String Date1, String Date2) {
+        ArrayList<String> dateData = new ArrayList<String>();
+
         Connection connection = null;
+
         try {
             connection = DriverManager.getConnection(DATABASE);
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
-            String query = "select sum(country_regiondeaths.newdeaths) sum from country_regiondeaths natural join date where date between '2020-01-22' and '2021-04-22'";
-            ResultSet result = statement.executeQuery(query);
-            sum = result.getInt("sum");
+            String query = "SELECT Country.Name AS 'Country Name', SUM(NewCases) as 'Total Cases', MAX(NewCases) AS 'Most Cases in a Day', Date AS 'Date of Most Cases' FROM COUNTRY JOIN Country_RegionCases ON Country.ID=Country_RegionCases.Country_RegionID WHERE Date BETWEEN '" + Date1 + "' AND '" + Date2 + "' GROUP BY Country.Name";
+            System.out.println(query);
+            ResultSet results = statement.executeQuery(query);
+            while (results.next()) {
+                String countryName = results.getString("Country Name");
+                String newCases = results.getString("Total Cases");
+                String maxCases = results.getString("Most Cases in a Day");
+                String maxDate = results.getString("Date of Most Cases");
+                dateData.add(countryName);
+                dateData.add(newCases);
+                dateData.add(maxCases);
+                dateData.add(maxDate);
+            }
             statement.close();
         }
         catch (SQLException e) {
@@ -81,34 +94,7 @@ public class JDBCConnection {
                 System.err.println(e.getMessage());
             }
         }
-        return sum;
-    }
-    public int getTotalDeathsState() {
-        int sum = 0;
-        Connection connection = null;
-        try {
-            connection = DriverManager.getConnection(DATABASE);
-            Statement statement = connection.createStatement();
-            statement.setQueryTimeout(30);
-            String query = "select sum(province_statedeaths.newdeaths) sum from province_statedeaths natural join date where date between '2020-01-22' and '2021-04-22'";
-            ResultSet result = statement.executeQuery(query);
-            sum = result.getInt("sum");
-            statement.close();
-        }
-        catch (SQLException e) {
-            System.err.println(e.getMessage());
-        }
-        finally {
-            try{
-                if (connection != null) {
-                    connection.close();
-                }
-            }
-            catch (SQLException e) {
-                System.err.println(e.getMessage());
-            }
-        }
-        return sum;
+        return dateData;
     }
     public ArrayList<String> getCountryNames() {
         ArrayList<String> str_list = new ArrayList<String>();
