@@ -41,7 +41,7 @@ public class infections implements Handler {
         infectionsvar = infectionsvar +"            <h1 class=\"lefttext\">Welcome to the Infections Page!";
         infectionsvar = infectionsvar +"            <h4 class=\"datetext\">On this page you will be presented with a table of data that displays some basic useful information on COVID-19 cases and deaths per country/state. For more information on deaths, visit the 'Deaths' page."; 
         infectionsvar = infectionsvar +"            <h4 class=\"datetext\">You will also be able to make adjustments to the dates the data is presented between, whether country or states are presented, or whether the data is displayed by worst affected/least affected or not. Scroll down to have a look!";
-        infectionsvar = infectionsvar +"            <h4 class=\"datetext\">Please also be aware that if at least one of the boxes are left empty, the table presented will default to the dates that cover the whole range of data collection (2020-01-22 to 2021-04-22).";
+        infectionsvar = infectionsvar +"            <h4 class=\"datetext\">Please also be aware that if at least one of the date boxes are left empty, the table presented will default to the dates that cover the whole range of data collection (2020-01-22 to 2021-04-22).";
         infectionsvar = infectionsvar +"            <h4 class=\"datetext\">Note: Worst affected means the highest death rates followed by the highest infection rates per capita.";
         infectionsvar = infectionsvar +"            <div class='\"form-group\"'>";
         infectionsvar = infectionsvar +"              <select id='shalloworder_drop' name='shalloworder_drop'>";
