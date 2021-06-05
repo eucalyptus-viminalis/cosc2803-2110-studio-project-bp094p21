@@ -49,8 +49,8 @@ public class infections implements Handler {
         infectionsvar = infectionsvar +"                  <option>Ascending Order</option>";
         infectionsvar = infectionsvar +"            </div>";
         infectionsvar = infectionsvar +"            <div class='\"form-group\"'>";
-        infectionsvar = infectionsvar +"                  <input class='\"form-control1\"' id='date1_textbox' name='date1_textbox' placeholder='YYYY-MM-DD' type='date'>";
-        infectionsvar = infectionsvar +"                  <input class='\"form-control2\"' id='date2_textbox' name='date2_textbox' placeholder='YYYY-MM-DD' type='date'>";
+        infectionsvar = infectionsvar +"                  <input class='\"form-control1\"' id='date1_textbox' name='date1_textbox' placeholder='YYYY-MM-DD' type='date' value='2020-01-22' min='2020-01-22' max='2021-04-22'>";
+        infectionsvar = infectionsvar +"                  <input class='\"form-control2\"' id='date2_textbox' name='date2_textbox' placeholder='YYYY-MM-DD' type='date' value='2021-04-22' min='2020-01-22' max='2021-04-22'>";
         infectionsvar = infectionsvar +"            </div>";
         infectionsvar = infectionsvar +"            <button type='submit' class='\"btn btn-shallow\"'>Go</button>";
         infectionsvar = infectionsvar +"        </div>";
@@ -77,11 +77,15 @@ public class infections implements Handler {
             LocalDate firstDate = LocalDate.parse(date1_textbox);
             LocalDate secondDate = LocalDate.parse(date2_textbox);
             if (!totalDates.contains(firstDate)) {
-                infectionsvar = infectionsvar + "<h4 class=firstboxcheck>Please ensure that the date in your first box is a date specified above.</h4>";
+                infectionsvar = infectionsvar + "<h4 class=firstboxcheck>Please ensure that the date in your first box is a date in range of 2020-01-22 to 2021-04-22.</h4>";
                 infectionsvar = infectionsvar + doNothing();
             }
             if (!totalDates.contains(secondDate)) {
-                infectionsvar = infectionsvar + "<h4 class=secondboxcheck>Please ensure that the date in your second box is a date specified above.</h4>";
+                infectionsvar = infectionsvar + "<h4 class=secondboxcheck>Please ensure that the date in your second box is a date in range of 2020-01-22 to 2021-04-22.</h4>";
+                infectionsvar = infectionsvar + doNothing();
+            }
+            if ((!totalDates.contains(secondDate)) && (!totalDates.contains(firstDate))) {
+                infectionsvar = infectionsvar + "<h4 class=secondboxcheck>Please ensure that the date in your first and second box is a date in range of 2020-01-22 to 2021-04-22.</h4>";
                 infectionsvar = infectionsvar + doNothing();
             }
             if (((date1_textbox != null || date1_textbox != "") && (date2_textbox != null || date2_textbox != "")) && (shalloworder_drop == null || shalloworder_drop == "")) {
