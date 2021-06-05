@@ -38,15 +38,14 @@ public class infections implements Handler {
         infectionsvar = infectionsvar +"   <form action='/infections.html' method='post'>";
         infectionsvar = infectionsvar +"    <section class=\"shallowglancehero\">";
         infectionsvar = infectionsvar +"        <div class=\"shallowglanceleft-col\">";
-        infectionsvar = infectionsvar +"            <h1 class=\"lefttext\">This page offers relevant data on COVID-19 cases. This data can be expressed in Descending or Ascending order if the user wishes.";
-        infectionsvar = infectionsvar +"            <h4 class=\"datetext\">Below you will also see two boxes where you can input two dates. If you would like to see data between two dates, enter those two dates down below."; 
-        infectionsvar = infectionsvar +"            <h4 class=\"datetext\">Once you have made a selection, press the 'GO' button to have your desired data displayed to you.";
-        infectionsvar = infectionsvar +"            <h4 class=\"notetext\">Note that dates not in the format YYYY-MM-DD, not between 2020-01-22 to 2021-04-22 inclusive, or are otherwise not correct/are blank, will result in default data. This will also occur if no selection is made in the dropdown box alongside what was previously stated.</h1>";
+        infectionsvar = infectionsvar +"            <h1 class=\"lefttext\">Welcome to the Infections Page!";
+        infectionsvar = infectionsvar +"            <h4 class=\"datetext\">On this page you will be presented with a table of data that displays some basic useful information on COVID-19 cases per country/state."; 
+        infectionsvar = infectionsvar +"            <h4 class=\"datetext\">You will also be able to make adjustments to the dates the data is presented between, whether country or states are presented, or whether the data is displayed by worst affected/least affected or not. Scroll down to have a look!";
         infectionsvar = infectionsvar +"            <div class='\"form-group\"'>";
         infectionsvar = infectionsvar +"              <select id='shalloworder_drop' name='shalloworder_drop'>";
         infectionsvar = infectionsvar +"                  <option></option>";
-        infectionsvar = infectionsvar +"                  <option>Descending Order</option>";
-        infectionsvar = infectionsvar +"                  <option>Ascending Order</option>";
+        infectionsvar = infectionsvar +"                  <option>Descending Order (Worst Affected First)</option>";
+        infectionsvar = infectionsvar +"                  <option>Ascending Order (Least Affected First)</option>";
         infectionsvar = infectionsvar +"            </div>";
         infectionsvar = infectionsvar +"            <div class='\"form-group\"'>";
         infectionsvar = infectionsvar +"                  <input class='\"form-control1\"' id='date1_textbox' name='date1_textbox' type='date' value='2020-01-22' min='2020-01-22' max='2021-04-22'>";
@@ -85,7 +84,7 @@ public class infections implements Handler {
                 infectionsvar = infectionsvar + "<h4 class=secondboxcheck>Please ensure that the date in your first and second box is a date in range of 2020-01-22 to 2021-04-22.</h4>";
                 infectionsvar = infectionsvar + doNothing();
             }
-            if (shalloworder_drop.equals("Ascending Order") || shalloworder_drop.equals("Descending Order")) {
+            if (shalloworder_drop.equals("Ascending Order (Least Affected First)") || shalloworder_drop.equals("Descending Order (Worst Affected First)")) {
                 int a;
                 int b;
                 for (a = 0; a < totalDates.size(); a++) {
@@ -97,7 +96,7 @@ public class infections implements Handler {
                     }
                 }
             }
-            if (((date1_textbox != null || date1_textbox != "") && (date2_textbox != null || date2_textbox != "")) && (shalloworder_drop != "Ascending Order") || shalloworder_drop != "Descending Order") {
+            if (((date1_textbox != null || date1_textbox != "") && (date2_textbox != null || date2_textbox != "")) && (shalloworder_drop != "Ascending Order (Least Affected First)") || shalloworder_drop != "Descending Order (Worst Affected First)") {
                 int j;
                 int k;
                 for (j = 0; j < totalDates.size(); j++) {
@@ -156,7 +155,7 @@ public class infections implements Handler {
     //Default Data. This is called upon at the start of the program, when no options are selected, or an error is caught.
     public String doNothing() {
         String infectionsvar = "";
-        infectionsvar = infectionsvar + "<h2>COVID-19 Default Data (2020-01-22 to 2021-04-22) (Alphabetically)</h2>";
+        infectionsvar = infectionsvar + "<h2 class=\"tableheader\">COVID-19 Default Data (2020-01-22 to 2021-04-22) (YYYY-MM-DD) (Alphabetically)</h2>";
 
         JDBCConnection jdbc = new JDBCConnection();
         ArrayList<String> covid = jdbc.getDefaultData();
@@ -166,7 +165,8 @@ public class infections implements Handler {
         }
         int i;
         int rank = 0;
-        infectionsvar = infectionsvar + "<table style=width:100%>";
+        infectionsvar = infectionsvar + "<div class=\"tablediv\">";
+        infectionsvar = infectionsvar + "<table class=\"center\">";
         infectionsvar = infectionsvar + " <tr>";
         infectionsvar = infectionsvar + "     <th>Ranking</th>";
         infectionsvar = infectionsvar + "     <th>Country Name</th>";
@@ -185,18 +185,19 @@ public class infections implements Handler {
             infectionsvar = infectionsvar + "</tr>";
         }
         infectionsvar = infectionsvar + "</table>";
+        infectionsvar = infectionsvar + "</div>";
         return infectionsvar;
     }
     public String standardOrder(String order, String date1, String date2) {
         String infectionsvar = "";
         String newOrder;
-        if (order.equals("Descending Order")) {
+        if (order.equals("Descending Order (Worst Affected First)")) {
             newOrder = "DESC";
         }
         else {
             newOrder = "ASC";
         }
-        infectionsvar = infectionsvar + "<h2>COVID-19 Data in " + order + " between " + date1 + " and " + date2 + "</h2>";
+        infectionsvar = infectionsvar + "<h2 class=\"tableheader\">COVID-19 data in " + order + " between " + date1 + " and " + date2 + " (YYYY-MM-DD)</h2>";
         JDBCConnection jdbc = new JDBCConnection();
         ArrayList<String> covid = jdbc.getStandardOrder(newOrder, date1, date2);
         ArrayList<String> newList = new ArrayList<String>();
@@ -205,7 +206,8 @@ public class infections implements Handler {
         }
         int i;
         int rank = 0;
-        infectionsvar = infectionsvar + "<table style=width:100%>";
+        infectionsvar = infectionsvar + "<div class=\"tablediv\">";
+        infectionsvar = infectionsvar + "<table class=\"center\">";
         infectionsvar = infectionsvar + " <tr>";
         infectionsvar = infectionsvar + "     <th>Ranking</th>";
         infectionsvar = infectionsvar + "     <th>Country Name</th>";
@@ -224,12 +226,13 @@ public class infections implements Handler {
             infectionsvar = infectionsvar + "</tr>";
         }
         infectionsvar = infectionsvar + "</table>";
+        infectionsvar = infectionsvar + "</div>";
         return infectionsvar;
     }
 
     public String outputDate(String date1, String date2) {
         String infectionsvar = "";
-        infectionsvar = infectionsvar + "<h2>COVID-19 Data between " + date1 + " and " + date2 + " (Alphabetically)</h2>";
+        infectionsvar = infectionsvar + "<h2 class=\"tableheader\">COVID-19 data between " + date1 + " and " + date2 + " (YYYY-MM-DD) (Alphabetically)</h2>";
         
         JDBCConnection jdbc = new JDBCConnection();
         ArrayList<String> covid = jdbc.getDateData(date1, date2);
@@ -239,7 +242,8 @@ public class infections implements Handler {
         }
         int i;
         int rank = 0;
-        infectionsvar = infectionsvar + "<table style=width:100%>";
+        infectionsvar = infectionsvar + "<div class=\"tablediv\">";
+        infectionsvar = infectionsvar + "<table class=\"center\">";
         infectionsvar = infectionsvar + " <tr>";
         infectionsvar = infectionsvar + "     <th>Ranking</th>"; 
         infectionsvar = infectionsvar + "     <th>Country Name</th>";
@@ -258,6 +262,7 @@ public class infections implements Handler {
             infectionsvar = infectionsvar + "</tr>";
         }
         infectionsvar = infectionsvar + "</table>";
+        infectionsvar = infectionsvar + "</div>";
         return infectionsvar;
     }
 }

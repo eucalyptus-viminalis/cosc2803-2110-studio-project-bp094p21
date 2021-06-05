@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,700&display=swap");
 body {
   background-image: -webkit-gradient(linear, left top, right top, from(#603F83FF), to(#719bdf));
-  background-image: linear-gradient(to right, #603F83FF, #719bdf);
+  background-image: linear-gradient(to right, rgb(137, 97, 179), #719bdf);
   margin: 0;
   padding: 0;
   font-family: 'Poppins';
@@ -108,6 +108,28 @@ nav li a:hover {
   float: right;
   margin: .5em;
   cursor: pointer;
+}
+.shallowglancehero {
+  text-align: center;
+}
+.tableheader {
+  text-align: center;
+}
+td {
+  color: #333
+}
+th {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+}
+table.center, th, td {
+  border: 1px solid black;
+  text-align: center;
+}
+.tablediv {
+  overflow:hidden;
+  overflow-y: scroll;
+  height: 500px;
 }
 
 @media only screen and (min-width: 800px) {
