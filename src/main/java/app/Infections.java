@@ -39,8 +39,9 @@ public class infections implements Handler {
         infectionsvar = infectionsvar +"    <section class=\"shallowglancehero\">";
         infectionsvar = infectionsvar +"        <div class=\"shallowglanceleft-col\">";
         infectionsvar = infectionsvar +"            <h1 class=\"lefttext\">Welcome to the Infections Page!";
-        infectionsvar = infectionsvar +"            <h4 class=\"datetext\">On this page you will be presented with a table of data that displays some basic useful information on COVID-19 cases per country/state."; 
+        infectionsvar = infectionsvar +"            <h4 class=\"datetext\">On this page you will be presented with a table of data that displays some basic useful information on COVID-19 cases and deaths per country/state. For more information on deaths, visit the 'Deaths' page."; 
         infectionsvar = infectionsvar +"            <h4 class=\"datetext\">You will also be able to make adjustments to the dates the data is presented between, whether country or states are presented, or whether the data is displayed by worst affected/least affected or not. Scroll down to have a look!";
+        infectionsvar = infectionsvar +"            <h4 class=\"datetext\">Note: Worst affected means the highest death rates followed by the highest infection rates per capita.";
         infectionsvar = infectionsvar +"            <div class='\"form-group\"'>";
         infectionsvar = infectionsvar +"              <select id='shalloworder_drop' name='shalloworder_drop'>";
         infectionsvar = infectionsvar +"                  <option></option>";
@@ -171,10 +172,11 @@ public class infections implements Handler {
         infectionsvar = infectionsvar + "     <th>Ranking</th>";
         infectionsvar = infectionsvar + "     <th>Country Name</th>";
         infectionsvar = infectionsvar + "     <th>Total Cases</th>";
+        infectionsvar = infectionsvar + "     <th>Total Deaths</th>";
         infectionsvar = infectionsvar + "     <th>Most Cases in a Day</th>";
         infectionsvar = infectionsvar + "     <th>Date of Most Cases</th>";
         infectionsvar = infectionsvar + " </tr>";
-        for (i = 0; i < newList.size() - 1; i+=4) {
+        for (i = 0; i < newList.size() - 1; i+=5) {
             rank = rank + 1;
             infectionsvar = infectionsvar + "<tr>";
             infectionsvar = infectionsvar + " <td>" + '#' + rank + "</td>";
@@ -182,6 +184,7 @@ public class infections implements Handler {
             infectionsvar = infectionsvar + " <td>" + newList.get(i+1) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+2) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+3) + "</td>";
+            infectionsvar = infectionsvar + " <td>" + newList.get(i+4) + "</td>";
             infectionsvar = infectionsvar + "</tr>";
         }
         infectionsvar = infectionsvar + "</table>";
@@ -212,10 +215,11 @@ public class infections implements Handler {
         infectionsvar = infectionsvar + "     <th>Ranking</th>";
         infectionsvar = infectionsvar + "     <th>Country Name</th>";
         infectionsvar = infectionsvar + "     <th>Total Cases</th>";
+        infectionsvar = infectionsvar + "     <th>Total Deaths</th>";
         infectionsvar = infectionsvar + "     <th>Most Cases in a Day</th>";
         infectionsvar = infectionsvar + "     <th>Date of Most Cases</th>";
         infectionsvar = infectionsvar + " </tr>";
-        for (i = 0; i < newList.size() - 1; i+=4) {
+        for (i = 0; i < newList.size() - 1; i+=5) {
             rank = rank + 1;
             infectionsvar = infectionsvar + "<tr>";
             infectionsvar = infectionsvar + " <td>" + '#' + rank + "</td>";
@@ -223,6 +227,7 @@ public class infections implements Handler {
             infectionsvar = infectionsvar + " <td>" + newList.get(i+1) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+2) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+3) + "</td>";
+            infectionsvar = infectionsvar + " <td>" + newList.get(i+4) + "</td>";
             infectionsvar = infectionsvar + "</tr>";
         }
         infectionsvar = infectionsvar + "</table>";
@@ -248,10 +253,11 @@ public class infections implements Handler {
         infectionsvar = infectionsvar + "     <th>Ranking</th>"; 
         infectionsvar = infectionsvar + "     <th>Country Name</th>";
         infectionsvar = infectionsvar + "     <th>Total Cases</th>";
+        infectionsvar = infectionsvar + "     <th>Total Deaths</th>";
         infectionsvar = infectionsvar + "     <th>Most Cases in a Day</th>";
         infectionsvar = infectionsvar + "     <th>Date of Most Cases</th>";
         infectionsvar = infectionsvar + " </tr>";
-        for (i = 0; i < newList.size() - 1; i+=4) {
+        for (i = 0; i < newList.size() - 1; i+=5) {
             rank = rank + 1;
             infectionsvar = infectionsvar + "<tr>";
             infectionsvar = infectionsvar + " <td>" + '#' + rank + "</td>";
@@ -259,6 +265,7 @@ public class infections implements Handler {
             infectionsvar = infectionsvar + " <td>" + newList.get(i+1) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+2) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+3) + "</td>";
+            infectionsvar = infectionsvar + " <td>" + newList.get(i+4) + "</td>";
             infectionsvar = infectionsvar + "</tr>";
         }
         infectionsvar = infectionsvar + "</table>";
