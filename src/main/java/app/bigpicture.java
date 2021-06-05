@@ -79,7 +79,7 @@ public class bigpicture implements Handler {
         html = html +
         "    </div>" +
         "</main>" +
-        "    <script src='script.js'></script>" +
+        "    <script src='litty.js'></script>" +
         "</body>" +
         "</html>";
             

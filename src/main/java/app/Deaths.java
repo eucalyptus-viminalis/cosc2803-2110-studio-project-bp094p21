@@ -112,7 +112,7 @@ public class deaths implements Handler {
         "    <h1>Covid-19</h1>" +
         "    <section class='section-deaths'>" +
         "       <div class='div-halfwidth'>" +
-        "           <form action='/deaths.html' method='post'>" +
+        "           <form id='formCountry' action='/deaths.html' method='post'>" +
         "               <select class='select-css' id='country' name='country' onChange='this.form.submit()'>";
         // "               <option value='' selected='' disabled=''>Choose Country</option>";
         
@@ -125,17 +125,16 @@ public class deaths implements Handler {
         }
         html = html +
         "               </select>" +
+        "               <div class='div-dates'>" +
+        "               <input class='input-date input-from-date' id='from-date' name='from-date' type='date' min='2020-01-22' max='2021-04-22' onchange='this.form.submit()' value='" + from_date + "'>" +
+        "               <input class='input-date input-to-date' id='to-date' name='to-date' type='date' min='2020-01-22' max='2021-04-22' onchange='this.form.submit()' value='" + to_date + "'></div>" +
         "           </form>" +
         "           <h3>" + country + "</h3>" +
         "           <p class='p-peak'>On <span class='span-highlight'>" + str_month + " " + str_dd + ", " + str_yyyy + "</span><br><span class='span-highlight'>" + country + "</span> had the highest number of <br>deaths in one day, totalling <span class='span-highlight'>" + peak_deaths +"</span> deaths.</p>" +
-        "           <form class='form-dates' action='/deaths.html' method='post'>" +
-        "               <input class='input-date input-from-date' id='from-date' name='from-date' type='date' min='2020-01-22' max='2021-04-22' onchange='this.form.submit()' value='" + from_date + "'>" +
-        "               <input class='input-date input-to-date' id='to-date' name='to-date' type='date' min='2020-01-22' max='2021-04-22' onchange='this.form.submit()' value='" + to_date + "'>" +
-        "           </form>" +
         "           <section class='section-death-ratio'>" +
-        "           <div class='div-death'><h3>Deaths</h3>" +
+        "           <div class='div-death'><h3><span class='span-highlight2'>Deaths</span></h3>" +
         "           <h4>" + country_deaths + "</h4></div>" +
-        "           <div class='div-ratio'><h3>Ratio</h3>" +
+        "           <div class='div-ratio'><h3><span class='span-highlight2'>Ratio</span></h3>" +
         "           <h4>" + country_ratio + "%</h4></div>" +
         "           </section>" +
         "           <h3>Total Deaths</h3>" +
@@ -144,13 +143,19 @@ public class deaths implements Handler {
         "           <h4>" + country_population + "</h4>" +
         "       </div>" +
         "       <div class='div-halfwidth'>" +
+        "       <h3>Global</h3>" +
+        "       <table>" +
+        "           <tr>" +
+        "               <th>Country</th>" +
+        "               <th>Deaths</th>" +
+        "               <th>Ratio</th>" +
+        "           </tr>" +
+        "       </table>" +
         "       </div>" +
         "    </section>" +
+        "       <div class='div-line'></div>" +
         "</main>" +
-        "    <script>" +
-        " let forms = document.querySelectorAll('form');" +
-        "console.log(forms);" +
-        "</script>" +
+        "    <script src='litty.js'></script>" +
         "</body>" +
         "</html>";
 

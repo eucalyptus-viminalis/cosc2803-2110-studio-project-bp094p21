@@ -15,6 +15,7 @@ public class App {
             config.registerPlugin(new RouteOverviewPlugin("/help/routes"));
             config.addStaticFiles(CSS_DIR);
             config.addStaticFiles(IMAGES_DIR);
+            config.addStaticFiles(JS_DIR);
         }).start(JAVALIN_PORT);
         configureRoutes(app);
     }

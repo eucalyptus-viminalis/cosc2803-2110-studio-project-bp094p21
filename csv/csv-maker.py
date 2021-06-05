@@ -45,6 +45,7 @@ with open("date-formatted/new_deaths_formatted.csv", "r") as file:
     deaths_fields = reader.fieldnames
     total_fields = 0
     total_dates = 0
+    # fill date_table
     for field in deaths_fields:
         if ("-" in field):
             date_table["Date"].append(field)
@@ -116,25 +117,24 @@ with open("date-formatted/new_cases_formatted.csv", "r") as file:
             total_dates += 1
         total_fields += 1
     print("\nnew_cases.csv: Fields - " + str(total_fields) + ", Total Dates - " + str(total_dates))
-    counter_state = 0
-    counter_country = 0
-    country_names = []
+    # read each row
     for row in reader:
         if (row["Province_State"].strip()):
+            state_name = row["Province_State"].strip()
+            state_id = state_table["Name"].index(state_name)
             # Add case records to state_record_cases
             for date in date_table["Date"]:
-                state_record_cases["Province_StateID"].append(counter_state)
+                state_record_cases["Province_StateID"].append(state_id)
                 state_record_cases["Date"].append(date)
                 state_record_cases["NewCases"].append(row[date])
-            counter_state += 1
-        elif (row["Country_Region"].strip() not in country_names):
-            country_names.append(row["Country_Region"].strip())
+        else:
+            country_name = row["Country_Region"].strip()
+            country_id = country_table["Name"].index(country_name)
             # Add case records to country_record_cases
             for date in date_table["Date"]:
-                country_record_cases["Country_RegionID"].append(counter_country)
+                country_record_cases["Country_RegionID"].append(country_id)
                 country_record_cases["Date"].append(date)
                 country_record_cases["NewCases"].append(row[date])
-            counter_country += 1
 print("\nDone reading new_cases.csv\n")
 num_state_cases = len(state_record_cases["Date"])
 num_country_cases = len(country_record_cases["Date"])

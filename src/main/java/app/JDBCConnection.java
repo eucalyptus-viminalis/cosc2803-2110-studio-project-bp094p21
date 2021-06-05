@@ -511,4 +511,66 @@ public class JDBCConnection {
         }
         return pop;
     }
+    public ArrayList<String> getGlobalDataDeaths() {
+        ArrayList<String> global_data = new ArrayList<String>();
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(DATABASE);
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            String query = "select name, sum(newdeaths) d from country join country_regiondeaths on country.id = country_regiondeaths.country_regionid group by name order by name asc";
+            ResultSet results = statement.executeQuery(query);
+            while (results.next()) {
+                String name     = results.getString("name");
+                String deaths = results.getString("d");
+                // String cases = results.getString("c");
+                global_data.add(name);
+                global_data.add(deaths);
+                // global_data.add(cases);
+            }
+            statement.close();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+        return global_data;
+    }   
+    public ArrayList<String> getGlobalDataCases() {
+        ArrayList<String> global_data = new ArrayList<String>();
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(DATABASE);
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            String query = "select name, sum(newcases) d from country join country_regioncases on country.id = country_regioncases.country_regionid group by name order by name asc";
+            ResultSet results = statement.executeQuery(query);
+            while (results.next()) {
+                String name     = results.getString("name");
+                String cases = results.getString("d");
+                // String cases = results.getString("c");
+                global_data.add(name);
+                global_data.add(cases);
+                // global_data.add(cases);
+            }
+            statement.close();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+        return global_data;
+    }   
 }

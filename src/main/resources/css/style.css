@@ -33,6 +33,7 @@ html {
     --grey76: #767676;
     --yellow: #f0cd02;
     --darkgrey: #2F353F;
+    --red: #e41414;
     /* Select */
     --radius: 0.25rem;
     --baseFg: #2f353f;
@@ -97,7 +98,7 @@ body {
 }
 /* MAIN */
 main {
-    display: fixed;
+    position: fixed;
     top: 10vh;
     height: 90vh
 }
@@ -214,30 +215,27 @@ h3 {
     margin-top: 2rem;
 }
 /* DATES */
-.form-dates {
+.div-dates {
     display: flex;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     margin-top: 1.5rem;
 }
 .input-date {
     height: 3rem;
-    font-size: 2rem;
-    color: green;
+    font-size: 1.7rem;
+    color: var(--red);
     font-weight: 400;
     padding-left: 0.5rem;
     padding-top: 0;
     margin-right: 0;
-    width: 17rem;
+    width: 30%;
     border-radius: 0.25rem;
+    background: var(--e3);
 }
 .input-from-date {
-    color: green;
-}
-.input-to-date {
-    margin-top: 0.5rem;
-    color: red;
+    margin-right: 1rem;
 }
 /* DEATH / RATIO */
 .section-death-ratio {
@@ -254,4 +252,25 @@ h4 {
     text-align: center;
     font-size: 2rem;
     margin-top: 0.5rem;
+}
+.span-highlight2 {
+    color: var(--red);
+}
+/* LINE */
+.div-line {
+    position: fixed;
+    width: 1px;
+    border: 1px solid var(--grey76);
+    height: 55vh;
+    top: 30vh;
+    /* transform: translateX(-50%), translateY(-50%); */
+    left: 50vw;
+}
+/* GLOBAL */
+/* TABLE */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 0 auto;
+    margin-top: 2rem;
 }

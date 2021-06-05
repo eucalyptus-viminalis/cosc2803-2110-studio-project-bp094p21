@@ -9,7 +9,9 @@ public class test {
 
     public static void main(String[] args) {
        JDBCConnection jdbc = new JDBCConnection();
-       ArrayList<String> country_names = jdbc.getCountryNames();
-       System.out.println(country_names.size());
+       ArrayList<String> global_data_deaths = jdbc.getGlobalDataDeaths();
+       System.out.println(global_data_deaths.size());
+       ArrayList<String> global_data_cases = jdbc.getGlobalDataCases();
+       System.out.println(global_data_cases.size());
     }
 }
