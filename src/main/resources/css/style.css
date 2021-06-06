@@ -266,10 +266,27 @@ h4 {
     left: 50vw;
 }
 /* GLOBAL */
+.h3-global {
+    margin-top: 0;
+}
 /* TABLE */
 table {
     border-collapse: collapse;
     border-spacing: 0;
     margin: 0 auto;
     margin-top: 2rem;
+    font-size: 2rem;
+}
+td {
+    padding: 0.5rem;
+}
+.btn-th {
+    display: table-cell;
+    padding: 0.5rem;
+    width: 100%;
+    font-size: 2rem;
+}
+.div-scroll {
+    overflow: scroll;
+    height: 50vh;
 }

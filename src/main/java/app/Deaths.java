@@ -52,7 +52,7 @@ public class deaths implements Handler {
         int               country_total_deaths = jdbc.getTotalDeathsInDateRange1Country(country, "2020-01-22", "2021-04-22");
         System.out.println(country_deaths);
         int               country_cases = jdbc.getTotalCasesInDateRange1Country(country, from_date, to_date);
-        int country_total_cases = jdbc.getTotalCasesInDateRange1Country(country, "2020-01-22", "2021-04-22");
+        int               country_total_cases = jdbc.getTotalCasesInDateRange1Country(country, "2020-01-22", "2021-04-22");
         int country_ratio;
         if (country_cases == 0) {
             country_ratio = 0;
@@ -72,6 +72,9 @@ public class deaths implements Handler {
         int num_countries = country_names.size();
         int i;
         int j;
+        ArrayList<String> global_data = jdbc.getGlobalData();
+        int global_rows = global_data.size()/3;
+        System.out.println(global_rows);
         String html = "<!DOCTYPE html>" +
         "<html lang='en'>" +
         "<head>" +
@@ -143,14 +146,28 @@ public class deaths implements Handler {
         "           <h4>" + country_population + "</h4>" +
         "       </div>" +
         "       <div class='div-halfwidth'>" +
-        "       <h3>Global</h3>" +
-        "       <table>" +
+        "       <h3 class='h3-global'>Global</h3>" +
+        "       <div class='div-scroll'>" +
+        "       <table id='table-global'>" +
+        "       <thead>" +
         "           <tr>" +
-        "               <th>Country</th>" +
-        "               <th>Deaths</th>" +
-        "               <th>Ratio</th>" +
+        "               <th><button class='btn-th' onclick='sortCountry()'>Country</button></th>" +
+        "               <th><button class='btn-th' onclick='sortDeaths()'>Deaths</button></th>" +
+        "               <th><button class='btn-th' onclick='sortRatio()'>Ratio</button></th>" +
         "           </tr>" +
-        "       </table>" +
+        "       </thead>" +
+        "       <tbody>";
+        for (i = 0; i < global_rows; i++) {
+            html = html +
+            "<tr>" +
+            "<td>" + global_data.get(i*3) + "</td>" +
+            "<td>" + global_data.get((i*3)+1) + "</td>" +
+            "<td>" + global_data.get((i*3)+2) + "</td>" +
+            "</tr>";
+        }
+        html = html +
+        "       </tbody>" +
+        "       </table></div>" +
         "       </div>" +
         "    </section>" +
         "       <div class='div-line'></div>" +

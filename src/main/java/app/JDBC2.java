@@ -235,8 +235,7 @@ public class JDBC2 {
             }
         }
         return names;
-    }
-    
+    }  
     public int getPastWeekNoCasesStateCount() {
         int count = 0;
         Connection connection = null;
@@ -384,15 +383,16 @@ public class JDBC2 {
             connection = DriverManager.getConnection(DATABASE2);
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
-            String query = "select name, sum(newdeaths) d, sum(newcases) c from country join countryrecords on country.id = countryrecords.countryid group by name order by name asc limit 8";
+            String query = "select name, sum(newdeaths) d, sum(newcases) c from country join countryrecords on country.id = countryrecords.countryid group by name order by name asc";
             ResultSet results = statement.executeQuery(query);
             while (results.next()) {
                 String name     = results.getString("name");
                 String deaths = results.getString("d");
                 String cases = results.getString("c");
+                int ratio = (Integer.parseInt(deaths) * 100) / Integer.parseInt(cases);
                 global_data.add(name);
                 global_data.add(deaths);
-                global_data.add(cases);
+                global_data.add(Integer.toString(ratio));
             }
             statement.close();
         } catch (SQLException e) {
