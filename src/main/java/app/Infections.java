@@ -45,7 +45,7 @@ public class infections implements Handler {
         infectionsvar = infectionsvar +"            <h4 class=\"datetext\">Note: Worst affected means the highest death rates followed by the highest infection rates per capita.";
         infectionsvar = infectionsvar +"            <div class='\"form-group\"'>";
         infectionsvar = infectionsvar +"              <select id='shalloworder_drop' name='shalloworder_drop'>";
-        infectionsvar = infectionsvar +"                  <option></option>";
+        infectionsvar = infectionsvar +"                  <option>No Order</option>";
         infectionsvar = infectionsvar +"                  <option>Descending Order (Worst Affected First)</option>";
         infectionsvar = infectionsvar +"                  <option>Ascending Order (Least Affected First)</option>";
         infectionsvar = infectionsvar +"            </div>";
@@ -98,12 +98,12 @@ public class infections implements Handler {
                     }
                 }
             }
-            if (((date1_textbox != null || date1_textbox != "") && (date2_textbox != null || date2_textbox != "")) && (shalloworder_drop != "Ascending Order (Least Affected First)") || shalloworder_drop != "Descending Order (Worst Affected First)") {
+            if (shalloworder_drop.equals("No Order") && ((date1_textbox != null || date1_textbox != "") && (date2_textbox != null || date2_textbox != ""))) {
                 int j;
                 int k;
                 for (j = 0; j < totalDates.size(); j++) {
                     for (k = 0; k < totalDates.size(); k++) {
-                        if (((firstDate.compareTo(totalDates.get(j)) == 0) && (secondDate.compareTo(totalDates.get(k)) == 0)) && (shalloworder_drop == null || shalloworder_drop == "")) {
+                        if (((firstDate.compareTo(totalDates.get(j)) == 0) && (secondDate.compareTo(totalDates.get(k)) == 0)) && (shalloworder_drop.equals("No Order"))) {
                             infectionsvar = infectionsvar + testOrder(firstDate, secondDate);
                             break;
                         }
@@ -112,7 +112,10 @@ public class infections implements Handler {
             }
         }
         catch (Exception e) {
-            if (shalloworder_drop.equals("Ascending Order (Least Affected First)") || shalloworder_drop.equals("Descending Order (Worst Affected First)")) {
+            if (shalloworder_drop == null) {
+                infectionsvar = infectionsvar + doNothing();
+            }
+            else if (shalloworder_drop.equals("Ascending Order (Least Affected First)") || shalloworder_drop.equals("Descending Order (Worst Affected First)")) {
                 infectionsvar = infectionsvar + defaultOrder(shalloworder_drop);
             }
             else {
@@ -165,9 +168,9 @@ public class infections implements Handler {
         infectionsvar = infectionsvar + "<h2 class=\"tableheader\">COVID-19 Default Data (2020-01-22 to 2021-04-22) (YYYY-MM-DD) (Alphabetically)</h2>";
 
         JDBCConnection jdbc = new JDBCConnection();
-        ArrayList<String> covid = jdbc.getDefaultData();
+        ArrayList<String> fixed = jdbc.getDefaultData();
         ArrayList<String> newList = new ArrayList<String>();
-        for (String data : covid) {
+        for (String data : fixed) {
             newList.add(data);
         }
         int i;
@@ -179,10 +182,11 @@ public class infections implements Handler {
         infectionsvar = infectionsvar + "     <th>Country Name</th>";
         infectionsvar = infectionsvar + "     <th>Total Cases</th>";
         infectionsvar = infectionsvar + "     <th>Total Deaths</th>";
+        infectionsvar = infectionsvar + "     <th>Population</th>";
         infectionsvar = infectionsvar + "     <th>Most Cases in a Day</th>";
         infectionsvar = infectionsvar + "     <th>Date of Most Cases</th>";
         infectionsvar = infectionsvar + " </tr>";
-        for (i = 0; i < newList.size() - 1; i+=5) {
+        for (i = 0; i < newList.size() - 1; i+=6) {
             rank = rank + 1;
             infectionsvar = infectionsvar + "<tr>";
             infectionsvar = infectionsvar + " <td>" + '#' + rank + "</td>";
@@ -191,6 +195,7 @@ public class infections implements Handler {
             infectionsvar = infectionsvar + " <td>" + newList.get(i+2) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+3) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+4) + "</td>";
+            infectionsvar = infectionsvar + " <td>" + newList.get(i+5) + "</td>";
             infectionsvar = infectionsvar + "</tr>";
         }
         infectionsvar = infectionsvar + "</table>";
@@ -208,9 +213,9 @@ public class infections implements Handler {
         }
         infectionsvar = infectionsvar + "<h2 class=\"tableheader\">COVID-19 data in " + order + " between " + date1 + " and " + date2 + " (YYYY-MM-DD)</h2>";
         JDBCConnection jdbc = new JDBCConnection();
-        ArrayList<String> covid = jdbc.getStandardOrder(newOrder, date1, date2);
+        ArrayList<String> fixed = jdbc.getStandardOrder(newOrder, date1, date2);
         ArrayList<String> newList = new ArrayList<String>();
-        for (String data : covid) {
+        for (String data : fixed) {
             newList.add(data);
         }
         int i;
@@ -222,10 +227,11 @@ public class infections implements Handler {
         infectionsvar = infectionsvar + "     <th>Country Name</th>";
         infectionsvar = infectionsvar + "     <th>Total Cases</th>";
         infectionsvar = infectionsvar + "     <th>Total Deaths</th>";
+        infectionsvar = infectionsvar + "     <th>Population</th>";
         infectionsvar = infectionsvar + "     <th>Most Cases in a Day</th>";
         infectionsvar = infectionsvar + "     <th>Date of Most Cases</th>";
         infectionsvar = infectionsvar + " </tr>";
-        for (i = 0; i < newList.size() - 1; i+=5) {
+        for (i = 0; i < newList.size() - 1; i+=6) {
             rank = rank + 1;
             infectionsvar = infectionsvar + "<tr>";
             infectionsvar = infectionsvar + " <td>" + '#' + rank + "</td>";
@@ -234,6 +240,7 @@ public class infections implements Handler {
             infectionsvar = infectionsvar + " <td>" + newList.get(i+2) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+3) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+4) + "</td>";
+            infectionsvar = infectionsvar + " <td>" + newList.get(i+5) + "</td>";
             infectionsvar = infectionsvar + "</tr>";
         }
         infectionsvar = infectionsvar + "</table>";
@@ -251,9 +258,9 @@ public class infections implements Handler {
             newOrder = "ASC";
         }
         JDBCConnection jdbc = new JDBCConnection();
-        ArrayList<String> covid = jdbc.getDefaultOrder(newOrder);
+        ArrayList<String> fixed = jdbc.getDefaultOrder(newOrder);
         ArrayList<String> newList = new ArrayList<String>();
-        for (String data : covid) {
+        for (String data : fixed) {
             newList.add(data);
         }
         int i;
@@ -265,10 +272,11 @@ public class infections implements Handler {
         infectionsvar = infectionsvar + "     <th>Country Name</th>";
         infectionsvar = infectionsvar + "     <th>Total Cases</th>";
         infectionsvar = infectionsvar + "     <th>Total Deaths</th>";
+        infectionsvar = infectionsvar + "     <th>Population</th>";
         infectionsvar = infectionsvar + "     <th>Most Cases in a Day</th>";
         infectionsvar = infectionsvar + "     <th>Date of Most Cases</th>";
         infectionsvar = infectionsvar + " </tr>";
-        for (i = 0; i < newList.size() - 1; i+=5) {
+        for (i = 0; i < newList.size() - 1; i+=6) {
             rank = rank + 1;
             infectionsvar = infectionsvar + "<tr>";
             infectionsvar = infectionsvar + " <td>" + '#' + rank + "</td>";
@@ -277,6 +285,7 @@ public class infections implements Handler {
             infectionsvar = infectionsvar + " <td>" + newList.get(i+2) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+3) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+4) + "</td>";
+            infectionsvar = infectionsvar + " <td>" + newList.get(i+5) + "</td>";
             infectionsvar = infectionsvar + "</tr>";
         }
         infectionsvar = infectionsvar + "</table>";
@@ -289,9 +298,9 @@ public class infections implements Handler {
         infectionsvar = infectionsvar + "<h2 class=\"tableheader\">COVID-19 data between " + date1 + " and " + date2 + " (YYYY-MM-DD) (Alphabetically)</h2>";
         
         JDBCConnection jdbc = new JDBCConnection();
-        ArrayList<String> covid = jdbc.getDateData(date1, date2);
+        ArrayList<String> fixed = jdbc.getDateData(date1, date2);
         ArrayList<String> newList = new ArrayList<String>();
-        for (String data : covid) {
+        for (String data : fixed) {
             newList.add(data);
         }
         int i;
@@ -303,10 +312,11 @@ public class infections implements Handler {
         infectionsvar = infectionsvar + "     <th>Country Name</th>";
         infectionsvar = infectionsvar + "     <th>Total Cases</th>";
         infectionsvar = infectionsvar + "     <th>Total Deaths</th>";
+        infectionsvar = infectionsvar + "     <th>Population</th>";
         infectionsvar = infectionsvar + "     <th>Most Cases in a Day</th>";
         infectionsvar = infectionsvar + "     <th>Date of Most Cases</th>";
         infectionsvar = infectionsvar + " </tr>";
-        for (i = 0; i < newList.size() - 1; i+=5) {
+        for (i = 0; i < newList.size() - 1; i+=6) {
             rank = rank + 1;
             infectionsvar = infectionsvar + "<tr>";
             infectionsvar = infectionsvar + " <td>" + '#' + rank + "</td>";
@@ -315,6 +325,7 @@ public class infections implements Handler {
             infectionsvar = infectionsvar + " <td>" + newList.get(i+2) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+3) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+4) + "</td>";
+            infectionsvar = infectionsvar + " <td>" + newList.get(i+5) + "</td>";
             infectionsvar = infectionsvar + "</tr>";
         }
         infectionsvar = infectionsvar + "</table>";
