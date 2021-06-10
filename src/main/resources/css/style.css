@@ -20,6 +20,7 @@ button {
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
             box-sizing: border-box;
+            position: relative;
 }
 /* SCROLL */
 html {
@@ -98,14 +99,14 @@ body {
 }
 /* MAIN */
 main {
-    top: 10vh;
+    top: 0;
     height: 90vh
 }
 /* H1 */
 h1 {
     font-size: 6.5rem;
     text-align: center;
-    padding: 3rem 0;
+    padding: 2rem 0;
     color: var(--e3);
 }
 
@@ -121,7 +122,7 @@ img {
 
 /* FACTS */
 .div-facts {
-    padding: 3rem 0;
+    padding: 1rem 0;
 }
 .p-fact {
     margin: 0 auto;
@@ -146,6 +147,11 @@ img {
     color: var(--grey76);
 }
 /* DEATHS */
+/* H3 */
+.h3-country {
+    margin-top: 0;
+}
+
 /* SECTION */
 .section-deaths {
     display: flex;
@@ -161,6 +167,18 @@ img {
 /* FORM */
 form {
     margin: 0 auto;
+}
+#formCountry {
+    max-width: 35vw;
+    margin-top: 1rem;
+}
+fieldset {
+    border-radius: 1rem;
+    padding: 2rem;
+}
+legend {
+    font-size: 1.5rem;
+    padding: 0 0.25rem;
 }
 /* SELECT */
 select {
@@ -204,7 +222,7 @@ background-color: var(--accentFg);
 h3 {
     text-align: center;
     font-size: 3rem;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
 }
 /* Pararaph */
 .p-peak {
@@ -229,7 +247,7 @@ h3 {
     padding-left: 0.5rem;
     padding-top: 0;
     margin-right: 0;
-    width: 30%;
+    width: 14rem;
     border-radius: 0.25rem;
     background: var(--e3);
 }
@@ -323,3 +341,30 @@ th, td {
     vertical-align: middle;
     text-align: center;
 }
+/* BANNER */
+.div-banner-item {
+    background-color: var(--zero);
+    text-align: center;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    min-width: 8rem;
+    width: 8rem;
+}
+.horizontal-scrolling-banner {
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+}
+
+.horizontal-scrolling-banner__helper-wrapper {
+    align-items: center;
+    display: flex;
+    left: 0;
+    transform: translateZ(0);
+    transition-property: left;
+    transition-timing-function: linear;
+}
+  

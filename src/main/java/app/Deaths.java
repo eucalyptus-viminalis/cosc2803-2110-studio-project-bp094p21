@@ -52,7 +52,7 @@ public class deaths implements Handler {
         int               country_total_deaths = jdbc.getTotalDeathsInDateRange1Country(country, "2020-01-22", "2021-04-22");
         System.out.println(country_deaths);
         int               country_cases = jdbc.getTotalCasesInDateRange1Country(country, from_date, to_date);
-        int               country_total_cases = jdbc.getTotalCasesInDateRange1Country(country, "2020-01-22", "2021-04-22");
+        // int               country_total_cases = jdbc.getTotalCasesInDateRange1Country(country, "2020-01-22", "2021-04-22");
         int country_ratio;
         if (country_cases == 0) {
             country_ratio = 0;
@@ -69,9 +69,8 @@ public class deaths implements Handler {
         if (str_dd.charAt(0) == '0') {
             str_dd = str_dd.substring(1,2);
         }
-        int num_countries = country_names.size();
+        // int num_countries = country_names.size();
         int i;
-        int j;
         ArrayList<String> global_data = jdbc.getGlobalData();
         int global_rows = global_data.size()/3;
         System.out.println(global_rows);
@@ -115,7 +114,11 @@ public class deaths implements Handler {
         "    <h1>Covid-19</h1>" +
         "    <section class='section-deaths'>" +
         "       <div class='div-halfwidth'>" +
+        "           <h3 class='h3-country'>" + country + "</h3>" +
+        "           <p class='p-peak'>On <span class='span-highlight'>" + str_month + " " + str_dd + ", " + str_yyyy + "</span><br><span class='span-highlight'>" + country + "</span> had the highest number of <br>deaths in one day, totalling <span class='span-highlight'>" + peak_deaths +"</span> deaths.</p>" +
         "           <form id='formCountry' action='/deaths.html' method='post'>" +
+        "               <fieldset>" +
+        "               <legend>Date Range:</legend>" +
         "               <select class='select-css' id='country' name='country' onChange='this.form.submit()'>";
         // "               <option value='' selected='' disabled=''>Choose Country</option>";
         
@@ -132,14 +135,13 @@ public class deaths implements Handler {
         "               <input class='input-date input-from-date' id='from-date' name='from-date' type='date' min='2020-01-22' max='2021-04-22' onchange='this.form.submit()' value='" + from_date + "'>" +
         "               <input class='input-date input-to-date' id='to-date' name='to-date' type='date' min='2020-01-22' max='2021-04-22' onchange='this.form.submit()' value='" + to_date + "'></div>" +
         "           </form>" +
-        "           <h3>" + country + "</h3>" +
-        "           <p class='p-peak'>On <span class='span-highlight'>" + str_month + " " + str_dd + ", " + str_yyyy + "</span><br><span class='span-highlight'>" + country + "</span> had the highest number of <br>deaths in one day, totalling <span class='span-highlight'>" + peak_deaths +"</span> deaths.</p>" +
         "           <section class='section-death-ratio'>" +
         "           <div class='div-death'><h3><span class='span-highlight2'>Deaths</span></h3>" +
         "           <h4>" + country_deaths + "</h4></div>" +
         "           <div class='div-ratio'><h3><span class='span-highlight2'>Ratio</span></h3>" +
         "           <h4>" + country_ratio + "%</h4></div>" +
         "           </section>" +
+        "           </fieldset>" + 
         "           <h3>Total Deaths</h3>" +
         "           <h4>" + country_total_deaths + "</h4>" +
         "           <h3>Population</h3>" +

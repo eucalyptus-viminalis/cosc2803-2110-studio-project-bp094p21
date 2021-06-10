@@ -19,6 +19,7 @@ public class bigpicture implements Handler {
         int               countrySum = jdbc.getPastMonthDeathsCountryTop1Sum();
         int               totalSum = jdbc.getPastMonthDeathsCountryTotal();
         ArrayList<String> countryNames = jdbc.getPastWeekNoCasesCountry();
+        ArrayList<String> allCountries = jdbc.getCountryNames();
         int               count = jdbc.getPastWeekNoCasesStateCount();
         String            strCountryNames = "";
         for (String name : countryNames) {
@@ -79,6 +80,12 @@ public class bigpicture implements Handler {
         strCountryNames + " along with <span class='span-hightlight'>" + count + " states and provinces around the world, have reported <span class='span-highlight'>0 new infections</span> in the past week.^</p>" +
         "    <div class='div-small'><small>*: excludes regional/provincial data</small>" +
         "    <small>^: week ranging from 2021-04-16 to 2021-04-22, inclusive</small></div>";
+        html = html +
+        "    </div>" +
+        "    <div class='horizontal-scrolling-banner'>";
+        for (String name : allCountries) {
+            html = html + "<div class='div-banner-item'>" + name + "</div>";
+        }
         html = html +
         "    </div>" +
         "</main>" +

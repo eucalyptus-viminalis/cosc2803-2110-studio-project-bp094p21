@@ -27,6 +27,7 @@ public class similar implements Handler {
         ArrayList<String> country_names = jdbc.getCountryNames();
         ArrayList<String> us_state_names = jdbc.getUSStateNames();
         ArrayList<String> similar_casespermil;
+        ArrayList<String> banner_list_items;
         ArrayList<String> similar_ratio;
         ArrayList<String> similar_peak_deaths;
         ArrayList<String> similar_peak_cases;
@@ -37,12 +38,14 @@ public class similar implements Handler {
             similar_ratio = jdbc.get3SimilarRatioCountry(varName);
             similar_peak_deaths = jdbc.get3SimilarPeakDeathsCountry(varName);
             similar_peak_cases = jdbc.get3SimilarPeakCasesCountry(varName);
+            banner_list_items = country_names;
         } else {
             list = us_state_names;
             similar_casespermil = jdbc.get3SimilarCasesUSStateMil(varName);
             similar_ratio = jdbc.get3SimilarRatioUSState(varName);
             similar_peak_deaths = jdbc.get3SimilarPeakDeathsUSState(varName);
             similar_peak_cases = jdbc.get3SimilarPeakCasesUSState(varName);
+            banner_list_items = us_state_names;
         }
         int i;
         System.out.println(similar_ratio);
@@ -196,7 +199,14 @@ public class similar implements Handler {
             "</tr>";
         }
         html = html +
-        "       </tbody></table>" +
+        "       </tbody></table></div>" +
+        "    <div class='horizontal-scrolling-banner'>";
+
+        for (String name : banner_list_items) {
+            html = html + "<div class='div-banner-item'>" + name + "</div>";
+        }
+        html = html +
+        "    </div>" +
         "</main>" +
         "    <script src='litty.js'></script>" +
         "</body>" +
