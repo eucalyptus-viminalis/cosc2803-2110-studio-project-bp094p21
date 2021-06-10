@@ -157,7 +157,7 @@ public class similar implements Handler {
         for (i = 0; i < 3; i++) {
             html = html +
             "<tr>" +
-            "<td>" + similar_ratio.get(i*2) + "%</td>" +
+            "<td>" + similar_ratio.get(i*2) + "</td>" +
             "<td>" + similar_ratio.get((i*2)+1) + "%</td>" +
             "</tr>";
         }
