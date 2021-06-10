@@ -277,6 +277,15 @@ table {
     margin-top: 2rem;
     font-size: 2rem;
 }
+#table-global {
+    border: 0;
+}
+#table-global thead {
+    border: 0;
+}
+#table-global th {
+    padding: 0;
+}
 td {
     padding: 0.5rem;
 }
@@ -289,4 +298,28 @@ td {
 .div-scroll {
     overflow: scroll;
     height: 50vh;
+}
+/* SIMILAR */
+/* TABLES */
+.div-tables {
+    display: flex;
+}
+table {
+    border: 1px solid;
+}
+thead {
+    border: 1px solid;
+}
+small {
+    font-size: 10px;
+    display: block;
+    margin: 0.5rem;
+}
+th {
+    padding: 1rem;
+}
+th, td {
+    margin: 0 auto;
+    vertical-align: middle;
+    text-align: center;
 }
