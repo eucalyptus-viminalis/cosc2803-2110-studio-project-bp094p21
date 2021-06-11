@@ -172,15 +172,15 @@ function sortRatio() {
         var currentWidth = childrenWidth;
   
   
-        // do {
-        //   Array.prototype.forEach.call(children, function(child) {
-        //     var clone = child.cloneNode();
-        //     clone.setAttribute('aria-hidden', true);
-        //     clone.dataset.clone = true;
-        //     // currentBanner.appendChild(clone);
-        //   });
-        //   currentWidth += childrenWidth;
-        // } while (currentWidth < minWidthToCoverBanner);
+        do {
+          Array.prototype.forEach.call(children, function(child) {
+            var clone = child.cloneNode();
+            clone.setAttribute('aria-hidden', true);
+            clone.dataset.clone = true;
+            currentBanner.appendChild(clone);
+          });
+          currentWidth += childrenWidth;
+        } while (currentWidth < minWidthToCoverBanner);
   
         var transitionHelperWrapper = document.createElement('div');
         transitionHelperWrapper.classList.add('horizontal-scrolling-banner__helper-wrapper');

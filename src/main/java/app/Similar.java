@@ -140,7 +140,7 @@ public class similar implements Handler {
         "           </tr>" +
         "       </thead>" +
         "       <tbody>";
-        for (i = 0; i < 3; i++) {
+        for (i = 0; i < 4; i++) {
             html = html +
             "<tr>" +
             "<td>" + similar_casespermil.get(i*2) + "</td>" +
@@ -157,7 +157,7 @@ public class similar implements Handler {
         "           </tr>" +
         "       </thead>" +
         "       <tbody>";
-        for (i = 0; i < 3; i++) {
+        for (i = 0; i < 4; i++) {
             html = html +
             "<tr>" +
             "<td>" + similar_ratio.get(i*2) + "</td>" +
