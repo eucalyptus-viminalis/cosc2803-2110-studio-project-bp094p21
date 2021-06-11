@@ -293,6 +293,33 @@ public class JDBC2 {
       }
       return count;
    }
+   public int getGlobalPopulation() {
+    int count = 0;
+    Connection connection = null;
+    try {
+        connection = DriverManager.getConnection(DATABASE2);
+        Statement statement = connection.createStatement();
+        statement.setQueryTimeout(30);
+        String query = "select sum(population) p from country;";
+        ResultSet result = statement.executeQuery(query);
+        count = result.getInt("p");
+        statement.close();
+    }
+    catch (SQLException e) {
+        System.err.println(e.getMessage());
+    }
+    finally {
+        try{
+            if (connection != null) {
+                connection.close();
+            }
+        }
+        catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+    return count;
+ }
    public int getTotalCasesInDateRange1Country(String country, String from, String to) {
       int count = 0;
       Connection connection = null;
@@ -377,7 +404,35 @@ public class JDBC2 {
       }
       return count;
    }
-    public ArrayList<String> getGlobalData() {
+   public int getGlobalTotalDeaths() {
+    int count = 0;
+    Connection connection = null;
+    try {
+        connection = DriverManager.getConnection(DATABASE2);
+        Statement statement = connection.createStatement();
+        statement.setQueryTimeout(30);
+        String query = "select sum(newdeaths) s from country join countryrecords on country.id = countryrecords.countryid";
+        ResultSet result = statement.executeQuery(query);
+        count = result.getInt("s");
+        statement.close();
+    }
+    catch (SQLException e) {
+        System.err.println(e.getMessage());
+    }
+    finally {
+        try{
+            if (connection != null) {
+                connection.close();
+            }
+        }
+        catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+    return count;
+ }
+   
+   public ArrayList<String> getGlobalData() {
         ArrayList<String> global_data = new ArrayList<String>();
         Connection connection = null;
         try {

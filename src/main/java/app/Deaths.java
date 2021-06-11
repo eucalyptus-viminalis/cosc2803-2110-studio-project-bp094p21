@@ -46,10 +46,12 @@ public class deaths implements Handler {
         }
         JDBC2             jdbc = new JDBC2();
         int               country_population = jdbc.getCountryPopulation(country);
+        int               global_population = jdbc.getGlobalPopulation();
         ArrayList<String> country_names = jdbc.getCountryNames();
         ArrayList<String> peak_data = jdbc.getPeakData(country);
         int               country_deaths = jdbc.getTotalDeathsInDateRange1Country(country, from_date, to_date);
         int               country_total_deaths = jdbc.getTotalDeathsInDateRange1Country(country, "2020-01-22", "2021-04-22");
+        int               global_total_deaths = jdbc.getGlobalTotalDeaths();
         System.out.println(country_deaths);
         int               country_cases = jdbc.getTotalCasesInDateRange1Country(country, from_date, to_date);
         // int               country_total_cases = jdbc.getTotalCasesInDateRange1Country(country, "2020-01-22", "2021-04-22");
@@ -170,6 +172,11 @@ public class deaths implements Handler {
         html = html +
         "       </tbody>" +
         "       </table></div>" +
+        "           <h3>Total Deaths</h3>" +
+        "           <h4>" + global_total_deaths + "</h4>" +
+        "           <h3>Population</h3>" +
+        "           <h4>" + global_population + "</h4>" +
+        "       </div>" +
         "       </div>" +
         "    </section>" +
         "       <div class='div-line'></div>" +

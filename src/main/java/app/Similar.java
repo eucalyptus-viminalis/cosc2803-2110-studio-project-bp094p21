@@ -101,6 +101,7 @@ public class similar implements Handler {
         "<main>" +
         "    <h1>Covid-19</h1>" +
         "    <form id='formSimilar' action='/similar.html' method='post'>" +
+        "               <label for='countryState' class='label-1'>Find Similar: </label>" +
         "               <select class='select-css' id='countryState' name='countryState' onChange='this.form.submit()'>" +
         "               <option value='country' ";
         if (countryState.equals("country")) {
@@ -117,7 +118,7 @@ public class similar implements Handler {
         }
         html = html +
         "               </select> " +
-        " <label for ='countryState'>Find Similar: </label>" +
+        "               <label for='list' class='label-2'>To: </label>" +
         "               <select class='select-css' id='list' name='list' onChange='this.form.submit()'>";
         // "               <option value='' selected='' disabled=''>Choose Country</option>";
         
