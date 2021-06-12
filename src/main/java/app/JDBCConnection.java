@@ -401,7 +401,7 @@ public class JDBCConnection {
         }
         return str_list;
     }
-    public ArrayList<String> getCountryLatitude(String Country) {
+    public ArrayList<String> getCountryLatitudeExtension(String Country) {
         ArrayList<String> orderData = new ArrayList<String>();
 
         Connection connection = null;
@@ -418,6 +418,78 @@ public class JDBCConnection {
                 String minLat = results.getString("Min Lat");
                 orderData.add(maxLat);
                 orderData.add(minLat);
+            }
+            statement.close();
+        }
+        catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        finally {
+            try{
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+        return orderData;
+    }
+    public ArrayList<String> getLatitudeAndLongitude(String Country) {
+        ArrayList<String> orderData = new ArrayList<String>();
+
+        Connection connection = null;
+
+        try {
+            connection = DriverManager.getConnection(DATABASE2);
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            String query = "SELECT Latitude AS 'Lat', Longitude AS 'Long' FROM Country WHERE Name = '" + Country + "'";
+            System.out.println(query);
+            ResultSet results = statement.executeQuery(query);
+            while (results.next()) {
+                String Lat = results.getString("Lat");
+                String Long = results.getString("Long");
+                orderData.add(Lat);
+                orderData.add(Long);
+            }
+            statement.close();
+        }
+        catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        finally {
+            try{
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+        return orderData;
+    }
+    public ArrayList<String> getDistance(String Date1, String Date2, String lati, String longi, int dist) {
+        ArrayList<String> orderData = new ArrayList<String>();
+
+        Connection connection = null;
+
+        try {
+            connection = DriverManager.getConnection(DATABASE2);
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            String query = "SELECT Name as 'Country Name', printf('%.2f', (100.0 * SUM(NewCases)/Population)) AS 'Infection Rate', (6371 * acos ( cos ( radians('" + lati + "') ) * cos( radians( Latitude) ) * cos( radians ( Longitude ) - radians('" + longi + "') ) + sin (radians('" + lati + "') ) * sin( radians( Latitude ) ) ) ) AS distance FROM Country JOIN CountryRecords ON Country.ID=CountryRecords.CountryID WHERE (distance < '" + dist + "') AND (Date BETWEEN '" + Date1 + "' AND '" + Date2 + "') GROUP BY Country.Name ORDER BY distance";
+            System.out.println(query);
+            ResultSet results = statement.executeQuery(query);
+            while (results.next()) {
+                String countryName = results.getString("Country Name");
+                String infectionRate = results.getString("Infection Rate");
+                String finalDistance = results.getString("distance");
+                orderData.add(countryName);
+                orderData.add(infectionRate);
+                orderData.add(finalDistance);
             }
             statement.close();
         }

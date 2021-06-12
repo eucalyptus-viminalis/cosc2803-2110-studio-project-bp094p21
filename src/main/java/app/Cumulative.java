@@ -99,27 +99,14 @@ public class cumulative implements Handler {
                     }
                 }
             }
-            else {
-                int a;
-                int b;
-                for (a = 0; a < totalDates.size(); a++) {
-                    for (b = 0; b < totalDates.size(); b++) {
-                        if (((firstDate.compareTo(totalDates.get(a)) == 0) && (secondDate.compareTo(totalDates.get(b)) == 0))) {
-                            //cumulativevar = cumulativevar + testOrder2(cumulativeCountries_drop, firstDate, secondDate);
-                            break;
-                        }
-                    }
-                }
-            }
         }
         catch (Exception e) {
             if (distance_textbox == "" || distance_textbox == null) {
-                //cumulativevar = cumulativevar + doNothing();
+                //cumulativevar = cumulativevar + doNothing(cumulativeCountries_drop);
             }
             if (distance_textbox != "" && distance_textbox != null) {
-
+                //cumulativevar = cumulativevar + doNothing(cumulativeCountries_drop);
             }
-                //cumulativevar = cumulativevar + doNothing();
         }
 // DO NOT MODIFY THIS
         // Makes Javalin render the webpage
@@ -144,7 +131,7 @@ public class cumulative implements Handler {
         infectionsvar = infectionsvar + "<h2 class=\"similarclimate\">Similar Climate to " + country + " (" + date1 +" to " + date2 +")</h2>";
         
         JDBCConnection jdbc = new JDBCConnection();
-        ArrayList<String> latitude = jdbc.getCountryLatitude(country);
+        ArrayList<String> latitude = jdbc.getCountryLatitudeExtension(country);
         ArrayList<String> newLatitude = new ArrayList<String>();
         for (String data : latitude) {
             newLatitude.add(data);
@@ -169,6 +156,36 @@ public class cumulative implements Handler {
             infectionsvar = infectionsvar + " <td>" + newList.get(i) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+1) + '%' + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+2) + '%' + "</td>";
+            infectionsvar = infectionsvar + "</tr>";
+        }
+        infectionsvar = infectionsvar + "</table>";
+        infectionsvar = infectionsvar + "</div>";
+
+        ArrayList<String> pointForCountryList = jdbc.getLatitudeAndLongitude(country);
+        ArrayList<String> countryList = new ArrayList<String>();
+        for (String newPoint : pointForCountryList) {
+            countryList.add(newPoint);
+        }
+        String lati = countryList.get(0);
+        String longi = countryList.get(1);
+        ArrayList<String> distanceList = jdbc.getDistance(date1, date2, lati, longi, distance);
+        ArrayList<String> omegaList = new ArrayList<String>();
+        for (String alphaData: distanceList) {
+            omegaList.add(alphaData);
+        }
+        infectionsvar = infectionsvar + "<div class=\"tablediv\">";
+        infectionsvar = infectionsvar + "<table class=\"distancetable\">";
+        infectionsvar = infectionsvar + " <tr>";
+        infectionsvar = infectionsvar + "     <th>Country Name</th>";
+        infectionsvar = infectionsvar + "     <th>Infection Rate</th>";
+        infectionsvar = infectionsvar + "     <th>Distance from POI</th>";
+        infectionsvar = infectionsvar + " </tr>";
+        int j;
+        for (j = 0; j < omegaList.size() - 1; j+=3) {
+            infectionsvar = infectionsvar + "<tr>";
+            infectionsvar = infectionsvar + " <td>" + omegaList.get(j) + "</td>";
+            infectionsvar = infectionsvar + " <td>" + omegaList.get(j+1) + '%' + "</td>";
+            infectionsvar = infectionsvar + " <td>" + omegaList.get(j+2) + " km" + "</td>";
             infectionsvar = infectionsvar + "</tr>";
         }
         infectionsvar = infectionsvar + "</table>";
