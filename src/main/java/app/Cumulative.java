@@ -168,11 +168,12 @@ public class cumulative implements Handler {
         }
         String lati = countryList.get(0);
         String longi = countryList.get(1);
-        ArrayList<String> distanceList = jdbc.getDistance(date1, date2, lati, longi, distance);
+        ArrayList<String> distanceList = jdbc.getDistance(date1, date2, lati, longi, distance, country);
         ArrayList<String> omegaList = new ArrayList<String>();
         for (String alphaData: distanceList) {
             omegaList.add(alphaData);
         }
+        infectionsvar = infectionsvar + "<h2 class=\"distancemsg\">Distance from " + country + " by " + distance + "km (" + date1 +" to " + date2 +")</h2>";
         infectionsvar = infectionsvar + "<div class=\"tablediv\">";
         infectionsvar = infectionsvar + "<table class=\"distancetable\">";
         infectionsvar = infectionsvar + " <tr>";
