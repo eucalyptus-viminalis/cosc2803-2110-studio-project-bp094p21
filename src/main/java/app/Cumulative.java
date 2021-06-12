@@ -93,7 +93,7 @@ public class cumulative implements Handler {
                 for (a = 0; a < totalDates.size(); a++) {
                     for (b = 0; b < totalDates.size(); b++) {
                         if (((firstDate.compareTo(totalDates.get(a)) == 0) && (secondDate.compareTo(totalDates.get(b)) == 0))) {
-                            //cumulativevar = cumulativevar + testOrder(cumulativeCountries_drop, firstDate, secondDate, distance);
+                            cumulativevar = cumulativevar + testOrder(cumulativeCountries_drop, firstDate, secondDate, distance);
                             break;
                         }
                     }
@@ -113,16 +113,59 @@ public class cumulative implements Handler {
             }
         }
         catch (Exception e) {
-            if (distance_textbox == "" || distance_textbox != "") {
+            if (distance_textbox == "" || distance_textbox == null) {
                 //cumulativevar = cumulativevar + doNothing();
             }
-            else {
-                //cumulativevar = cumulativevar + doNothing();
+            if (distance_textbox != "" && distance_textbox != null) {
+
             }
+                //cumulativevar = cumulativevar + doNothing();
         }
-            
 // DO NOT MODIFY THIS
         // Makes Javalin render the webpage
         context.html(cumulativevar);
+    }
+    public String testOrder(String country, LocalDate date1, LocalDate date2, int distance) {
+        String cumulativevar = "";
+        if ((date2.compareTo(date1) < 0)) {
+            String firstDate = date1.toString();
+            String secondDate = date2.toString();
+            cumulativevar = cumulativevar + outputDate(country, secondDate, firstDate, distance);
+        }
+        else if (((date2.compareTo(date1) == 0) || (date2.compareTo(date1) > 0))) {
+            String firstDate = date1.toString();
+            String secondDate = date2.toString();
+            cumulativevar = cumulativevar + outputDate(country, firstDate, secondDate, distance);
+        }
+        return cumulativevar;
+    }
+    public String outputDate(String country, String date1, String date2, int distance) {
+        String infectionsvar = "";
+        infectionsvar = infectionsvar + "<h2 class=\"tableheader\">COVID-19 data for " + country + " between " + date1 + " and " + date2 + " (YYYY-MM-DD) (Alphabetically)</h2>";
+        
+        JDBCConnection jdbc = new JDBCConnection();
+        ArrayList<String> fixed = jdbc.getSimilarClimates(date1, date2, country);
+        ArrayList<String> newList = new ArrayList<String>();
+        for (String data : fixed) {
+            newList.add(data);
+        }
+        int i;
+        infectionsvar = infectionsvar + "<div class=\"tablediv\">";
+        infectionsvar = infectionsvar + "<table class=\"center\">";
+        infectionsvar = infectionsvar + " <tr>";
+        infectionsvar = infectionsvar + "     <th>Country Name</th>";
+        infectionsvar = infectionsvar + "     <th>Transmission Rate</th>";
+        infectionsvar = infectionsvar + "     <th>Death Rate</th>";
+        infectionsvar = infectionsvar + " </tr>";
+        for (i = 0; i < newList.size() - 1; i+=2) {
+            infectionsvar = infectionsvar + "<tr>";
+            infectionsvar = infectionsvar + " <td>" + newList.get(i) + "</td>";
+            infectionsvar = infectionsvar + " <td>" + newList.get(i+1) + '%' + "</td>";
+            infectionsvar = infectionsvar + " <td>" + newList.get(i+2) + '%' + "</td>";
+            infectionsvar = infectionsvar + "</tr>";
+        }
+        infectionsvar = infectionsvar + "</table>";
+        infectionsvar = infectionsvar + "</div>";
+        return infectionsvar;
     }
 }

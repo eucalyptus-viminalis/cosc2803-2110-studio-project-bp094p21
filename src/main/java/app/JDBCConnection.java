@@ -401,4 +401,41 @@ public class JDBCConnection {
         }
         return str_list;
     }
+    public ArrayList<String> getSimilarClimates(String Date1, String Date2, String Country) {
+        ArrayList<String> orderData = new ArrayList<String>();
+
+        Connection connection = null;
+
+        try {
+            connection = DriverManager.getConnection(DATABASE2);
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            String query = "SELECT Country.Name AS 'Country Name', printf('%.2f', (100.0 * SUM(NewCases)/Country.Population)) AS 'Transmission Rate', printf('%.2f', (100.0 * SUM(NewDeaths)/Country.Population)) AS 'Death Rate' FROM Country JOIN CountryRecords ON Country.ID=CountryRecords.CountryID GROUP BY Country.Name WHERE Date BETWEEN '" + Date1 + "' AND '" + Date2 + "' GROUP BY Country.Name";
+            System.out.println(query);
+            ResultSet results = statement.executeQuery(query);
+            while (results.next()) {
+                String countryName = results.getString("Country Name");
+                String transRate = results.getString("Transmission Rate");
+                String deathRate = results.getString("Death Rate");
+                orderData.add(countryName);
+                orderData.add(transRate);
+                orderData.add(deathRate);
+            }
+            statement.close();
+        }
+        catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        finally {
+            try{
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+        return orderData;
+    }
 }
