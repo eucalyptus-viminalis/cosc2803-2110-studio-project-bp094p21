@@ -2,9 +2,9 @@ document.querySelectorAll("table th").forEach(th => {
   th.addEventListener("click", () => {
     const table = th.parentElement.parentElement.parentElement;
     const thIndex = Array.prototype.indexOf.call(th.parentElement.children, th);
-    // console.log(thIndex);
+    console.log(thIndex);
     const isAsc = th.classList.contains("sorted-asc");
-    // console.log(isAsc);
+    console.log(isAsc);
     const dataType = th.dataset.type;
     sortTableByCol(table, thIndex, !isAsc, dataType);
   })

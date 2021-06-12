@@ -136,8 +136,8 @@ public class similar implements Handler {
         "       <table>" +
         "       <thead>" +
         "           <tr>" +
-        "               <th>Country</th>" +
-        "               <th>Infections<br><small>per million ppl</small></th>" +
+        "               <th data-type='string'>Country</th>" +
+        "               <th data-type='num'>Infections<br><small>per million ppl</small></th>" +
         "           </tr>" +
         "       </thead>" +
         "       <tbody>";
@@ -153,8 +153,8 @@ public class similar implements Handler {
         "       <table>" +
         "       <thead>" +
         "           <tr>" +
-        "               <th>Country</th>" +
-        "               <th>Ratio<br><small>deaths/infection</small></th>" +
+        "               <th data-type='string'>Country</th>" +
+        "               <th data-type='num'>Ratio<br><small>deaths/infection</small></th>" +
         "           </tr>" +
         "       </thead>" +
         "       <tbody>";
@@ -170,8 +170,8 @@ public class similar implements Handler {
         "       <table>" +
         "       <thead>" +
         "           <tr>" +
-        "               <th>Country</th>" +
-        "               <th>Peak Deaths<br><small>highest number of new<br>deaths in 1 day</small></th>" +
+        "               <th data-type='string'>Country</th>" +
+        "               <th data-type='num'>Peak Deaths<br><small>highest number of new<br>deaths in 1 day</small></th>" +
         "           </tr>" +
         "       </thead>" +
         "       <tbody>";
@@ -187,8 +187,8 @@ public class similar implements Handler {
         "       <table>" +
         "       <thead>" +
         "           <tr>" +
-        "               <th>Country</th>" +
-        "               <th>Peak Cases<br><small>highest number of new<br>cases in 1 day</small></th>" +
+        "               <th data-type='string'>Country</th>" +
+        "               <th data-type='num'>Peak Cases<br><small>highest number of new<br>cases in 1 day</small></th>" +
         "           </tr>" +
         "       </thead>" +
         "       <tbody>";
