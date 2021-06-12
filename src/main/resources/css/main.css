@@ -131,8 +131,11 @@ table.center, th, td {
   overflow-y: scroll;
   height: 600px;
 }
-table {
+table.center {
   width: 100%;
+}
+table.transratetable {
+  width: 20%;
 }
 
 @media only screen and (min-width: 800px) {

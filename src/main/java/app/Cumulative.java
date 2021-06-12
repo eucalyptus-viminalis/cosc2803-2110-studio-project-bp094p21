@@ -141,23 +141,30 @@ public class cumulative implements Handler {
     }
     public String outputDate(String country, String date1, String date2, int distance) {
         String infectionsvar = "";
-        infectionsvar = infectionsvar + "<h2 class=\"tableheader\">COVID-19 data for " + country + " between " + date1 + " and " + date2 + " (YYYY-MM-DD) (Alphabetically)</h2>";
+        infectionsvar = infectionsvar + "<h2 class=\"similarclimate\">Similar Climate to " + country + " (" + date1 +" to " + date2 +")</h2>";
         
         JDBCConnection jdbc = new JDBCConnection();
-        ArrayList<String> fixed = jdbc.getSimilarClimates(date1, date2, country);
+        ArrayList<String> latitude = jdbc.getCountryLatitude(country);
+        ArrayList<String> newLatitude = new ArrayList<String>();
+        for (String data : latitude) {
+            newLatitude.add(data);
+        }
+        String minLat = newLatitude.get(0);
+        String maxLat = newLatitude.get(1);
+        ArrayList<String> fixed = jdbc.getSimilarClimates(date1, date2, minLat, maxLat);
         ArrayList<String> newList = new ArrayList<String>();
         for (String data : fixed) {
             newList.add(data);
         }
         int i;
         infectionsvar = infectionsvar + "<div class=\"tablediv\">";
-        infectionsvar = infectionsvar + "<table class=\"center\">";
+        infectionsvar = infectionsvar + "<table class=\"transratetable\">";
         infectionsvar = infectionsvar + " <tr>";
         infectionsvar = infectionsvar + "     <th>Country Name</th>";
         infectionsvar = infectionsvar + "     <th>Transmission Rate</th>";
         infectionsvar = infectionsvar + "     <th>Death Rate</th>";
         infectionsvar = infectionsvar + " </tr>";
-        for (i = 0; i < newList.size() - 1; i+=2) {
+        for (i = 0; i < newList.size() - 1; i+=3) {
             infectionsvar = infectionsvar + "<tr>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+1) + '%' + "</td>";

@@ -31,7 +31,7 @@ public class App {
         // Add / uncomment POST commands for any pages that need web form POSTS
         app.post(infections.URL, new infections());
         app.post(deaths.URL, new deaths());
-        // app.post(Page2.URL, new Page2());
+        app.post(cumulative.URL, new cumulative());
         // app.post(Page3.URL, new Page3());
         // app.post(Page4.URL, new Page4());
         // app.post(Page5.URL, new Page5());
