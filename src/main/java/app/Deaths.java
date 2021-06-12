@@ -153,11 +153,11 @@ public class deaths implements Handler {
         "       <h3 class='h3-global'>Global</h3>" +
         "       <div class='div-scroll'>" +
         "       <table id='table-global'>" +
-        "       <thead>" +
+        "       <thead class='thead-deaths'>" +
         "           <tr>" +
-        "               <th><button class='btn-th' onclick='sortCountry()'>Country</button></th>" +
-        "               <th><button class='btn-th' onclick='sortDeaths()'>Deaths</button></th>" +
-        "               <th><button class='btn-th' onclick='sortRatio()'>Ratio</button></th>" +
+        "               <th class='btn-th' data-type='string'>Country</th>" +
+        "               <th class='btn-th' data-type='num'>Deaths</th>" +
+        "               <th class='btn-th' data-type='num'>Ratio</th>" +
         "           </tr>" +
         "       </thead>" +
         "       <tbody>";

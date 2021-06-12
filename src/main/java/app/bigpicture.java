@@ -29,17 +29,17 @@ public class bigpicture implements Handler {
         String html = "<!DOCTYPE html>" +
         "<html lang='en'>" +
         "<head>" +
-        "    <title>Big Picture</title>" +
+        "    <title>Big Picture 🖼</title>" +
         
         "    <meta charset='utf-8'>" +
         "    <meta name='viewport' content='width=device-width, initial-scale=1'>" +
         "    <meta name='author' content='@jinheock'>" +
         "    <meta name='description' content='a webpage by @jinheock'>" +
-        "    <meta property='og:title' content='Big Picture'>" +
-        "    <meta property='og:description' content='Big Picture'>" +
+        "    <meta property='og:title' content='Big Picture 🖼'>" +
+        "    <meta property='og:description' content='Big Picture 🖼'>" +
         "    <meta property='og:image' content='/some-image.png'>" +
         "    <meta property='og:url' content='/this-page.html'>" +
-        "    <meta property='og:site_name' content='Big Picture'>" +
+        "    <meta property='og:site_name' content='Big Picture 🖼'>" +
         "    <meta name='twitter:card' content='summary_large_image'>" +
         "    <meta name='twitter:image:alt' content='image description'>" +
         
@@ -70,7 +70,7 @@ public class bigpicture implements Handler {
         "    <div class='div-facts'>";
         html = html +
         "    <p class='p-fact'>In the past year, the world population has been infected with <span class='span-highlight'>" +
-        totalCases/1000000 + " Million</span> new Covid-19 cases.</p>";
+        totalCases/1000000 + " Million</span> new Covid-19 cases.*</p>";
         html = html +
         "    <p class='p-fact'><span class='span-highlight'>" +
         countryName + "</span> leads the world in the total number of Covid-19 related deaths reported in the past month, accounting for " + (countrySum*100)/totalSum +

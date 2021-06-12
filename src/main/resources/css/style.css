@@ -247,7 +247,7 @@ h3 {
     padding-left: 0.5rem;
     padding-top: 0;
     margin-right: 0;
-    width: 14rem;
+    width: 14.3rem;
     border-radius: 0.25rem;
     background: var(--e3);
 }
@@ -310,15 +310,27 @@ td {
     padding: 0.5rem;
     width: 15rem;
 }
+.thead-deaths {
+    height: 4rem;
+}
 .btn-th {
     display: table-cell;
-    padding: 0.5rem;
-    width: 100%;
-    font-size: 2rem;
+    color: #444;
+    border: 1px solid #CCC;
+    background: #e3e3e3;
+    box-shadow: 0 0 5px -1px rgb(0 0 0 / 20%);
+    cursor: pointer;
+    vertical-align: middle;
+    max-width: 100px;
+}
+.btn-th:active {
+    color:red;
+    box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
 }
 .div-scroll {
     overflow: scroll;
-    height: 46vh;
+    height: 43vh;
+    margin-top: 2rem;
     margin-bottom: 2.3rem;
 }
 /* SIMILAR */
@@ -356,6 +368,10 @@ th small, td small {
     display: block;
     margin: 0.5rem;
     margin-bottom: 0;
+}
+small {
+    display: block;
+    margin: 0.5rem 0;
 }
 th {
     padding: 0.5rem;
