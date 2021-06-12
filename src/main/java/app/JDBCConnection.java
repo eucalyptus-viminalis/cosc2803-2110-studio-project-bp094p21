@@ -370,4 +370,35 @@ public class JDBCConnection {
         }
         return orderData;
     }
+    //CUMULATIVE PAGE STARTS HERE
+    public ArrayList<String> getCountries() {
+        ArrayList<String> str_list = new ArrayList<String>();
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(DATABASE2);
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            String query = "select name from country order by name asc";
+            ResultSet results = statement.executeQuery(query);
+            while (results.next()) {
+                String name = results.getString("name");
+                str_list.add(name);
+            }
+            statement.close();
+        }
+        catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        finally {
+            try{
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+        return str_list;
+    }
 }
