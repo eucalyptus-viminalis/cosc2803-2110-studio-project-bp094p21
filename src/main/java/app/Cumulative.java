@@ -40,7 +40,7 @@ public class cumulative implements Handler {
         cumulativevar = cumulativevar +"            <h1 class=\"lefttext\">Welcome to the Cumulative Page!";
         cumulativevar = cumulativevar +"            <h4 class=\"datetext\">On this page you will be presented with tables of data that display in depth information on COVID-19 cases and deaths based on country."; 
         cumulativevar = cumulativevar +"            <h4 class=\"datetext\">You will also be able to make adjustments to the dates the data is presented between, and how far from a country a comparison is made. Scroll down to have a look!";
-        cumulativevar = cumulativevar +"            <h4 class=\"datetext\">Please also be aware that if at least one of the date boxes are left empty, the table presented will default to the dates that cover the whole range of data collection (2020-01-22 to 2021-04-22).";
+        cumulativevar = cumulativevar +"            <h4 class=\"datetext\">Please also be aware that if at least one of the date boxes are left empty, the table presented will default to the dates that cover the whole range of data collection (2020-01-22 to 2021-04-22), and if the distance box is left empty, the value will default to 0.";
         cumulativevar = cumulativevar +"            <div class='\"form-group\"'>";
         cumulativevar = cumulativevar +"                  <h4 class=\"textabovedays\">Please select a country of reference for cumulative data to be presented to you:";
         cumulativevar = cumulativevar +"              <select id='cumulativeCountries_drop' name='cumulativeCountries_drop'>";
