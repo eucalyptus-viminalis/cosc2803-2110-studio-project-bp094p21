@@ -545,4 +545,43 @@ public class JDBCConnection {
         }
         return orderData;
     }
+    public ArrayList<String> getInfDeaRatio(String Date1, String Date2, String country) {
+        ArrayList<String> orderData = new ArrayList<String>();
+
+        Connection connection = null;
+
+        try {
+            connection = DriverManager.getConnection(DATABASE2);
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            String query = "SELECT Country.Name AS 'Country Name', SUM(NewCases)/SUM(NewDeaths) AS 'Infection to Death Ratio', 1000000 * SUM(NewCases)/Population AS 'Infection to Population Ratio', 1000000 * SUM(NewDeaths)/Population AS 'Death to Population Ratio' FROM Country JOIN CountryRecords ON Country.ID=CountryRecords.CountryID WHERE (Country.Name = '" + country + "') AND (Date BETWEEN '" + Date1 + "' AND '" + Date2 + "')";
+            System.out.println(query);
+            ResultSet results = statement.executeQuery(query);
+            while (results.next()) {
+                String countryName = results.getString("Country Name");
+                String infToDeaRate = results.getString("Infection to Death Ratio");
+                String infToPopRate = results.getString("Infection to Population Ratio");
+                String deaToPopRate = results.getString("Death to Population Ratio");
+                orderData.add(countryName);
+                orderData.add(infToDeaRate);
+                orderData.add(infToPopRate);
+                orderData.add(deaToPopRate);
+            }
+            statement.close();
+        }
+        catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        finally {
+            try{
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+        return orderData;
+    }
 }

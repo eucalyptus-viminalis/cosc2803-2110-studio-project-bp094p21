@@ -146,8 +146,8 @@ public class cumulative implements Handler {
         return cumulativevar;
     }
     public String outputDate(String country, String date1, String date2, int distance) {
-        String infectionsvar = "";
-        infectionsvar = infectionsvar + "<h2 class=\"similarclimate\">Similar Climate to " + country + " (" + date1 +" to " + date2 +")</h2>";
+        String cumulativevar = "";
+        cumulativevar = cumulativevar + "<h2 class=\"similarclimate\">Similar Climate to " + country + " (" + date1 +" to " + date2 +")</h2>";
         
         JDBCConnection jdbc = new JDBCConnection();
         ArrayList<String> latitude = jdbc.getCountryLatitudeExtension(country);
@@ -163,22 +163,22 @@ public class cumulative implements Handler {
             newList.add(data);
         }
         int i;
-        infectionsvar = infectionsvar + "<div class=\"tablediv\">";
-        infectionsvar = infectionsvar + "<table class=\"transratetable\">";
-        infectionsvar = infectionsvar + " <tr>";
-        infectionsvar = infectionsvar + "     <th>Country Name</th>";
-        infectionsvar = infectionsvar + "     <th>Transmission Rate</th>";
-        infectionsvar = infectionsvar + "     <th>Death Rate</th>";
-        infectionsvar = infectionsvar + " </tr>";
+        cumulativevar = cumulativevar + "<div class=\"tablediv\">";
+        cumulativevar = cumulativevar + "<table class=\"transratetable\">";
+        cumulativevar = cumulativevar + " <tr>";
+        cumulativevar = cumulativevar + "     <th>Country Name</th>";
+        cumulativevar = cumulativevar + "     <th>Transmission Rate</th>";
+        cumulativevar = cumulativevar + "     <th>Death Rate</th>";
+        cumulativevar = cumulativevar + " </tr>";
         for (i = 0; i < newList.size() - 1; i+=3) {
-            infectionsvar = infectionsvar + "<tr>";
-            infectionsvar = infectionsvar + " <td>" + newList.get(i) + "</td>";
-            infectionsvar = infectionsvar + " <td>" + newList.get(i+1) + '%' + "</td>";
-            infectionsvar = infectionsvar + " <td>" + newList.get(i+2) + '%' + "</td>";
-            infectionsvar = infectionsvar + "</tr>";
+            cumulativevar = cumulativevar + "<tr>";
+            cumulativevar = cumulativevar + " <td>" + newList.get(i) + "</td>";
+            cumulativevar = cumulativevar + " <td>" + newList.get(i+1) + '%' + "</td>";
+            cumulativevar = cumulativevar + " <td>" + newList.get(i+2) + '%' + "</td>";
+            cumulativevar = cumulativevar + "</tr>";
         }
-        infectionsvar = infectionsvar + "</table>";
-        infectionsvar = infectionsvar + "</div>";
+        cumulativevar = cumulativevar + "</table>";
+        cumulativevar = cumulativevar + "</div>";
 
         ArrayList<String> pointForCountryList = jdbc.getLatitudeAndLongitude(country);
         ArrayList<String> countryList = new ArrayList<String>();
@@ -192,24 +192,50 @@ public class cumulative implements Handler {
         for (String alphaData: distanceList) {
             omegaList.add(alphaData);
         }
-        infectionsvar = infectionsvar + "<h2 class=\"distancemsg\">Distance from " + country + " by " + distance + "km (" + date1 +" to " + date2 +")</h2>";
-        infectionsvar = infectionsvar + "<div class=\"tablediv\">";
-        infectionsvar = infectionsvar + "<table class=\"distancetable\">";
-        infectionsvar = infectionsvar + " <tr>";
-        infectionsvar = infectionsvar + "     <th>Country Name</th>";
-        infectionsvar = infectionsvar + "     <th>Infection Rate</th>";
-        infectionsvar = infectionsvar + "     <th>Distance from POI</th>";
-        infectionsvar = infectionsvar + " </tr>";
+        cumulativevar = cumulativevar + "<h2 class=\"distancemsg\">Distance from " + country + " by " + distance + "km (" + date1 +" to " + date2 +")</h2>";
+        cumulativevar = cumulativevar + "<div class=\"tablediv\">";
+        cumulativevar = cumulativevar + "<table class=\"distancetable\">";
+        cumulativevar = cumulativevar + " <tr>";
+        cumulativevar = cumulativevar + "     <th>Country Name</th>";
+        cumulativevar = cumulativevar + "     <th>Infection Rate</th>";
+        cumulativevar = cumulativevar + "     <th>Distance from POI</th>";
+        cumulativevar = cumulativevar + " </tr>";
         int j;
         for (j = 0; j < omegaList.size() - 1; j+=3) {
-            infectionsvar = infectionsvar + "<tr>";
-            infectionsvar = infectionsvar + " <td>" + omegaList.get(j) + "</td>";
-            infectionsvar = infectionsvar + " <td>" + omegaList.get(j+1) + '%' + "</td>";
-            infectionsvar = infectionsvar + " <td>" + omegaList.get(j+2) + " km" + "</td>";
-            infectionsvar = infectionsvar + "</tr>";
+            cumulativevar = cumulativevar + "<tr>";
+            cumulativevar = cumulativevar + " <td>" + omegaList.get(j) + "</td>";
+            cumulativevar = cumulativevar + " <td>" + omegaList.get(j+1) + '%' + "</td>";
+            cumulativevar = cumulativevar + " <td>" + omegaList.get(j+2) + " km" + "</td>";
+            cumulativevar = cumulativevar + "</tr>";
         }
-        infectionsvar = infectionsvar + "</table>";
-        infectionsvar = infectionsvar + "</div>";
-        return infectionsvar;
+        cumulativevar = cumulativevar + "</table>";
+        cumulativevar = cumulativevar + "</div>";
+
+        ArrayList<String> infDeaRatio = jdbc.getInfDeaRatio(date1, date2, country);
+        ArrayList<String> litList = new ArrayList<String>();
+        for (String regData: infDeaRatio) {
+            litList.add(regData);
+        }
+        cumulativevar = cumulativevar + "<h2 class=\"infdearatiomsg\">Ratios of " + country + " (" + date1 +" to " + date2 +")</h2>";
+        cumulativevar = cumulativevar + "<div class=\"tablediv\">";
+        cumulativevar = cumulativevar + "<table class=\"infdeafratiotable\">";
+        cumulativevar = cumulativevar + " <tr>";
+        cumulativevar = cumulativevar + "     <th>Country Name</th>";
+        cumulativevar = cumulativevar + "     <th>Infection/Death Rate</th>";
+        cumulativevar = cumulativevar + "     <th>Infection/Population Rate</th>";
+        cumulativevar = cumulativevar + "     <th>Death/Population Rate</th>";
+        cumulativevar = cumulativevar + " </tr>";
+        int o;
+        for (o = 0; o < litList.size() - 1; o+=4) {
+            cumulativevar = cumulativevar + "<tr>";
+            cumulativevar = cumulativevar + " <td>" + litList.get(o) + "</td>";
+            cumulativevar = cumulativevar + " <td>" + litList.get(o+1) + " : 1" + "</td>";
+            cumulativevar = cumulativevar + " <td>" + litList.get(o+2) + " : 1,000,000" + "</td>";
+            cumulativevar = cumulativevar + " <td>" + litList.get(o+3) + " : 1,000,000" + "</td>";
+            cumulativevar = cumulativevar + "</tr>";
+        }
+        cumulativevar = cumulativevar + "</table>";
+        cumulativevar = cumulativevar + "</div>";
+        return cumulativevar;
     }
 }
