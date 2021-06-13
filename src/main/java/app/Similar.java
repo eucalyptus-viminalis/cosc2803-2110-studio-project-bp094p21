@@ -137,7 +137,7 @@ public class similar implements Handler {
         "       <thead>" +
         "           <tr>" +
         "               <th data-type='string'>Country</th>" +
-        "               <th data-type='num'>Infections<br><small>per million ppl</small></th>" +
+        "               <th data-type='string'>Infections<br><small>per million ppl</small></th>" +
         "           </tr>" +
         "       </thead>" +
         "       <tbody>";
