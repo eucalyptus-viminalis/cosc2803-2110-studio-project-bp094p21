@@ -101,11 +101,30 @@ public class cumulative implements Handler {
             }
         }
         catch (Exception e) {
-            if (distance_textbox == "" || distance_textbox == null) {
-                //cumulativevar = cumulativevar + doNothing(cumulativeCountries_drop);
+            if (cumulativeCountries_drop == null) {
+                cumulativeCountries_drop = "Afghanistan";
+                LocalDate firstDate = LocalDate.parse(sta);
+                LocalDate secondDate = LocalDate.parse(en);
+                int distance = 0;
+                cumulativevar = cumulativevar + testOrder(cumulativeCountries_drop, firstDate, secondDate, distance);
             }
-            if (distance_textbox != "" && distance_textbox != null) {
-                //cumulativevar = cumulativevar + doNothing(cumulativeCountries_drop);
+            else if ((distance_textbox == "" || distance_textbox == null) && (date1_textbox == "" || date2_textbox == "")) {
+                LocalDate firstDate = LocalDate.parse(sta);
+                LocalDate secondDate = LocalDate.parse(en);
+                int distance = 0;
+                cumulativevar = cumulativevar + testOrder(cumulativeCountries_drop, firstDate, secondDate, distance);
+            }
+            else if ((distance_textbox == "" || distance_textbox == null)) {
+                LocalDate firstDate = LocalDate.parse(date1_textbox);
+                LocalDate secondDate = LocalDate.parse(date2_textbox);
+                int distance = 0;
+                cumulativevar = cumulativevar + testOrder(cumulativeCountries_drop, firstDate, secondDate, distance);
+            }
+            else if ((distance_textbox != "" && distance_textbox != null) && (date1_textbox == "" || date2_textbox == "")) {
+                LocalDate firstDate = LocalDate.parse(sta);
+                LocalDate secondDate = LocalDate.parse(en);
+                int distance = Integer.parseInt(distance_textbox);
+                cumulativevar = cumulativevar + testOrder(cumulativeCountries_drop, firstDate, secondDate, distance);
             }
         }
 // DO NOT MODIFY THIS
