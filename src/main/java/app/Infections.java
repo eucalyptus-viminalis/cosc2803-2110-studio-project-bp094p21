@@ -246,19 +246,22 @@ public class infections implements Handler {
         int rank = 0;
         infectionsvar = infectionsvar + "<div class=\"tablediv\">";
         infectionsvar = infectionsvar + "<table class=\"center\">";
+        infectionsvar = infectionsvar + "<thead class='thead-deaths'";
         infectionsvar = infectionsvar + " <tr>";
-        infectionsvar = infectionsvar + "     <th>Ranking</th>";
-        infectionsvar = infectionsvar + "     <th>Country Name</th>";
-        infectionsvar = infectionsvar + "     <th>Total Cases</th>";
-        infectionsvar = infectionsvar + "     <th>Total Deaths</th>";
-        infectionsvar = infectionsvar + "     <th>Population</th>";
-        infectionsvar = infectionsvar + "     <th>Most Cases in a Day</th>";
-        infectionsvar = infectionsvar + "     <th>Date of Most Cases</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Ranking</th>";
+        infectionsvar = infectionsvar + "     <th data-type='string'>Country Name</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Total Cases</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Total Deaths</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Population</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Most Cases in A Day</th>";
+        infectionsvar = infectionsvar + "     <th data-type='string'>Date of Most Cases</th>";
         infectionsvar = infectionsvar + " </tr>";
+        infectionsvar = infectionsvar + "</thead>";
+        infectionsvar = infectionsvar + "<tbody>";
         for (i = 0; i < newList.size() - 1; i+=6) {
             rank = rank + 1;
             infectionsvar = infectionsvar + "<tr>";
-            infectionsvar = infectionsvar + " <td>" + '#' + rank + "</td>";
+            infectionsvar = infectionsvar + " <td>" + rank + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+1) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+2) + "</td>";
@@ -267,8 +270,10 @@ public class infections implements Handler {
             infectionsvar = infectionsvar + " <td>" + newList.get(i+5) + "</td>";
             infectionsvar = infectionsvar + "</tr>";
         }
+        infectionsvar = infectionsvar + "</tbody>";
         infectionsvar = infectionsvar + "</table>";
         infectionsvar = infectionsvar + "</div>";
+        infectionsvar = infectionsvar + "<script src='litty.js'></script>";
         return infectionsvar;
     }
     public String doNothingStates(String countryOrState) {
@@ -285,20 +290,23 @@ public class infections implements Handler {
         int rank = 0;
         infectionsvar = infectionsvar + "<div class=\"tablediv\">";
         infectionsvar = infectionsvar + "<table class=\"center\">";
+        infectionsvar = infectionsvar + "<thead class='thead-deaths'";
         infectionsvar = infectionsvar + " <tr>";
-        infectionsvar = infectionsvar + "     <th>Ranking</th>";
-        infectionsvar = infectionsvar + "     <th>Country of State</th>";
-        infectionsvar = infectionsvar + "     <th>State</th>";
-        infectionsvar = infectionsvar + "     <th>Total Cases</th>";
-        infectionsvar = infectionsvar + "     <th>Total Deaths</th>";
-        infectionsvar = infectionsvar + "     <th>Population</th>";
-        infectionsvar = infectionsvar + "     <th>Most Cases in a Day</th>";
-        infectionsvar = infectionsvar + "     <th>Date of Most Cases</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Ranking</th>";
+        infectionsvar = infectionsvar + "     <th data-type='string'>Country of State</th>";
+        infectionsvar = infectionsvar + "     <th data-type='string'>State</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Total Cases</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Total Deaths</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Population</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Most Cases in A Day</th>";
+        infectionsvar = infectionsvar + "     <th data-type='string'>Date of Most Cases</th>";
         infectionsvar = infectionsvar + " </tr>";
+        infectionsvar = infectionsvar + "</thead>";
+        infectionsvar = infectionsvar + "<tbody>";
         for (i = 0; i < newList.size() - 1; i+=7) {
             rank = rank + 1;
             infectionsvar = infectionsvar + "<tr>";
-            infectionsvar = infectionsvar + " <td>" + '#' + rank + "</td>";
+            infectionsvar = infectionsvar + " <td>" + rank + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+1) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+2) + "</td>";
@@ -308,8 +316,10 @@ public class infections implements Handler {
             infectionsvar = infectionsvar + " <td>" + newList.get(i+6) + "</td>";
             infectionsvar = infectionsvar + "</tr>";
         }
+        infectionsvar = infectionsvar + "</tbody>";
         infectionsvar = infectionsvar + "</table>";
         infectionsvar = infectionsvar + "</div>";
+        infectionsvar = infectionsvar + "<script src='litty.js'></script>";
         return infectionsvar;
     }
     //Default Data. This is called upon at the start of the program, when no options are selected, or an error is caught.
@@ -327,19 +337,22 @@ public class infections implements Handler {
         int rank = 0;
         infectionsvar = infectionsvar + "<div class=\"tablediv\">";
         infectionsvar = infectionsvar + "<table class=\"center\">";
+        infectionsvar = infectionsvar + "<thead class='thead-deaths'";
         infectionsvar = infectionsvar + " <tr>";
-        infectionsvar = infectionsvar + "     <th>Ranking</th>";
-        infectionsvar = infectionsvar + "     <th>Country Name</th>";
-        infectionsvar = infectionsvar + "     <th>Total Cases</th>";
-        infectionsvar = infectionsvar + "     <th>Total Deaths</th>";
-        infectionsvar = infectionsvar + "     <th>Population</th>";
-        infectionsvar = infectionsvar + "     <th>Most Cases in a Day</th>";
-        infectionsvar = infectionsvar + "     <th>Date of Most Cases</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Ranking</th>";
+        infectionsvar = infectionsvar + "     <th data-type='string'>Country Name</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Total Cases</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Total Deaths</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Population</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Most Cases in A Day</th>";
+        infectionsvar = infectionsvar + "     <th data-type='string'>Date of Most Cases</th>";
         infectionsvar = infectionsvar + " </tr>";
+        infectionsvar = infectionsvar + "</thead>";
+        infectionsvar = infectionsvar + "<tbody>";
         for (i = 0; i < newList.size() - 1; i+=6) {
             rank = rank + 1;
             infectionsvar = infectionsvar + "<tr>";
-            infectionsvar = infectionsvar + " <td>" + '#' + rank + "</td>";
+            infectionsvar = infectionsvar + " <td>" + rank + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+1) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+2) + "</td>";
@@ -348,8 +361,10 @@ public class infections implements Handler {
             infectionsvar = infectionsvar + " <td>" + newList.get(i+5) + "</td>";
             infectionsvar = infectionsvar + "</tr>";
         }
+        infectionsvar = infectionsvar + "</tbody>";
         infectionsvar = infectionsvar + "</table>";
         infectionsvar = infectionsvar + "</div>";
+        infectionsvar = infectionsvar + "<script src='litty.js'></script>";
         return infectionsvar;
     }
     public String standardOrderStates(String order, String date1, String date2, String countryOrState) {
@@ -372,20 +387,23 @@ public class infections implements Handler {
         int rank = 0;
         infectionsvar = infectionsvar + "<div class=\"tablediv\">";
         infectionsvar = infectionsvar + "<table class=\"center\">";
+        infectionsvar = infectionsvar + "<thead class='thead-deaths'";
         infectionsvar = infectionsvar + " <tr>";
-        infectionsvar = infectionsvar + "     <th>Ranking</th>";
-        infectionsvar = infectionsvar + "     <th>Country of State</th>";
-        infectionsvar = infectionsvar + "     <th>State</th>";
-        infectionsvar = infectionsvar + "     <th>Total Cases</th>";
-        infectionsvar = infectionsvar + "     <th>Total Deaths</th>";
-        infectionsvar = infectionsvar + "     <th>Population</th>";
-        infectionsvar = infectionsvar + "     <th>Most Cases in a Day</th>";
-        infectionsvar = infectionsvar + "     <th>Date of Most Cases</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Ranking</th>";
+        infectionsvar = infectionsvar + "     <th data-type='string'>Country of State</th>";
+        infectionsvar = infectionsvar + "     <th data-type='string'>State</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Total Cases</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Total Deaths</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Population</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Most Cases in A Day</th>";
+        infectionsvar = infectionsvar + "     <th data-type='string'>Date of Most Cases</th>";
         infectionsvar = infectionsvar + " </tr>";
+        infectionsvar = infectionsvar + "</thead>";
+        infectionsvar = infectionsvar + "<tbody>";
         for (i = 0; i < newList.size() - 1; i+=7) {
             rank = rank + 1;
             infectionsvar = infectionsvar + "<tr>";
-            infectionsvar = infectionsvar + " <td>" + '#' + rank + "</td>";
+            infectionsvar = infectionsvar + " <td>" + rank + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+1) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+2) + "</td>";
@@ -395,8 +413,10 @@ public class infections implements Handler {
             infectionsvar = infectionsvar + " <td>" + newList.get(i+6) + "</td>";
             infectionsvar = infectionsvar + "</tr>";
         }
+        infectionsvar = infectionsvar + "</tbody>";
         infectionsvar = infectionsvar + "</table>";
         infectionsvar = infectionsvar + "</div>";
+        infectionsvar = infectionsvar + "<script src='litty.js'></script>";
         return infectionsvar;
     }
     public String standardOrder(String order, String date1, String date2, String countryOrState) {
@@ -419,19 +439,22 @@ public class infections implements Handler {
         int rank = 0;
         infectionsvar = infectionsvar + "<div class=\"tablediv\">";
         infectionsvar = infectionsvar + "<table class=\"center\">";
+        infectionsvar = infectionsvar + "<thead class='thead-deaths'";
         infectionsvar = infectionsvar + " <tr>";
-        infectionsvar = infectionsvar + "     <th>Ranking</th>";
-        infectionsvar = infectionsvar + "     <th>Country Name</th>";
-        infectionsvar = infectionsvar + "     <th>Total Cases</th>";
-        infectionsvar = infectionsvar + "     <th>Total Deaths</th>";
-        infectionsvar = infectionsvar + "     <th>Population</th>";
-        infectionsvar = infectionsvar + "     <th>Most Cases in a Day</th>";
-        infectionsvar = infectionsvar + "     <th>Date of Most Cases</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Ranking</th>";
+        infectionsvar = infectionsvar + "     <th data-type='string'>Country Name</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Total Cases</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Total Deaths</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Population</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Most Cases in A Day</th>";
+        infectionsvar = infectionsvar + "     <th data-type='string'>Date of Most Cases</th>";
         infectionsvar = infectionsvar + " </tr>";
+        infectionsvar = infectionsvar + "</thead>";
+        infectionsvar = infectionsvar + "<tbody>";
         for (i = 0; i < newList.size() - 1; i+=6) {
             rank = rank + 1;
             infectionsvar = infectionsvar + "<tr>";
-            infectionsvar = infectionsvar + " <td>" + '#' + rank + "</td>";
+            infectionsvar = infectionsvar + " <td>" + rank + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+1) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+2) + "</td>";
@@ -440,8 +463,10 @@ public class infections implements Handler {
             infectionsvar = infectionsvar + " <td>" + newList.get(i+5) + "</td>";
             infectionsvar = infectionsvar + "</tr>";
         }
+        infectionsvar = infectionsvar + "</tbody>";
         infectionsvar = infectionsvar + "</table>";
         infectionsvar = infectionsvar + "</div>";
+        infectionsvar = infectionsvar + "<script src='litty.js'></script>";
         return infectionsvar;
     }
     public String defaultOrderStates(String order, String countryOrState) {
@@ -464,20 +489,23 @@ public class infections implements Handler {
         int rank = 0;
         infectionsvar = infectionsvar + "<div class=\"tablediv\">";
         infectionsvar = infectionsvar + "<table class=\"center\">";
+        infectionsvar = infectionsvar + "<thead class='thead-deaths'";
         infectionsvar = infectionsvar + " <tr>";
-        infectionsvar = infectionsvar + "     <th>Ranking</th>";
-        infectionsvar = infectionsvar + "     <th>Country of State</th>";
-        infectionsvar = infectionsvar + "     <th>State</th>";
-        infectionsvar = infectionsvar + "     <th>Total Cases</th>";
-        infectionsvar = infectionsvar + "     <th>Total Deaths</th>";
-        infectionsvar = infectionsvar + "     <th>Population</th>";
-        infectionsvar = infectionsvar + "     <th>Most Cases in a Day</th>";
-        infectionsvar = infectionsvar + "     <th>Date of Most Cases</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Ranking</th>";
+        infectionsvar = infectionsvar + "     <th data-type='string'>Country of State</th>";
+        infectionsvar = infectionsvar + "     <th data-type='string'>State</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Total Cases</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Total Deaths</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Population</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Most Cases in A Day</th>";
+        infectionsvar = infectionsvar + "     <th data-type='string'>Date of Most Cases</th>";
         infectionsvar = infectionsvar + " </tr>";
+        infectionsvar = infectionsvar + "</thead>";
+        infectionsvar = infectionsvar + "<tbody>";
         for (i = 0; i < newList.size() - 1; i+=7) {
             rank = rank + 1;
             infectionsvar = infectionsvar + "<tr>";
-            infectionsvar = infectionsvar + " <td>" + '#' + rank + "</td>";
+            infectionsvar = infectionsvar + " <td>" + rank + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+1) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+2) + "</td>";
@@ -487,8 +515,10 @@ public class infections implements Handler {
             infectionsvar = infectionsvar + " <td>" + newList.get(i+6) + "</td>";
             infectionsvar = infectionsvar + "</tr>";
         }
+        infectionsvar = infectionsvar + "</tbody>";
         infectionsvar = infectionsvar + "</table>";
         infectionsvar = infectionsvar + "</div>";
+        infectionsvar = infectionsvar + "<script src='litty.js'></script>";
         return infectionsvar;
     }
     public String defaultOrder(String order, String countryOrState) {
@@ -511,19 +541,22 @@ public class infections implements Handler {
         int rank = 0;
         infectionsvar = infectionsvar + "<div class=\"tablediv\">";
         infectionsvar = infectionsvar + "<table class=\"center\">";
+        infectionsvar = infectionsvar + "<thead class='thead-deaths'";
         infectionsvar = infectionsvar + " <tr>";
-        infectionsvar = infectionsvar + "     <th>Ranking</th>";
-        infectionsvar = infectionsvar + "     <th>Country Name</th>";
-        infectionsvar = infectionsvar + "     <th>Total Cases</th>";
-        infectionsvar = infectionsvar + "     <th>Total Deaths</th>";
-        infectionsvar = infectionsvar + "     <th>Population</th>";
-        infectionsvar = infectionsvar + "     <th>Most Cases in a Day</th>";
-        infectionsvar = infectionsvar + "     <th>Date of Most Cases</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Ranking</th>";
+        infectionsvar = infectionsvar + "     <th data-type='string'>Country Name</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Total Cases</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Total Deaths</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Population</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Most Cases in A Day</th>";
+        infectionsvar = infectionsvar + "     <th data-type='string'>Date of Most Cases</th>";
         infectionsvar = infectionsvar + " </tr>";
+        infectionsvar = infectionsvar + "</thead>";
+        infectionsvar = infectionsvar + "<tbody>";
         for (i = 0; i < newList.size() - 1; i+=6) {
             rank = rank + 1;
             infectionsvar = infectionsvar + "<tr>";
-            infectionsvar = infectionsvar + " <td>" + '#' + rank + "</td>";
+            infectionsvar = infectionsvar + " <td>" + rank + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+1) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+2) + "</td>";
@@ -532,8 +565,10 @@ public class infections implements Handler {
             infectionsvar = infectionsvar + " <td>" + newList.get(i+5) + "</td>";
             infectionsvar = infectionsvar + "</tr>";
         }
+        infectionsvar = infectionsvar + "</tbody>";
         infectionsvar = infectionsvar + "</table>";
         infectionsvar = infectionsvar + "</div>";
+        infectionsvar = infectionsvar + "<script src='litty.js'></script>";
         return infectionsvar;
     }
     public String outputDateStates(String date1, String date2, String countryOrState) {
@@ -550,20 +585,23 @@ public class infections implements Handler {
         int rank = 0;
         infectionsvar = infectionsvar + "<div class=\"tablediv\">";
         infectionsvar = infectionsvar + "<table class=\"center\">";
+        infectionsvar = infectionsvar + "<thead class='thead-deaths'";
         infectionsvar = infectionsvar + " <tr>";
-        infectionsvar = infectionsvar + "     <th>Ranking</th>";
-        infectionsvar = infectionsvar + "     <th>Country of State</th>";
-        infectionsvar = infectionsvar + "     <th>State</th>";
-        infectionsvar = infectionsvar + "     <th>Total Cases</th>";
-        infectionsvar = infectionsvar + "     <th>Total Deaths</th>";
-        infectionsvar = infectionsvar + "     <th>Population</th>";
-        infectionsvar = infectionsvar + "     <th>Most Cases in a Day</th>";
-        infectionsvar = infectionsvar + "     <th>Date of Most Cases</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Ranking</th>";
+        infectionsvar = infectionsvar + "     <th data-type='string'>Country of State</th>";
+        infectionsvar = infectionsvar + "     <th data-type='string'>State</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Total Cases</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Total Deaths</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Population</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Most Cases in A Day</th>";
+        infectionsvar = infectionsvar + "     <th data-type='string'>Date of Most Cases</th>";
         infectionsvar = infectionsvar + " </tr>";
+        infectionsvar = infectionsvar + "</thead>";
+        infectionsvar = infectionsvar + "<tbody>";
         for (i = 0; i < newList.size() - 1; i+=7) {
             rank = rank + 1;
             infectionsvar = infectionsvar + "<tr>";
-            infectionsvar = infectionsvar + " <td>" + '#' + rank + "</td>";
+            infectionsvar = infectionsvar + " <td>" + rank + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+1) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+2) + "</td>";
@@ -573,8 +611,10 @@ public class infections implements Handler {
             infectionsvar = infectionsvar + " <td>" + newList.get(i+6) + "</td>";
             infectionsvar = infectionsvar + "</tr>";
         }
+        infectionsvar = infectionsvar + "</tbody>";
         infectionsvar = infectionsvar + "</table>";
         infectionsvar = infectionsvar + "</div>";
+        infectionsvar = infectionsvar + "<script src='litty.js'></script>";
         return infectionsvar;
     }
     public String outputDate(String date1, String date2, String countryOrState) {
@@ -591,19 +631,22 @@ public class infections implements Handler {
         int rank = 0;
         infectionsvar = infectionsvar + "<div class=\"tablediv\">";
         infectionsvar = infectionsvar + "<table class=\"center\">";
+        infectionsvar = infectionsvar + "<thead class='thead-deaths'";
         infectionsvar = infectionsvar + " <tr>";
-        infectionsvar = infectionsvar + "     <th>Ranking</th>"; 
-        infectionsvar = infectionsvar + "     <th>Country Name</th>";
-        infectionsvar = infectionsvar + "     <th>Total Cases</th>";
-        infectionsvar = infectionsvar + "     <th>Total Deaths</th>";
-        infectionsvar = infectionsvar + "     <th>Population</th>";
-        infectionsvar = infectionsvar + "     <th>Most Cases in a Day</th>";
-        infectionsvar = infectionsvar + "     <th>Date of Most Cases</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Ranking</th>"; 
+        infectionsvar = infectionsvar + "     <th data-type='string'>Country Name</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Total Cases</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Total Deaths</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Population</th>";
+        infectionsvar = infectionsvar + "     <th data-type='num'>Most Cases in A Day</th>";
+        infectionsvar = infectionsvar + "     <th data-type='string'>Date of Most Cases</th>";
         infectionsvar = infectionsvar + " </tr>";
+        infectionsvar = infectionsvar + "</thead>";
+        infectionsvar = infectionsvar + "<tbody>";
         for (i = 0; i < newList.size() - 1; i+=6) {
             rank = rank + 1;
             infectionsvar = infectionsvar + "<tr>";
-            infectionsvar = infectionsvar + " <td>" + '#' + rank + "</td>";
+            infectionsvar = infectionsvar + " <td>" + rank + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+1) + "</td>";
             infectionsvar = infectionsvar + " <td>" + newList.get(i+2) + "</td>";
@@ -612,8 +655,10 @@ public class infections implements Handler {
             infectionsvar = infectionsvar + " <td>" + newList.get(i+5) + "</td>";
             infectionsvar = infectionsvar + "</tr>";
         }
+        infectionsvar = infectionsvar + "</tbody>";
         infectionsvar = infectionsvar + "</table>";
         infectionsvar = infectionsvar + "</div>";
+        infectionsvar = infectionsvar + "<script src='litty.js'></script>";
         return infectionsvar;
     }
 }
