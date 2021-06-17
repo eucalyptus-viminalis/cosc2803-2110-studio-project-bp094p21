@@ -72,44 +72,28 @@ ul {
   background-color: #76e676;
 }
 
-nav.menu-btn {
-  display: block;
-}
-
-nav {
-  position: fixed;
-  z-index: 999;
-  width: 66%;
-  right: 0;
-  top: 0;
-  background: #333;
-  height: 100vh;
-  padding: 1em;
-}
-
-nav ul {
-  margin-top: 5em;
-}
-
-nav li a {
-  display: block;
-  color: white;
-  padding: 14px 10px;
-  text-decoration: none;
-  font-size: 1.3em;
-  text-align: right;
-}
-
-nav li a:hover {
-  color: #76e676;
-}
-
-.mobile-menu-exit {
-  float: right;
-  margin: .5em;
-  cursor: pointer;
-}
 .shallowglancehero {
+  text-align: center;
+}
+.cumulativehero .lefttext {
+  font-size: 32px;
+}
+.cumulativehero .datetext {
+  font-size: 16px;
+}
+.shallowglancehero .lefttext {
+  font-size: 32px;
+}
+.shallowglancehero .datetext {
+  font-size: 16px;
+}
+.similarclimate {
+  text-align: center;
+}
+.distancemsg {
+  text-align: center;
+}
+.infdearatiomsg {
   text-align: center;
 }
 .tableheader {
