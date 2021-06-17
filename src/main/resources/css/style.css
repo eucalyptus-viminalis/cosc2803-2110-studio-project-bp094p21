@@ -48,6 +48,8 @@ html {
 } */
 body {
     background-color: var(--darkgrey);
+    background-image: -webkit-gradient(linear, left top, right top, from(#603F83FF), to(#719bdf));
+    background-image: linear-gradient(to right, rgb(137, 97, 179), #719bdf);
     color: var(--c4);
 }
 
@@ -105,14 +107,17 @@ main {
 /* H1 */
 h1 {
     font-size: 6.5rem;
+    font-weight: 700;
     text-align: center;
-    padding: 2rem 0;
-    color: var(--e3);
+    padding-top: 1.5rem;
+    color: rgb(66 46 113 / 80%);
+    margin-bottom: 1.5rem;
 }
 
 /* GLOBE */
-/* .div-globe {
-} */
+.div-globe {
+    margin-bottom: 1rem;
+}
 img {
     max-width: 15vh;
     display: block;
@@ -122,7 +127,11 @@ img {
 
 /* FACTS */
 .div-facts {
-    padding: 1rem 0;
+    padding: 0;
+    max-width: 570px;
+    margin: 0 auto;
+    background-color: rgb(10 6 18 / 90%);
+    border-radius: 2rem;
 }
 .p-fact {
     margin: 0 auto;
@@ -161,8 +170,10 @@ img {
 .div-halfwidth {
     max-width: 500px;
     width: 50vw;
-    background: var(--darkgrey);
+    background: rgb(10 6 18 / 90%);
     margin: 0 auto;
+    padding: 1rem;
+    border-radius: 2rem;
 }
 /* FORM */
 form {
@@ -341,20 +352,34 @@ td {
 .label-1 {
     font-size: 2rem;
     position: absolute;
-    left: 0;
-    top: 0;
+    left: -0.1rem;
+    top: -0.1rem;
     transform: translateX(-6rem) translateY(0.5rem);
+    color: rgb(255 255 255 / 90%);
+    font-weight: 700;
+    background: #600baa;
+    border-radius: 0.5rem;
+    padding: 0.2rem 0.5rem;
 }
 .label-2 {
     font-size: 2rem;
     position: absolute;
-    bottom: 0;
+    bottom: -0.45rem;
     left: 0;
     transform: translate(3rem, -1rem);
+    background: #600baa;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.5rem;
+    color: rgb(255 255 255 / 90%);
+    font-weight: 700;
 }
 /* TABLES */
 .div-tables {
     display: flex;
+    margin-top: 2rem;
+    padding-bottom: 2rem;
+    border-radius: 2rem;
+    background-color: rgb(10 6 18 / 90%);
 }
 table {
     border: 1px solid;
