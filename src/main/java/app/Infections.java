@@ -268,7 +268,6 @@ public class infections implements Handler {
             infectionsvar = infectionsvar + "</tr>";
         }
         infectionsvar = infectionsvar + "</table>";
-        infectionsvar = infectionsvar + "</div>";
         return infectionsvar;
     }
     public String doNothingStates(String countryOrState) {
