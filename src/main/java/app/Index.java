@@ -17,22 +17,24 @@ public class index implements Handler {
     "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">"+
     "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"+
     "    <title>CovidWebsite</title>"+
+    "    <link rel=\"stylesheet\" href=\"style.css\">"+
     "    <link rel=\"stylesheet\" href=\"main.css\">"+
     "</head>"+
     "<body>"+
-    "    <div class=\"navbar\">"+
-    "        <img id=\"mobile-cta\" class=\"mobile-menu\" src=\"menu.svg\" alt=\"Open Navigation\">"+
-    "        <nav>"+
-    "            <img id=\"mobile-exit\" class=\"mobile-menu-exit\" src=\"exit.svg\" alt=\"Close Navigation\">"+
-    "            <ul class='nav-ul'>"+
-    "                <li class='btn-lvl1'><a href=\"bigpicture.html\">Big Picture</a></li>"+
-    "                <li class='btn-lvl2'><a href=\"infections.html\">Infections</a></li>"+
-    "                <li class='btn-lvl2'><a href=\"deaths.html\">Deaths</a></li>"+
-    "                <li class='btn-lvl3'><a href=\"cumulative.html\">Cumulative</a></li>"+
-    "                <li class='btn-lvl3'><a href=\"similar.html\">Similar</a></li>"+
-    "            </ul>"+
-    "        </nav>"+
-    "    </div>"+
+    "<nav class='nav-topnav'>" +
+        "   <ul class='ul-topnav'>" +
+        "       <li class='li-nav'><a href='bigpicture.html' class='a-topnav'>Big Picture" +
+        "       </a></li>" +
+        "       <li class='li-nav'><a href='infections.html' class='a-topnav'>Infections" +
+        "       </a></li>" +
+        "       <li class='li-nav'><a href='deaths.html' class='a-topnav'>Deaths" +
+        "       </a></li>" +
+        "       <li class='li-nav'><a href='cumulative.html' class='a-topnav'>Cumulative" +
+        "       </li></a>" +
+        "       <li class='li-nav'><a href='similar.html' class='a-topnav'>Similar" +
+        "       </a></li>" +
+        "   </ul>" +
+        "</nav>" +
     ""+
     "    <section class=\"homepagehero\" alt=\"COVID-19 Picture\">"+
     "        <img src=\"covid.svg\">"+
