@@ -100,16 +100,16 @@ public class deaths implements Handler {
         "<body>" +
         "<nav class='nav-topnav'>" +
         "   <ul class='ul-topnav'>" +
-        "       <a href='bigpicture.html' class='a-topnav'>Big Picture" +
-        "       </a>" +
-        "       <a href='infections.html' class='a-topnav'>Infections" +
-        "       </a>" +
-        "       <a href='deaths.html' class='a-topnav a-topnav-highlight'>Deaths" +
-        "       </a>" +
-        "       <a href='cumulative.html' class='a-topnav'>Cumulative" +
-        "       </a>" +
-        "       <a href='similar.html' class='a-topnav no-right-border'>Similar" +
-        "       </a>" +
+        "       <li class='li-nav'><a href='bigpicture.html' class='a-topnav'>Big Picture" +
+        "       </a></li>" +
+        "       <li class='li-nav'><a href='infections.html' class='a-topnav'>Infections" +
+        "       </a></li>" +
+        "       <li class='li-nav li-nav-highlight'><a href='deaths.html' class='a-topnav a-topnav-highlight'>Deaths" +
+        "       </a></li>" +
+        "       <li class='li-nav'><a href='cumulative.html' class='a-topnav'>Cumulative" +
+        "       </li></a>" +
+        "       <li class='li-nav'><a href='similar.html' class='a-topnav no-right-border'>Similar" +
+        "       </a></li>" +
         "   </ul>" +
         "</nav>" +
         "<main>" +
