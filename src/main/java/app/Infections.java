@@ -272,11 +272,8 @@ public class infections implements Handler {
         }
         infectionsvar = infectionsvar + "</tbody>";
         infectionsvar = infectionsvar + "</table>";
-<<<<<<< HEAD
-=======
         infectionsvar = infectionsvar + "</div>";
         infectionsvar = infectionsvar + "<script src='litty.js'></script>";
->>>>>>> e3c55b1b8ebfe16f55052943f1bf06a3dd5b51eb
         return infectionsvar;
     }
     public String doNothingStates(String countryOrState) {
