@@ -150,7 +150,7 @@ public class cumulative implements Handler {
     }
     public String outputDate(String country, String date1, String date2, int distance) {
         String cumulativevar = "";
-        cumulativevar = cumulativevar + "<h2 class=\"similarclimate\">Similar Climate to " + country + " (" + date1 +" to " + date2 +")</h2>";
+        cumulativevar = cumulativevar + "<h2 class=\"cumulativemsg\">Similar Climate to " + country + " (" + date1 +" to " + date2 +")</h2>";
         
         JDBCConnection jdbc = new JDBCConnection();
         ArrayList<String> latitude = jdbc.getCountryLatitudeExtension(country);
@@ -170,9 +170,9 @@ public class cumulative implements Handler {
         cumulativevar = cumulativevar + "<table class=\"transratetable\">";
         cumulativevar = cumulativevar + "<thead>";
         cumulativevar = cumulativevar + " <tr>";
-        cumulativevar = cumulativevar + "     <th data-type='string'>Country Name</th>";
-        cumulativevar = cumulativevar + "     <th data-type='string'>Transmission Rate</th>";
-        cumulativevar = cumulativevar + "     <th data-type='string'>Death Rate</th>";
+        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Country Name</th>";
+        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Transmission Rate</th>";
+        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Death Rate</th>";
         cumulativevar = cumulativevar + " </tr></thead><tbody>";
         for (i = 0; i < newList.size() - 1; i+=3) {
             cumulativevar = cumulativevar + "<tr>";
@@ -196,13 +196,13 @@ public class cumulative implements Handler {
         for (String alphaData: distanceList) {
             omegaList.add(alphaData);
         }
-        cumulativevar = cumulativevar + "<h2 class=\"distancemsg\">Distance from " + country + " by " + distance + "km (" + date1 +" to " + date2 +")</h2>";
+        cumulativevar = cumulativevar + "<h2 class=\"cumulativemsg\">Distance from " + country + " by " + distance + "km (" + date1 +" to " + date2 +")</h2>";
         cumulativevar = cumulativevar + "<div class=\"tablediv\">";
         cumulativevar = cumulativevar + "<table class=\"distancetable\"><thead>";
         cumulativevar = cumulativevar + " <tr>";
-        cumulativevar = cumulativevar + "     <th data-type='string'>Country Name</th>";
-        cumulativevar = cumulativevar + "     <th data-type='num'>Infection Rate</th>";
-        cumulativevar = cumulativevar + "     <th data-type='num'>Distance from POI</th>";
+        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Country Name</th>";
+        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='num'>Transmission Rate</th>";
+        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='num'>Distance from POI</th>";
         cumulativevar = cumulativevar + " </tr></thead><tbody>";
         int j;
         for (j = 0; j < omegaList.size() - 1; j+=3) {
@@ -220,14 +220,14 @@ public class cumulative implements Handler {
         for (String regData: infDeaRatio) {
             litList.add(regData);
         }
-        cumulativevar = cumulativevar + "<h2 class=\"infdearatiomsg\">Ratios of " + country + " (" + date1 +" to " + date2 +")</h2>";
+        cumulativevar = cumulativevar + "<h2 class=\"cumulativemsg\">Ratios of " + country + " (" + date1 +" to " + date2 +")</h2>";
         cumulativevar = cumulativevar + "<div class=\"tablediv\">";
         cumulativevar = cumulativevar + "<table class=\"infdeafratiotable\"><thead>";
         cumulativevar = cumulativevar + " <tr>";
-        cumulativevar = cumulativevar + "     <th data-type='string'>Country Name</th>";
-        cumulativevar = cumulativevar + "     <th data-type='string'>Infection/Death Rate</th>";
-        cumulativevar = cumulativevar + "     <th data-type='string'>Infection/Population Rate</th>";
-        cumulativevar = cumulativevar + "     <th data-type='string'>Death/Population Rate</th>";
+        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Country Name</th>";
+        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Infection/Death Rate</th>";
+        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Infection/Population Rate</th>";
+        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Death/Population Rate</th>";
         cumulativevar = cumulativevar + " </tr></thead><tbody>";
         int o;
         for (o = 0; o <litList.size() - 1; o+=4) {
