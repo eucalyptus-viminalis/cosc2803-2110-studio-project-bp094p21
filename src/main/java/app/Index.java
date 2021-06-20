@@ -1,6 +1,6 @@
 package app;
 
-import java.util.ArrayList;
+// import java.util.ArrayList;
 
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
@@ -38,7 +38,7 @@ public class index implements Handler {
     ""+
     "    <section class=\"homepagehero\" alt=\"COVID-19 Picture\">"+
     "        <img src=\"covid.svg\">"+
-    "        <h1>Stay alert. Say NO to COVID-19.</h1>"+
+    "        <h1>Stay alert. <br> Say NO to COVID-19.</h1>"+
     "        <h4>All the data you need in one place.</h4>"+
     "        <a href=\"bigpicture.html\" class=\"primary-cta\">SAVE LIVES</a>"+
     "    </section>"+

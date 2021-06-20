@@ -71,6 +71,8 @@ public class cumulative implements Handler {
         cumulativevar = cumulativevar +"        </div>";
         cumulativevar = cumulativevar +"   </form>";
         cumulativevar = cumulativevar +"    </section>";
+        cumulativevar = cumulativevar +
+        "        <a class='a-home' href='/'><img class='img-home' src='covid.svg'></a>";
 
         String date1_textbox = context.formParam("date1_textbox");
         String date2_textbox = context.formParam("date2_textbox");

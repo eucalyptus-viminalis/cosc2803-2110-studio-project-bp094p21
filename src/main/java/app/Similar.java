@@ -21,7 +21,7 @@ public class similar implements Handler {
         if (context.formParam("list") != null) {
             varName = context.formParam("list");
         } else {
-            varName = "Albania";
+            varName = "Australia";
         };
         JDBC2             jdbc = new JDBC2();
         ArrayList<String> country_names = jdbc.getCountryNames();
@@ -208,6 +208,7 @@ public class similar implements Handler {
         }
         html = html +
         "    </div>" +
+        "        <a class='a-home' href='/'><img class='img-home' src='covid.svg'></a>" +
         "</main>" +
         "    <script src='litty.js'></script>" +
         "</body>" +

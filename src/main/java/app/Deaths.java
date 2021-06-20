@@ -30,7 +30,7 @@ public class deaths implements Handler {
         if (context.formParam("country") != null) {
             country = context.formParam("country");
         } else {
-            country = "Albania";
+            country = "Australia";
         };
         if (context.formParam("from-date") != null && context.formParam("to-date") != null) {
             if ((context.formParam("from-date").compareTo(context.formParam("to-date"))) < 0) {
@@ -46,7 +46,7 @@ public class deaths implements Handler {
         }
         JDBC2             jdbc = new JDBC2();
         int               country_population = jdbc.getCountryPopulation(country);
-        int               global_population = jdbc.getGlobalPopulation();
+        long               global_population = jdbc.getGlobalPopulation();
         ArrayList<String> country_names = jdbc.getCountryNames();
         ArrayList<String> peak_data = jdbc.getPeakData(country);
         int               country_deaths = jdbc.getTotalDeathsInDateRange1Country(country, from_date, to_date);
@@ -140,7 +140,7 @@ public class deaths implements Handler {
         "           <section class='section-death-ratio'>" +
         "           <div class='div-death'><h3><span class='span-highlight2'>Deaths</span></h3>" +
         "           <h4>" + country_deaths + "</h4></div>" +
-        "           <div class='div-ratio'><h3><span class='span-highlight2'>Ratio</span></h3>" +
+        "           <div class='div-ratio'><h3><span class='span-highlight2'>Ratio*</span></h3>" +
         "           <h4>" + country_ratio + "%</h4></div>" +
         "           </section>" +
         "           </fieldset>" + 
@@ -157,7 +157,7 @@ public class deaths implements Handler {
         "           <tr>" +
         "               <th class='btn-th' data-type='string'>Country</th>" +
         "               <th class='btn-th' data-type='num'>Deaths</th>" +
-        "               <th class='btn-th' data-type='num'>Ratio</th>" +
+        "               <th class='btn-th' data-type='num'>Ratio*</th>" +
         "           </tr>" +
         "       </thead>" +
         "       <tbody>";
@@ -175,11 +175,13 @@ public class deaths implements Handler {
         "           <h3>Total Deaths</h3>" +
         "           <h4>" + global_total_deaths + "</h4>" +
         "           <h3>Population</h3>" +
-        "           <h4>" + global_population + "</h4>" +
+        "           <h4>" + global_population/1000000000 + "," + global_population%1000000000/1000000 + "," + global_population%1000000/1000 + "," + global_population%1000 + "</h4>" +
         "       </div>" +
         "       </div>" +
         "    </section>" +
         "       <div class='div-line'></div>" +
+        "       <div class='div-ratio-note'>* deaths to infections</div>" +
+        "        <a class='a-home' href='/'><img class='img-home' src='covid.svg'></a>" +
         "</main>" +
         "    <script src='litty.js'></script>" +
         "</body>" +

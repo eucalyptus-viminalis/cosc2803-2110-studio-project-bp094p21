@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class JDBC2 {
-    private static final String DATABASE2 = "jdbc:sqlite:database/fixed.db";
+    private static final String DATABASE2 = "jdbc:sqlite:database/final.db";
     public JDBC2() {
         System.out.println("Created JDBC 2 Object");
     }
@@ -293,8 +293,8 @@ public class JDBC2 {
       }
       return count;
    }
-   public int getGlobalPopulation() {
-    int count = 0;
+   public long getGlobalPopulation() {
+    long count = 0;
     Connection connection = null;
     try {
         connection = DriverManager.getConnection(DATABASE2);
@@ -302,7 +302,7 @@ public class JDBC2 {
         statement.setQueryTimeout(30);
         String query = "select sum(population) p from country;";
         ResultSet result = statement.executeQuery(query);
-        count = result.getInt("p");
+        count = result.getLong("p");
         statement.close();
     }
     catch (SQLException e) {

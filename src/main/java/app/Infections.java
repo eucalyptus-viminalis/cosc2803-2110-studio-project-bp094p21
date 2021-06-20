@@ -63,7 +63,8 @@ public class infections implements Handler {
         infectionsvar = infectionsvar +"            <button type='submit' class='\"btn btn-shallow\"'>Go</button>";
         infectionsvar = infectionsvar +"        </div>";
         infectionsvar = infectionsvar +"   </form>";
-        infectionsvar = infectionsvar +"    </section>";
+        infectionsvar = infectionsvar +"    </section>" +
+        "        <a class='a-home' href='/'><img class='img-home' src='covid.svg'></a>";
 
         String date1_textbox = context.formParam("date1_textbox");
         String date2_textbox = context.formParam("date2_textbox");
