@@ -3,7 +3,7 @@ document.querySelectorAll("table th").forEach(th => {
     const table = th.parentElement.parentElement.parentElement;
     const thIndex = Array.prototype.indexOf.call(th.parentElement.children, th);
     console.log(thIndex);
-    const isAsc = th.classList.contains("sorted-asc");
+    const isAsc = th.classList.contains("sorted-desc");
     console.log(isAsc);
     const dataType = th.dataset.type;
     sortTableByCol(table, thIndex, !isAsc, dataType);
@@ -29,8 +29,8 @@ function sortTableByCol(table, thIndex, asc=true, dataType) {
     }
     tBody.append(...sortedRows);
     table.querySelectorAll("th").forEach(th => th.classList.remove("sorted-asc", "sorted-desc"));
-    table.querySelector(`th:nth-child(${columnIndex})`).classList.toggle('sorted-asc', asc);
-    table.querySelector(`th:nth-child(${columnIndex})`).classList.toggle('sorted-desc', !asc);
+    table.querySelector(`th:nth-child(${columnIndex})`).classList.toggle('sorted-desc', asc);
+    table.querySelector(`th:nth-child(${columnIndex})`).classList.toggle('sorted-asc', !asc);
 }
 
   (function horizontalScrollingBanner() {
