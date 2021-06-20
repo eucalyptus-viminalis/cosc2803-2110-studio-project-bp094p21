@@ -173,8 +173,8 @@ public class cumulative implements Handler {
         cumulativevar = cumulativevar + "<thead>";
         cumulativevar = cumulativevar + " <tr>";
         cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Country Name</th>";
-        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='num'>Transmission Rate (%)</th>";
-        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='num'>Death Rate (%)</th>";
+        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Transmission Rate (%)</th>";
+        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Death Rate (%)</th>";
         cumulativevar = cumulativevar + " </tr></thead><tbody>";
         for (i = 0; i < newList.size() - 1; i+=3) {
             cumulativevar = cumulativevar + "<tr>";
@@ -204,7 +204,7 @@ public class cumulative implements Handler {
         cumulativevar = cumulativevar + "<thead>";
         cumulativevar = cumulativevar + " <tr>";
         cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Country Name</th>";
-        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='num'>Transmission Rate (%)</th>";
+        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Transmission Rate (%)</th>";
         cumulativevar = cumulativevar + "     <th class='btn-th' data-type='num'>Distance from POI (km)</th>";
         cumulativevar = cumulativevar + " </tr></thead><tbody>";
         int j;
