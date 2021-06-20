@@ -228,16 +228,14 @@ public class cumulative implements Handler {
         cumulativevar = cumulativevar + " <tr>";
         cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Country Name</th>";
         cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Infection : Death Ratio</th>";
-        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Infection : Population Ratio (per 10000 people)</th>";
-        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Death : Population Ratio (per 10000 people)</th>";
+        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Infection + Death : Total Population Ratio </th>";
         cumulativevar = cumulativevar + " </tr></thead><tbody>";
         int o;
-        for (o = 0; o <litList.size() - 1; o+=4) {
+        for (o = 0; o <litList.size() - 1; o+=3) {
             cumulativevar = cumulativevar + "<tr>";
             cumulativevar = cumulativevar + " <td>" + litList.get(o) + "</td>";
             cumulativevar = cumulativevar + " <td>" + litList.get(o+1) + " : 1" + "</td>";
-            cumulativevar = cumulativevar + " <td>" + litList.get(o+2) + " : 10000" + "</td>";
-            cumulativevar = cumulativevar + " <td>" + litList.get(o+3) + " : 10000" + "</td>";
+            cumulativevar = cumulativevar + " <td>" + "1 : " + litList.get(o+2) + "</td>";
             cumulativevar = cumulativevar + "</tr>";
         }
         cumulativevar = cumulativevar + "</tbody></table>";
