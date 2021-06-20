@@ -227,9 +227,9 @@ public class cumulative implements Handler {
         cumulativevar = cumulativevar + "<table class=\"infdeafratiotable\"><thead>";
         cumulativevar = cumulativevar + " <tr>";
         cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Country Name</th>";
-        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Infection/Death Rate</th>";
-        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Infection/Population Rate</th>";
-        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Death/Population Rate</th>";
+        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Infection : Death Ratio</th>";
+        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Infection : Population Ratio (per 10000 people)</th>";
+        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Death : Population Ratio (per 10000 people)</th>";
         cumulativevar = cumulativevar + " </tr></thead><tbody>";
         int o;
         for (o = 0; o <litList.size() - 1; o+=4) {
@@ -274,7 +274,7 @@ public class cumulative implements Handler {
         for (String noiceData: mostRecovered) {
             coollist.add(noiceData);
         }
-        cumulativevar = cumulativevar + "<h2 class=\"cumulativemsg\">Countries that have recovered the best in the last 7 days</h2>";
+        cumulativevar = cumulativevar + "<h2 class=\"cumulativemsg\">Country that has recovered the best in the last 7 days</h2>";
         cumulativevar = cumulativevar + "<div class=\"tablediv\">";
         cumulativevar = cumulativevar + "<table class=\"infdeafratiotable\"><thead>";
         cumulativevar = cumulativevar + " <tr>";
@@ -288,6 +288,52 @@ public class cumulative implements Handler {
             cumulativevar = cumulativevar + " <td>" + coollist.get(u) + "</td>";
             cumulativevar = cumulativevar + " <td>" + coollist.get(u+1) + "</td>";
             cumulativevar = cumulativevar + " <td>" + coollist.get(u+2) + "</td>";
+            cumulativevar = cumulativevar + "</tr>";
+        }
+        cumulativevar = cumulativevar + "</tbody></table>";
+        cumulativevar = cumulativevar + "</div>";
+        cumulativevar = cumulativevar + "<script src='litty.js'></script>";
+
+        ArrayList<String> highRates = jdbc.getHighRates();
+        ArrayList<String> epicList = new ArrayList<String>();
+        for (String epicData: highRates) {
+            epicList.add(epicData);
+        }
+        cumulativevar = cumulativevar + "<h2 class=\"cumulativemsg\">Top 5 Countries with Highest Infections Ratio per 1 million people</h2>";
+        cumulativevar = cumulativevar + "<div class=\"tablediv\">";
+        cumulativevar = cumulativevar + "<table class=\"infdeafratiotable\"><thead>";
+        cumulativevar = cumulativevar + " <tr>";
+        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Country Name</th>";
+        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Infections</th>";
+        cumulativevar = cumulativevar + " </tr></thead><tbody>";
+        int v;
+        for (v = 0; v <epicList.size() - 1; v+=2) {
+            cumulativevar = cumulativevar + "<tr>";
+            cumulativevar = cumulativevar + " <td>" + epicList.get(v) + "</td>";
+            cumulativevar = cumulativevar + " <td>" + epicList.get(v+1) + "</td>";
+            cumulativevar = cumulativevar + "</tr>";
+        }
+        cumulativevar = cumulativevar + "</tbody></table>";
+        cumulativevar = cumulativevar + "</div>";
+        cumulativevar = cumulativevar + "<script src='litty.js'></script>";
+
+        ArrayList<String> lowRates = jdbc.getLowRates();
+        ArrayList<String> sickList = new ArrayList<String>();
+        for (String sickData: lowRates) {
+            sickList.add(sickData);
+        }
+        cumulativevar = cumulativevar + "<h2 class=\"cumulativemsg\">Top 5 Countries with Highest Death Ratio per 1 million people</h2>";
+        cumulativevar = cumulativevar + "<div class=\"tablediv\">";
+        cumulativevar = cumulativevar + "<table class=\"infdeafratiotable\"><thead>";
+        cumulativevar = cumulativevar + " <tr>";
+        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Country Name</th>";
+        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Deaths</th>";
+        cumulativevar = cumulativevar + " </tr></thead><tbody>";
+        int y;
+        for (y = 0; y <sickList.size() - 1; y+=2) {
+            cumulativevar = cumulativevar + "<tr>";
+            cumulativevar = cumulativevar + " <td>" + sickList.get(y) + "</td>";
+            cumulativevar = cumulativevar + " <td>" + sickList.get(y+1) + "</td>";
             cumulativevar = cumulativevar + "</tr>";
         }
         cumulativevar = cumulativevar + "</tbody></table>";

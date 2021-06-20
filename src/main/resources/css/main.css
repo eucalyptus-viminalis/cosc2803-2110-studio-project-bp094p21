@@ -141,53 +141,6 @@ table.distancetable {
   color: white;
 }
 
-
-@media only screen and (min-width: 800px) {
-  .mobile-menu, .mobile-menu-exit {
-    display: none;
-  }
-  .navbar {
-    padding: 0;
-    margin: 0;
-  }
-  .navbar nav {
-    display: unset;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    background: none;
-    position: unset;
-    height: auto;
-    width: 100%;
-    padding: 0;
-  }
-  .highlight-red {
-    background-color: red;
-  }
-  .navbar ul {
-    overflow: hidden;
-    background-color: #333;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  .navbar li a {
-    display: block;
-    color: white;
-    padding: 1rem 2rem;
-    text-decoration: none;
-    font-size: 2.5em;
-  }
-  .navbar li a:hover {
-    color: #76e676;
-  }
-}
 /*# sourceMappingURL=main.css.map */
 
 .nav-ul {

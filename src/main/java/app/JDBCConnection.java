@@ -554,7 +554,7 @@ public class JDBCConnection {
             connection = DriverManager.getConnection(DATABASE2);
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
-            String query = "SELECT Country.Name AS 'Country Name', SUM(NewCases)/SUM(NewDeaths) AS 'Infection to Death Ratio', printf('%.5f', 10000 * SUM(NewCases)/Population) AS 'Infection to Population Ratio', printf('%.5f', 10000 * SUM(NewDeaths)/Population) AS 'Death to Population Ratio' FROM Country JOIN CountryRecords ON Country.ID=CountryRecords.CountryID WHERE (Country.Name = '" + country + "') AND (Date BETWEEN '" + Date1 + "' AND '" + Date2 + "')";
+            String query = "SELECT Country.Name AS 'Country Name', SUM(NewCases)/SUM(NewDeaths) AS 'Infection to Death Ratio', 10000 * SUM(NewCases)/Population AS 'Infection to Population Ratio', 10000 * SUM(NewDeaths)/Population AS 'Death to Population Ratio' FROM Country JOIN CountryRecords ON Country.ID=CountryRecords.CountryID WHERE (Country.Name = '" + country + "') AND (Date BETWEEN '" + Date1 + "' AND '" + Date2 + "')";
             System.out.println(query);
             ResultSet results = statement.executeQuery(query);
             while (results.next()) {
@@ -630,7 +630,7 @@ public class JDBCConnection {
             connection = DriverManager.getConnection(DATABASE2);
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
-            String query = "SELECT Name AS 'Country Name', SUM(NewCases) AS 'Cases', SUM(NewDeaths) AS 'Deaths' FROM Country JOIN CountryRecords ON Country.ID=CountryRecords.CountryID WHERE Date BETWEEN '2021-04-15' AND '2021-04-22' GROUP BY Country.Name ORDER BY SUM(NewCases) ASC, SUM(NewDeaths) ASC limit 8";
+            String query = "SELECT Name AS 'Country Name', SUM(NewCases) AS 'Cases', SUM(NewDeaths) AS 'Deaths' FROM Country JOIN CountryRecords ON Country.ID=CountryRecords.CountryID WHERE Date BETWEEN '2021-04-15' AND '2021-04-22' GROUP BY Country.Name ORDER BY SUM(NewCases) ASC, SUM(NewDeaths) ASC limit 1";
             System.out.println(query);
             ResultSet results = statement.executeQuery(query);
             while (results.next()) {
@@ -640,6 +640,76 @@ public class JDBCConnection {
                 orderData.add(countryName);
                 orderData.add(cases);
                 orderData.add(deaths);
+            }
+            statement.close();
+        }
+        catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        finally {
+            try{
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+        return orderData;
+    }
+    public ArrayList<String> getHighRates() {
+        ArrayList<String> orderData = new ArrayList<String>();
+
+        Connection connection = null;
+
+        try {
+            connection = DriverManager.getConnection(DATABASE2);
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            String query = "SELECT Country.Name AS 'Country Name', printf('%.0f', 1000000 * SUM(NewCases)/Population) AS 'Infections Per 1 Million People' FROM Country JOIN CountryRecords ON Country.ID=CountryRecords.CountryID GROUP BY Country.Name ORDER BY 1000000 * SUM(NewCases)/Population DESC limit 5";
+            System.out.println(query);
+            ResultSet results = statement.executeQuery(query);
+            while (results.next()) {
+                String countryName = results.getString("Country Name");
+                String infections = results.getString("Infections Per 1 Million People");
+                orderData.add(countryName);
+                orderData.add(infections);
+            }
+            statement.close();
+        }
+        catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        finally {
+            try{
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+        return orderData;
+    }
+    public ArrayList<String> getLowRates() {
+        ArrayList<String> orderData = new ArrayList<String>();
+
+        Connection connection = null;
+
+        try {
+            connection = DriverManager.getConnection(DATABASE2);
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            String query = "SELECT Country.Name AS 'Country Name', printf('%.0f', 1000000 * SUM(NewDeaths)/Population) AS 'Infections Per 1 Million People' FROM Country JOIN CountryRecords ON Country.ID=CountryRecords.CountryID GROUP BY Country.Name ORDER BY 1000000 * SUM(NewDeaths)/Population DESC limit 5";
+            System.out.println(query);
+            ResultSet results = statement.executeQuery(query);
+            while (results.next()) {
+                String countryName = results.getString("Country Name");
+                String infections = results.getString("Infections Per 1 Million People");
+                orderData.add(countryName);
+                orderData.add(infections);
             }
             statement.close();
         }
