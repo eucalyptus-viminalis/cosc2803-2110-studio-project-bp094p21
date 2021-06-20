@@ -299,7 +299,7 @@ public class cumulative implements Handler {
         for (String epicData: highRates) {
             epicList.add(epicData);
         }
-        cumulativevar = cumulativevar + "<h2 class=\"cumulativemsg\">Top 5 Countries with Highest Infections Ratio per 1 million people</h2>";
+        cumulativevar = cumulativevar + "<h2 class=\"cumulativemsg\">Top 5 Countries with Highest Infections Ratio per 1 million people over entire history</h2>";
         cumulativevar = cumulativevar + "<div class=\"tablediv\">";
         cumulativevar = cumulativevar + "<table class=\"infdeafratiotable\"><thead>";
         cumulativevar = cumulativevar + " <tr>";
@@ -322,7 +322,7 @@ public class cumulative implements Handler {
         for (String sickData: lowRates) {
             sickList.add(sickData);
         }
-        cumulativevar = cumulativevar + "<h2 class=\"cumulativemsg\">Top 5 Countries with Highest Death Ratio per 1 million people</h2>";
+        cumulativevar = cumulativevar + "<h2 class=\"cumulativemsg\">Top 5 Countries with Highest Death Ratio per 1 million people over entire history</h2>";
         cumulativevar = cumulativevar + "<div class=\"tablediv\">";
         cumulativevar = cumulativevar + "<table class=\"infdeafratiotable\"><thead>";
         cumulativevar = cumulativevar + " <tr>";
