@@ -291,7 +291,7 @@ h4 {
 .div-line {
     position: fixed;
     width: 1px;
-    border: 1px solid var(--grey76);
+    border: 1px solid #333;
     height: 55vh;
     top: 30vh;
     /* transform: translateX(-50%), translateY(-50%); */
@@ -459,5 +459,5 @@ th, td {
 /* INDEX */
 .homepagehero img {
     margin-top: 5rem;
-    max-width: 15vw;
+    max-width: 30vh;
 }

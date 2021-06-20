@@ -157,7 +157,7 @@ public class deaths implements Handler {
         "           <tr>" +
         "               <th class='btn-th' data-type='string'>Country</th>" +
         "               <th class='btn-th' data-type='num'>Deaths</th>" +
-        "               <th class='btn-th' data-type='num'>Ratio*</th>" +
+        "               <th class='btn-th' data-type='num'>Ratio* (%)</th>" +
         "           </tr>" +
         "       </thead>" +
         "       <tbody>";

@@ -70,16 +70,16 @@ public class bigpicture implements Handler {
         "    <div class='div-facts'>";
         html = html +
         "    <p class='p-fact'>In the past year, the world population has been infected with <span class='span-highlight'>" +
-        totalCases/1000000 + " Million</span> new Covid-19 cases.</p>";
+        totalCases/1000000 + " Million</span> new Covid-19 cases.*</p>";
         html = html +
         "    <p class='p-fact'><span class='span-highlight'>" +
         countryName + "</span> leads the world in the total number of Covid-19 related deaths reported in the past month, accounting for " + (countrySum*100)/totalSum +
-        "% of the month's global death count.</p>";
+        "% of the month's global death count.**</p>";
         html = html +
         "    <p class='p-fact'>" +
         strCountryNames + " along with <span class='span-hightlight'>" + count + " states and provinces around the world, have reported <span class='span-highlight'>0 new infections</span> in the past week.^</p>" +
         "    <div class='div-small'>" +
-        "    <small>^: week ranging from 2021-04-16 to 2021-04-22, inclusive</small></div>";
+        "    <small>*: year ranging from 2020-04-22 to 2021-04-22, inclusive. **: month ranging from 2021-03-22 to 2021-04-22, inclusive. ^: week ranging from 2021-04-16 to 2021-04-22, inclusive</small></div>";
         html = html +
         "    </div>" +
         "    <div class='horizontal-scrolling-banner'>";

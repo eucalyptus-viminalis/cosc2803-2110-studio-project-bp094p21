@@ -13,6 +13,7 @@ public class similar implements Handler {
     public void handle(Context context) throws Exception {
         String countryState;
         String varName;
+        String varTh = "Country";
         if (context.formParam("countryState") != null) {
             countryState = context.formParam("countryState");
         } else {
@@ -23,6 +24,11 @@ public class similar implements Handler {
         } else {
             varName = "Australia";
         };
+        if (countryState.equals("state")) {
+            varTh = "State";
+        } else {
+            varTh = "Country";
+        }
         JDBC2             jdbc = new JDBC2();
         ArrayList<String> country_names = jdbc.getCountryNames();
         ArrayList<String> us_state_names = jdbc.getUSStateNames();
@@ -136,7 +142,7 @@ public class similar implements Handler {
         "       <table>" +
         "       <thead>" +
         "           <tr>" +
-        "               <th data-type='string'>Country</th>" +
+        "               <th data-type='string'>" + varTh + "</th>" +
         "               <th data-type='string'>Infections<br><small>per million ppl</small></th>" +
         "           </tr>" +
         "       </thead>" +
@@ -153,7 +159,7 @@ public class similar implements Handler {
         "       <table>" +
         "       <thead>" +
         "           <tr>" +
-        "               <th data-type='string'>Country</th>" +
+        "               <th data-type='string'>" + varTh + "</th>" +
         "               <th data-type='num'>Ratio<br><small>deaths/infection</small></th>" +
         "           </tr>" +
         "       </thead>" +
@@ -170,7 +176,7 @@ public class similar implements Handler {
         "       <table>" +
         "       <thead>" +
         "           <tr>" +
-        "               <th data-type='string'>Country</th>" +
+        "               <th data-type='string'>" + varTh + "</th>" +
         "               <th data-type='num'>Peak Deaths<br><small>highest number of new<br>deaths in 1 day</small></th>" +
         "           </tr>" +
         "       </thead>" +
@@ -187,7 +193,7 @@ public class similar implements Handler {
         "       <table>" +
         "       <thead>" +
         "           <tr>" +
-        "               <th data-type='string'>Country</th>" +
+        "               <th data-type='string'>" + varTh + "</th>" +
         "               <th data-type='num'>Peak Cases<br><small>highest number of new<br>cases in 1 day</small></th>" +
         "           </tr>" +
         "       </thead>" +
