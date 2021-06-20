@@ -100,7 +100,8 @@ ul {
   text-align: center;
 }
 td {
-  color: #333
+  background-color: rgb(252, 242, 216);
+  color: #333;
 }
 th {
   color: rgb(0, 0, 0);
@@ -139,6 +140,7 @@ table.distancetable {
   font-weight: bold;
   color: white;
 }
+
 
 @media only screen and (min-width: 800px) {
   .mobile-menu, .mobile-menu-exit {
