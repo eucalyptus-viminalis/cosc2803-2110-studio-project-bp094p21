@@ -243,6 +243,56 @@ public class cumulative implements Handler {
         cumulativevar = cumulativevar + "</tbody></table>";
         cumulativevar = cumulativevar + "</div>";
         cumulativevar = cumulativevar + "<script src='litty.js'></script>";
+
+        ArrayList<String> leastRecovered = jdbc.getLeastRecovered();
+        ArrayList<String> ehlist = new ArrayList<String>();
+        for (String neatData: leastRecovered) {
+            ehlist.add(neatData);
+        }
+        cumulativevar = cumulativevar + "<h2 class=\"cumulativemsg\">Country that has recovered the worst in the last 7 days</h2>";
+        cumulativevar = cumulativevar + "<div class=\"tablediv\">";
+        cumulativevar = cumulativevar + "<table class=\"infdeafratiotable\"><thead>";
+        cumulativevar = cumulativevar + " <tr>";
+        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Country Name</th>";
+        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Number of Cases</th>";
+        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Number of Deaths</th>";
+        cumulativevar = cumulativevar + " </tr></thead><tbody>";
+        int t;
+        for (t = 0; t <ehlist.size() - 1; t+=3) {
+            cumulativevar = cumulativevar + "<tr>";
+            cumulativevar = cumulativevar + " <td>" + ehlist.get(t) + "</td>";
+            cumulativevar = cumulativevar + " <td>" + ehlist.get(t+1) + "</td>";
+            cumulativevar = cumulativevar + " <td>" + ehlist.get(t+2) + "</td>";
+            cumulativevar = cumulativevar + "</tr>";
+        }
+        cumulativevar = cumulativevar + "</tbody></table>";
+        cumulativevar = cumulativevar + "</div>";
+        cumulativevar = cumulativevar + "<script src='litty.js'></script>";
+
+        ArrayList<String> mostRecovered = jdbc.getMostRecovered();
+        ArrayList<String> coollist = new ArrayList<String>();
+        for (String noiceData: mostRecovered) {
+            coollist.add(noiceData);
+        }
+        cumulativevar = cumulativevar + "<h2 class=\"cumulativemsg\">Countries that have recovered the best in the last 7 days</h2>";
+        cumulativevar = cumulativevar + "<div class=\"tablediv\">";
+        cumulativevar = cumulativevar + "<table class=\"infdeafratiotable\"><thead>";
+        cumulativevar = cumulativevar + " <tr>";
+        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Country Name</th>";
+        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Number of Cases</th>";
+        cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Number of Deaths</th>";
+        cumulativevar = cumulativevar + " </tr></thead><tbody>";
+        int u;
+        for (u = 0; u <coollist.size() - 1; u+=3) {
+            cumulativevar = cumulativevar + "<tr>";
+            cumulativevar = cumulativevar + " <td>" + coollist.get(u) + "</td>";
+            cumulativevar = cumulativevar + " <td>" + coollist.get(u+1) + "</td>";
+            cumulativevar = cumulativevar + " <td>" + coollist.get(u+2) + "</td>";
+            cumulativevar = cumulativevar + "</tr>";
+        }
+        cumulativevar = cumulativevar + "</tbody></table>";
+        cumulativevar = cumulativevar + "</div>";
+        cumulativevar = cumulativevar + "<script src='litty.js'></script>";
         return cumulativevar;
     }
 }

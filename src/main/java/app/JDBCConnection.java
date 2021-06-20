@@ -584,4 +584,78 @@ public class JDBCConnection {
         }
         return orderData;
     }
+    public ArrayList<String> getLeastRecovered() {
+        ArrayList<String> orderData = new ArrayList<String>();
+
+        Connection connection = null;
+
+        try {
+            connection = DriverManager.getConnection(DATABASE2);
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            String query = "SELECT Name AS 'Country Name', SUM(NewCases) AS 'Cases', SUM(NewDeaths) AS 'Deaths' FROM Country JOIN CountryRecords ON Country.ID=CountryRecords.CountryID WHERE Date BETWEEN '2021-04-15' AND '2021-04-22' GROUP BY Country.Name ORDER BY SUM(NewCases) DESC, SUM(NewDeaths) DESC limit 1";
+            System.out.println(query);
+            ResultSet results = statement.executeQuery(query);
+            while (results.next()) {
+                String countryName = results.getString("Country Name");
+                String cases = results.getString("Cases");
+                String deaths = results.getString("Deaths");
+                orderData.add(countryName);
+                orderData.add(cases);
+                orderData.add(deaths);
+            }
+            statement.close();
+        }
+        catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        finally {
+            try{
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+        return orderData;
+    }
+    public ArrayList<String> getMostRecovered() {
+        ArrayList<String> orderData = new ArrayList<String>();
+
+        Connection connection = null;
+
+        try {
+            connection = DriverManager.getConnection(DATABASE2);
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+            String query = "SELECT Name AS 'Country Name', SUM(NewCases) AS 'Cases', SUM(NewDeaths) AS 'Deaths' FROM Country JOIN CountryRecords ON Country.ID=CountryRecords.CountryID WHERE Date BETWEEN '2021-04-15' AND '2021-04-22' GROUP BY Country.Name ORDER BY SUM(NewCases) ASC, SUM(NewDeaths) ASC limit 8";
+            System.out.println(query);
+            ResultSet results = statement.executeQuery(query);
+            while (results.next()) {
+                String countryName = results.getString("Country Name");
+                String cases = results.getString("Cases");
+                String deaths = results.getString("Deaths");
+                orderData.add(countryName);
+                orderData.add(cases);
+                orderData.add(deaths);
+            }
+            statement.close();
+        }
+        catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        finally {
+            try{
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+        return orderData;
+    }
 }
