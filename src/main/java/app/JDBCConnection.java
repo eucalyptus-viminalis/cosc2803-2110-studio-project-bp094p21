@@ -480,7 +480,7 @@ public class JDBCConnection {
             connection = DriverManager.getConnection(DATABASE2);
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
-            String query = "SELECT Name as 'Country Name', printf('%.2f', (100.0 * SUM(NewCases)/Population)) AS 'Infection Rate', (6371 * acos ( cos ( radians('" + lati + "') ) * cos( radians( Latitude) ) * cos( radians ( Longitude ) - radians('" + longi + "') ) + sin (radians('" + lati + "') ) * sin( radians( Latitude ) ) ) ) AS distance FROM Country JOIN CountryRecords ON Country.ID=CountryRecords.CountryID WHERE (distance < " + dist + ") AND (Date BETWEEN '" + Date1 + "' AND '" + Date2 + "') AND (Country.Name != '" + country + "') GROUP BY Country.Name ORDER BY distance";
+            String query = "SELECT Name as 'Country Name', printf('%.5f', (100.0 * SUM(NewCases)/Population)) AS 'Infection Rate', (6371 * acos ( cos ( radians('" + lati + "') ) * cos( radians( Latitude) ) * cos( radians ( Longitude ) - radians('" + longi + "') ) + sin (radians('" + lati + "') ) * sin( radians( Latitude ) ) ) ) AS distance FROM Country JOIN CountryRecords ON Country.ID=CountryRecords.CountryID WHERE (distance < " + dist + ") AND (Date BETWEEN '" + Date1 + "' AND '" + Date2 + "') AND (Country.Name != '" + country + "') GROUP BY Country.Name ORDER BY distance";
             System.out.println(query);
             ResultSet results = statement.executeQuery(query);
             while (results.next()) {
@@ -517,7 +517,7 @@ public class JDBCConnection {
             connection = DriverManager.getConnection(DATABASE2);
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
-            String query = "SELECT Name AS 'Country Name', printf('%.2f', (100.0 * SUM(NewCases)/Population)) AS 'Transmission Rate', printf('%.2f', (100.0 * SUM(NewDeaths)/Population)) AS 'Death Rate' FROM Country JOIN CountryRecords ON Country.ID=CountryRecords.CountryID WHERE (Country.Latitude BETWEEN '" + maxLat + "' AND '" + minLat + "') AND (Date BETWEEN '" + Date1 + "' AND '" + Date2 + "') GROUP BY Country.Name";
+            String query = "SELECT Name AS 'Country Name', printf('%.5f', (100.0 * SUM(NewCases)/Population)) AS 'Transmission Rate', printf('%.5f', (100.0 * SUM(NewDeaths)/Population)) AS 'Death Rate' FROM Country JOIN CountryRecords ON Country.ID=CountryRecords.CountryID WHERE (Country.Latitude BETWEEN '" + maxLat + "' AND '" + minLat + "') AND (Date BETWEEN '" + Date1 + "' AND '" + Date2 + "') GROUP BY Country.Name";
             System.out.println(query);
             ResultSet results = statement.executeQuery(query);
             while (results.next()) {
@@ -554,7 +554,7 @@ public class JDBCConnection {
             connection = DriverManager.getConnection(DATABASE2);
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
-            String query = "SELECT Country.Name AS 'Country Name', SUM(NewCases)/SUM(NewDeaths) AS 'Infection to Death Ratio', 1000000 * SUM(NewCases)/Population AS 'Infection to Population Ratio', 1000000 * SUM(NewDeaths)/Population AS 'Death to Population Ratio' FROM Country JOIN CountryRecords ON Country.ID=CountryRecords.CountryID WHERE (Country.Name = '" + country + "') AND (Date BETWEEN '" + Date1 + "' AND '" + Date2 + "')";
+            String query = "SELECT Country.Name AS 'Country Name', SUM(NewCases)/SUM(NewDeaths) AS 'Infection to Death Ratio', printf('%.5f', 10000 * SUM(NewCases)/Population) AS 'Infection to Population Ratio', printf('%.5f', 10000 * SUM(NewDeaths)/Population) AS 'Death to Population Ratio' FROM Country JOIN CountryRecords ON Country.ID=CountryRecords.CountryID WHERE (Country.Name = '" + country + "') AND (Date BETWEEN '" + Date1 + "' AND '" + Date2 + "')";
             System.out.println(query);
             ResultSet results = statement.executeQuery(query);
             while (results.next()) {

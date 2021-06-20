@@ -236,8 +236,8 @@ public class cumulative implements Handler {
             cumulativevar = cumulativevar + "<tr>";
             cumulativevar = cumulativevar + " <td>" + litList.get(o) + "</td>";
             cumulativevar = cumulativevar + " <td>" + litList.get(o+1) + " : 1" + "</td>";
-            cumulativevar = cumulativevar + " <td>" + litList.get(o+2) + " : 1,000,000" + "</td>";
-            cumulativevar = cumulativevar + " <td>" + litList.get(o+3) + " : 1,000,000" + "</td>";
+            cumulativevar = cumulativevar + " <td>" + litList.get(o+2) + " : 10000" + "</td>";
+            cumulativevar = cumulativevar + " <td>" + litList.get(o+3) + " : 10000" + "</td>";
             cumulativevar = cumulativevar + "</tr>";
         }
         cumulativevar = cumulativevar + "</tbody></table>";
