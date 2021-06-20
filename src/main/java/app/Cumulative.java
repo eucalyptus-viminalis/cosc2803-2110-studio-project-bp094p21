@@ -223,7 +223,7 @@ public class cumulative implements Handler {
             litList.add(regData);
         }
         cumulativevar = cumulativevar + "<h2 class=\"cumulativemsg\">Ratios of " + country + " (" + date1 +" to " + date2 +")</h2>";
-        cumulativevar = cumulativevar + "<div class=\"tablediv\">";
+        cumulativevar = cumulativevar + "<div class=\"tablediv3\">";
         cumulativevar = cumulativevar + "<table class=\"infdeafratiotable\"><thead>";
         cumulativevar = cumulativevar + " <tr>";
         cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Country Name</th>";
@@ -250,7 +250,7 @@ public class cumulative implements Handler {
             ehlist.add(neatData);
         }
         cumulativevar = cumulativevar + "<h2 class=\"cumulativemsg\">Country that has recovered the worst in the last 7 days</h2>";
-        cumulativevar = cumulativevar + "<div class=\"tablediv\">";
+        cumulativevar = cumulativevar + "<div class=\"tablediv3\">";
         cumulativevar = cumulativevar + "<table class=\"infdeafratiotable\"><thead>";
         cumulativevar = cumulativevar + " <tr>";
         cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Country Name</th>";
@@ -275,7 +275,7 @@ public class cumulative implements Handler {
             coollist.add(noiceData);
         }
         cumulativevar = cumulativevar + "<h2 class=\"cumulativemsg\">Country that has recovered the best in the last 7 days</h2>";
-        cumulativevar = cumulativevar + "<div class=\"tablediv\">";
+        cumulativevar = cumulativevar + "<div class=\"tablediv3\">";
         cumulativevar = cumulativevar + "<table class=\"infdeafratiotable\"><thead>";
         cumulativevar = cumulativevar + " <tr>";
         cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Country Name</th>";
@@ -300,7 +300,7 @@ public class cumulative implements Handler {
             epicList.add(epicData);
         }
         cumulativevar = cumulativevar + "<h2 class=\"cumulativemsg\">Top 5 Countries with Highest Infections Ratio per 1 million people over entire history</h2>";
-        cumulativevar = cumulativevar + "<div class=\"tablediv\">";
+        cumulativevar = cumulativevar + "<div class=\"tablediv2\">";
         cumulativevar = cumulativevar + "<table class=\"infdeafratiotable\"><thead>";
         cumulativevar = cumulativevar + " <tr>";
         cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Country Name</th>";
@@ -323,7 +323,7 @@ public class cumulative implements Handler {
             sickList.add(sickData);
         }
         cumulativevar = cumulativevar + "<h2 class=\"cumulativemsg\">Top 5 Countries with Highest Death Ratio per 1 million people over entire history</h2>";
-        cumulativevar = cumulativevar + "<div class=\"tablediv\">";
+        cumulativevar = cumulativevar + "<div class=\"tablediv2\">";
         cumulativevar = cumulativevar + "<table class=\"infdeafratiotable\"><thead>";
         cumulativevar = cumulativevar + " <tr>";
         cumulativevar = cumulativevar + "     <th class='btn-th' data-type='string'>Country Name</th>";

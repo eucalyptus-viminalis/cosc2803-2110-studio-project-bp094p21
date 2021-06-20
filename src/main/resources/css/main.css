@@ -116,6 +116,16 @@ table.center, th, td {
   overflow-y: scroll;
   height: 600px;
 }
+.tablediv2 {
+  overflow:hidden;
+  overflow-y: scroll;
+  height: 300px;
+}
+.tablediv3 {
+  overflow:hidden;
+  overflow-y: scroll;
+  height: 200px;
+}
 table.center {
   width: 100%;
 }
