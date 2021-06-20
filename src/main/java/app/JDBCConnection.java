@@ -12,7 +12,7 @@ public class JDBCConnection {
 
     // Name of database file (contained in database folder)
     // private static final String DATABASE = "jdbc:sqlite:database/covid.db";
-    private static final String DATABASE2 = "jdbc:sqlite:database/fixed.db";
+    private static final String DATABASE2 = "jdbc:sqlite:database/final.db";
 
     public JDBCConnection() {
         System.out.println("Created JDBC Connection Object");
